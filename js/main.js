@@ -1,196 +1,326 @@
-// main.js - Enhanced Version
+// js/main.js - Enhanced with all functionality
+
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize all functionality
-  initImageHandling();
-  initNavigation();
-  initProductInquiry();
-  initAnimations();
-  initFormHandling();
+    // Initialize all functionality
+    initScrollToCategory();
+    initProductFiltering();
+    initSmoothScrolling();
+    initContactForm();
+    initLightboxEnhancements();
 });
 
-// Handle image loading and fallbacks
-function initImageHandling() {
-  const images = document.querySelectorAll('img');
-  
-  images.forEach(img => {
-    // Add loading state
-    img.addEventListener('load', function() {
-      this.classList.add('loaded');
-    });
+// Smooth scrolling for category links
+function initScrollToCategory() {
+    const categoryLinks = document.querySelectorAll('a[href^="#"]');
     
-    // Handle broken images
-    img.addEventListener('error', function() {
-      this.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWNmMGYxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzJjM2U1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4=';
-      this.alt = 'Image not available';
-      this.classList.add('image-error');
-    });
-  });
-}
-
-// Enhanced navigation handling
-function initNavigation() {
-  // Update active navigation link
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  const navLinks = document.querySelectorAll('.nav-link');
-  
-  navLinks.forEach(link => {
-    const linkHref = link.getAttribute('href');
-    if (linkHref === currentPage) {
-      link.classList.add('active');
-    } else {
-      link.classList.remove('active');
-    }
-  });
-  
-  // Smooth scrolling for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+    categoryLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 100;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
         });
-      }
     });
-  });
 }
 
-// Handle product inquiry functionality
-function initProductInquiry() {
-  // Add "View Details" buttons to product cards
-  const productCards = document.querySelectorAll('.product-card');
-  
-  productCards.forEach(card => {
-    const productTitle = card.querySelector('.card-title').textContent;
-    const existingButtons = card.querySelector('.card-body').querySelectorAll('a');
+// Product filtering by category
+function initProductFiltering() {
+    const filterButtons = document.querySelectorAll('[data-filter]');
     
-    // Check if "View Details" button already exists
-    let hasViewDetails = false;
-    existingButtons.forEach(btn => {
-      if (btn.textContent.includes('View Details')) {
-        hasViewDetails = true;
-      }
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filterValue = this.getAttribute('data-filter');
+            filterProducts(filterValue);
+        });
+    });
+}
+
+function filterProducts(category) {
+    const products = document.querySelectorAll('.product-card');
+    const activeClass = 'active-category';
+    
+    // Remove active class from all buttons
+    document.querySelectorAll('[data-filter]').forEach(btn => {
+        btn.classList.remove(activeClass);
     });
     
-    if (!hasViewDetails) {
-      const viewDetailsBtn = document.createElement('a');
-      viewDetailsBtn.href = `product-detail-${getProductSlug(productTitle)}.html`;
-      viewDetailsBtn.className = 'btn btn-outline-primary btn-sm me-2';
-      viewDetailsBtn.innerHTML = '<i class="fas fa-eye me-1"></i> View Details';
-      
-      const buttonContainer = card.querySelector('.d-flex.justify-content-between') || 
-                             card.querySelector('.card-body');
-      
-      if (buttonContainer.classList.contains('d-flex')) {
-        // Insert before the inquire button
-        const inquireBtn = buttonContainer.querySelector('a[href*="contact.html"]');
-        if (inquireBtn) {
-          buttonContainer.insertBefore(viewDetailsBtn, inquireBtn);
+    // Add active class to clicked button
+    event.target.classList.add(activeClass);
+    
+    products.forEach(product => {
+        if (category === 'all' || product.getAttribute('data-category') === category) {
+            product.style.display = 'block';
+            setTimeout(() => {
+                product.style.opacity = '1';
+                product.style.transform = 'scale(1)';
+            }, 100);
         } else {
-          buttonContainer.appendChild(viewDetailsBtn);
+            product.style.opacity = '0';
+            product.style.transform = 'scale(0.8)';
+            setTimeout(() => {
+                product.style.display = 'none';
+            }, 300);
         }
-      } else {
-        // Create a new button container
-        const newButtonContainer = document.createElement('div');
-        newButtonContainer.className = 'd-flex justify-content-between align-items-center mt-3';
-        newButtonContainer.appendChild(viewDetailsBtn);
-        
-        // Add inquire button if it doesn't exist
-        if (!card.querySelector('a[href*="contact.html"]')) {
-          const inquireBtn = document.createElement('a');
-          inquireBtn.href = `contact.html?product=${encodeURIComponent(productTitle)}`;
-          inquireBtn.className = 'btn btn-outline-primary btn-sm';
-          inquireBtn.innerHTML = '<i class="fas fa-envelope me-1"></i> Inquire';
-          newButtonContainer.appendChild(inquireBtn);
-        }
-        
-        card.querySelector('.card-body').appendChild(newButtonContainer);
-      }
-    }
-  });
-  
-  // Update existing inquire buttons to include product name
-  document.querySelectorAll('a[href*="contact.html"]').forEach(link => {
-    if (link.href.includes('contact.html') && !link.href.includes('?')) {
-      const productCard = link.closest('.product-card, .service-card');
-      if (productCard) {
-        const productTitle = productCard.querySelector('.card-title').textContent;
-        link.href = `contact.html?product=${encodeURIComponent(productTitle)}`;
-      }
-    }
-  });
-}
-
-// Helper function to create product slugs
-function getProductSlug(productName) {
-  const slugMap = {
-    'Chemistry Analyzers': '1',
-    'Laboratory Microscopes': '2',
-    'Hematology Analyzers': '3',
-    'Patient Monitors': '4',
-    'Laboratory Centrifuges': '5',
-    'Ultrasound Systems': '6',
-    'Medical Examination Beds': '7',
-    'Laboratory Workstations': '8',
-    'Medical Storage Cabinets': '9',
-    'Hospital Trolleys & Carts': '10',
-    'Hospital Beds': '11',
-    'X-Ray Machines': '12',
-    'Vital Signs Monitors': '13'
-  };
-  
-  return slugMap[productName] || '1';
-}
-
-// Initialize animations
-function initAnimations() {
-  // Intersection Observer for fade-in animations
-  const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-  };
-  
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('fade-in');
-        observer.unobserve(entry.target);
-      }
     });
-  }, observerOptions);
-  
-  // Observe elements for animation
-  document.querySelectorAll('.card, .service-icon, .hero-content h1, .hero-content p').forEach(el => {
-    observer.observe(el);
-  });
 }
 
-// Handle form functionality
-function initFormHandling() {
-  // Auto-fill contact form with product name from URL parameter
-  const urlParams = new URLSearchParams(window.location.search);
-  const product = urlParams.get('product');
-  
-  if (product && window.location.pathname.includes('contact.html')) {
-    // This would typically interact with the Zoho form
-    // For demo purposes, we'll show an alert
+// Enhanced smooth scrolling
+function initSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]');
+    
+    links.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            if (href !== '#' && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                
+                if (target) {
+                    const headerHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+}
+
+// Contact form enhancements
+function initContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const formObject = Object.fromEntries(formData);
+            
+            // Simple validation
+            if (validateForm(formObject)) {
+                showFormSuccess();
+                this.reset();
+            }
+        });
+    }
+    
+    // Pre-fill service/product in contact form from URL parameters
+    prefillContactForm();
+}
+
+function prefillContactForm() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const service = urlParams.get('service');
+    const product = urlParams.get('product');
+    
+    if (service) {
+        const messageField = document.querySelector('textarea[name="message"]');
+        if (messageField) {
+            messageField.value = `I'm interested in your ${service} service. Please contact me with more information.`;
+        }
+    }
+    
+    if (product) {
+        const messageField = document.querySelector('textarea[name="message"]');
+        if (messageField) {
+            messageField.value = `I'm interested in your ${product}. Please send me pricing and specifications.`;
+        }
+    }
+}
+
+function validateForm(formData) {
+    // Basic validation
+    if (!formData.name || formData.name.trim().length < 2) {
+        showFormError('Please enter your full name');
+        return false;
+    }
+    
+    if (!formData.email || !isValidEmail(formData.email)) {
+        showFormError('Please enter a valid email address');
+        return false;
+    }
+    
+    if (!formData.message || formData.message.trim().length < 10) {
+        showFormError('Please enter a message with at least 10 characters');
+        return false;
+    }
+    
+    return true;
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function showFormError(message) {
+    // Create or show error message
+    let errorDiv = document.querySelector('.form-error');
+    
+    if (!errorDiv) {
+        errorDiv = document.createElement('div');
+        errorDiv.className = 'form-error alert alert-danger mt-3';
+        document.querySelector('form').appendChild(errorDiv);
+    }
+    
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+    
     setTimeout(() => {
-      alert(`Inquiry about: ${decodeURIComponent(product)}`);
-    }, 1000);
-  }
+        errorDiv.style.display = 'none';
+    }, 5000);
 }
 
-// Admin panel functionality
-function showAdminAlert() {
-  alert('Admin functionality is available in the live version with backend support. This is a static demo.');
+function showFormSuccess() {
+    // Create or show success message
+    let successDiv = document.querySelector('.form-success');
+    
+    if (!successDiv) {
+        successDiv = document.createElement('div');
+        successDiv.className = 'form-success alert alert-success mt-3';
+        document.querySelector('form').appendChild(successDiv);
+    }
+    
+    successDiv.textContent = 'Thank you! Your message has been sent. We will contact you soon.';
+    successDiv.style.display = 'block';
+    
+    setTimeout(() => {
+        successDiv.style.display = 'none';
+    }, 5000);
 }
 
-// Image lightbox functionality (if needed)
-function initLightbox() {
-  // This would be implemented if lightbox functionality is required
+// Lightbox enhancements
+function initLightboxEnhancements() {
+    // Configure lightbox defaults
+    if (typeof lightbox !== 'undefined') {
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'imageFadeDuration': 300,
+            'positionFromTop': 100,
+            'showImageNumberLabel': true,
+            'alwaysShowNavOnTouchDevices': true
+        });
+    }
 }
 
-// Export functions for global access
-window.showAdminAlert = showAdminAlert;
+// Phone number click tracking
+function trackPhoneCall() {
+    // This would integrate with analytics in a real implementation
+    console.log('Phone number clicked - tracking call');
+    
+    // Example: Send to Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'click', {
+            'event_category': 'Contact',
+            'event_label': 'Phone Call'
+        });
+    }
+}
+
+// Add click event to all phone links
+document.addEventListener('DOMContentLoaded', function() {
+    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+    
+    phoneLinks.forEach(link => {
+        link.addEventListener('click', trackPhoneCall);
+    });
+});
+
+// Lazy loading for images
+function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+}
+
+// Initialize when page loads
+window.addEventListener('load', function() {
+    initLazyLoading();
+    
+    // Add loading animation removal
+    document.body.classList.add('loaded');
+});
+
+// Utility function for debouncing
+function debounce(func, wait, immediate) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            timeout = null;
+            if (!immediate) func(...args);
+        };
+        const callNow = immediate && !timeout;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+        if (callNow) func(...args);
+    };
+}
+
+// Scroll to top functionality
+function initScrollToTop() {
+    const scrollButton = document.createElement('button');
+    scrollButton.innerHTML = '↑';
+    scrollButton.className = 'scroll-to-top btn btn-primary';
+    scrollButton.style.cssText = `
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: none;
+        border: none;
+        font-size: 20px;
+    `;
+    
+    document.body.appendChild(scrollButton);
+    
+    scrollButton.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    window.addEventListener('scroll', debounce(() => {
+        if (window.pageYOffset > 300) {
+            scrollButton.style.display = 'block';
+        } else {
+            scrollButton.style.display = 'none';
+        }
+    }, 100));
+}
+
+// Initialize scroll to top
+initScrollToTop();
