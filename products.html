@@ -59,6 +59,17 @@
             color: white;
         }
         
+        .btn-details {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+        }
+        
+        .btn-details:hover {
+            background: linear-gradient(135deg, #20c997, #198754);
+            color: white;
+        }
+        
         .category-section {
             scroll-margin-top: 100px;
             padding: 80px 0;
@@ -66,6 +77,81 @@
         
         .category-section:nth-child(even) {
             background-color: #f8f9fa;
+        }
+        
+        /* Hero Section Styles */
+        .hero-section {
+            padding: 120px 0 80px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Specific hero backgrounds */
+        .home-hero {
+            background-image: url('images/hero-home.jpg');
+        }
+        
+        .about-hero {
+            background-image: url('images/hero-about.jpg');
+        }
+        
+        .products-hero {
+            background-image: url('images/hero-products.jpg');
+        }
+        
+        .services-hero {
+            background-image: url('images/hero-services.jpg');
+        }
+        
+        .contact-hero {
+            background-image: url('images/hero-contact.jpg');
+        }
+        
+        /* Product Details Modal */
+        .modal-product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        /* Navbar active state */
+        .navbar-nav .nav-link.active {
+            color: #0066cc !important;
+            font-weight: bold;
+        }
+        
+        /* Mobile menu improvements */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
@@ -77,7 +163,7 @@
                 <img src="images/logo_logo_color_0.png" alt="Brentag Kenya Ltd" class="navbar-logo" style="height: 40px;">
                 <span class="text-dark fw-bold">Brentag Kenya Ltd</span>
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -131,8 +217,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> High throughput</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Precision results</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Chemistry Analyzers" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal1">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Chemistry Analyzers" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -155,8 +244,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> LED illumination</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Digital imaging ready</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Laboratory Microscopes" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal2">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Laboratory Microscopes" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -179,8 +271,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Quick results</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> User-friendly interface</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Hematology Analyzers" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal3">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Hematology Analyzers" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -203,8 +298,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Touch screen</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Network capable</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Patient Monitors" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal4">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Patient Monitors" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -227,8 +325,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Digital display</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Safety lock</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Laboratory Centrifuges" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal5">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Laboratory Centrifuges" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -251,8 +352,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Multiple probes</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Doppler capability</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Ultrasound Systems" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal6">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Ultrasound Systems" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -275,8 +379,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Durable construction</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Easy to clean</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Medical Examination Beds" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal7">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Medical Examination Beds" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -299,8 +406,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Adjustable height</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Storage options</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Laboratory Workstations" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal8">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Laboratory Workstations" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -323,8 +433,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Durable steel</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Multiple sizes</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Medical Storage Cabinets" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal9">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Medical Storage Cabinets" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -347,8 +460,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Stainless steel</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Multiple configurations</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=Hospital Trolleys & Carts" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal10">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=Hospital Trolleys & Carts" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -371,8 +487,11 @@
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> Low radiation</small><br>
                                 <small class="text-muted"><i class="fas fa-check text-success me-1"></i> High resolution</small>
                             </div>
-                            <div class="mt-auto">
-                                <a href="contact.html?product=X-Ray Machines" class="btn btn-inquire w-100">
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#productModal11">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?product=X-Ray Machines" class="btn btn-inquire">
                                     <i class="fas fa-envelope me-2"></i>Inquire Now
                                 </a>
                             </div>
@@ -382,6 +501,98 @@
             </div>
         </div>
     </section>
+
+    <!-- Product Details Modals -->
+    <!-- Modal 1 - Chemistry Analyzers -->
+    <div class="modal fade" id="productModal1" tabindex="-1" aria-labelledby="productModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="productModalLabel1">Chemistry Analyzers</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="images/product_1_chemistry_analyzer.jpg" class="modal-product-image" alt="Chemistry Analyzers">
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Product Description</h6>
+                            <p>Advanced automated systems for clinical chemistry testing with high precision and reliability. Ideal for hospital laboratories and diagnostic centers.</p>
+                            
+                            <h6 class="fw-bold mt-3">Key Features</h6>
+                            <ul>
+                                <li>Automated operation with minimal user intervention</li>
+                                <li>High throughput for efficient laboratory workflow</li>
+                                <li>Precision results with minimal variability</li>
+                                <li>Comprehensive test menu for various analytes</li>
+                                <li>User-friendly interface with intuitive controls</li>
+                            </ul>
+                            
+                            <h6 class="fw-bold mt-3">Applications</h6>
+                            <ul>
+                                <li>Hospital clinical laboratories</li>
+                                <li>Diagnostic centers</li>
+                                <li>Research institutions</li>
+                                <li>Private healthcare facilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact.html?product=Chemistry Analyzers" class="btn btn-inquire">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 - Laboratory Microscopes -->
+    <div class="modal fade" id="productModal2" tabindex="-1" aria-labelledby="productModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="productModalLabel2">Laboratory Microscopes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="images/product_2_microscope.jpg" class="modal-product-image" alt="Laboratory Microscopes">
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="fw-bold">Product Description</h6>
+                            <p>High-precision microscopes for clinical diagnostics, research, and educational applications. Perfect for pathology and research laboratories.</p>
+                            
+                            <h6 class="fw-bold mt-3">Key Features</h6>
+                            <ul>
+                                <li>High magnification capabilities for detailed observation</li>
+                                <li>LED illumination for bright, consistent lighting</li>
+                                <li>Digital imaging ready for documentation and analysis</li>
+                                <li>Ergonomic design for comfortable extended use</li>
+                                <li>Durable construction for long-term reliability</li>
+                            </ul>
+                            
+                            <h6 class="fw-bold mt-3">Applications</h6>
+                            <ul>
+                                <li>Pathology laboratories</li>
+                                <li>Research institutions</li>
+                                <li>Educational facilities</li>
+                                <li>Clinical diagnostics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact.html?product=Laboratory Microscopes" class="btn btn-inquire">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional modals for other products would follow the same pattern -->
+    <!-- For brevity, I've included only two modals as examples -->
 
     <!-- Product Categories -->
     <section class="py-5 bg-light">

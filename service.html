@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Brentag Kenya Ltd</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    <link rel="stylesheet" href="css/custom.css?v=13.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        /* Service Card Styles */
+        .service-card {
+            transition: all 0.3s ease;
+            border: none;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .btn-service {
+            background: linear-gradient(135deg, #0066cc, #004499);
+            color: white;
+            border: none;
+        }
+        
+        .btn-service:hover {
+            background: linear-gradient(135deg, #004499, #003366);
+            color: white;
+        }
+        
+        .btn-details {
+            background: linear-gradient(135deg, #28a745, #20c997);
+            color: white;
+            border: none;
+        }
+        
+        .btn-details:hover {
+            background: linear-gradient(135deg, #20c997, #198754);
+            color: white;
+        }
+        
+        /* Hero Section Styles */
+        .hero-section {
+            padding: 120px 0 80px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Specific hero backgrounds */
+        .services-hero {
+            background-image: url('images/hero-services.jpg');
+        }
+        
+        /* Service Details Modal */
+        .modal-service-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            text-align: center;
+        }
+        
+        /* Navbar active state */
+        .navbar-nav .nav-link.active {
+            color: #0066cc !important;
+            font-weight: bold;
+        }
+        
+        /* Mobile menu improvements */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                margin-top: 10px;
+            }
+        }
+        
+        .process-step {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #0066cc;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .navbar-logo {
+            height: 40px;
+        }
+        
+        .feature-icon-bg {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #0066cc, #004499);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-white bg-white sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo_logo_color_0.png" alt="Brentag Kenya Ltd" class="navbar-logo">
+                <span class="text-dark fw-bold">Brentag Kenya Ltd</span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link text-dark" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="products.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark active" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Services Header -->
+    <section class="hero-section services-hero">
+        <div class="container">
+            <div class="hero-content text-center text-white">
+                <h1 class="display-2 fw-bold text-shadow mb-4">Our Services</h1>
+                <p class="lead text-shadow mb-4">Comprehensive Support for Your Medical Equipment</p>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <p class="text-white text-shadow">From installation and training to maintenance and technical support, we provide end-to-end services to ensure your medical equipment operates at peak performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark mb-3">Our Comprehensive Services</h2>
+                <p class="lead text-muted">Expert support for all your medical equipment needs</p>
+            </div>
+            
+            <div class="row g-4">
+                <!-- Service 1 - Equipment Maintenance -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card h-100 text-center">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="service-icon text-primary">
+                                <i class="fas fa-tools"></i>
+                            </div>
+                            <h4 class="card-title fw-bold text-dark mb-3">Equipment Maintenance</h4>
+                            <p class="card-text text-muted flex-grow-1">Comprehensive preventive maintenance and calibration services to ensure optimal performance of your medical equipment.</p>
+                            <div class="mt-3 mb-3">
+                                <span class="badge bg-primary me-1">Monthly Plans</span>
+                                <span class="badge bg-success">Emergency</span>
+                            </div>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal1">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?service=Equipment Maintenance" class="btn btn-service">
+                                    <i class="fas fa-calendar me-2"></i>Schedule Service
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 - Training & Education -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card h-100 text-center">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="service-icon text-success">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h4 class="card-title fw-bold text-dark mb-3">Training & Education</h4>
+                            <p class="card-text text-muted flex-grow-1">Specialized training programs for healthcare professionals on equipment operation and best practices.</p>
+                            <div class="mt-3 mb-3">
+                                <span class="badge bg-primary me-1">On-site</span>
+                                <span class="badge bg-success">Virtual</span>
+                            </div>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal2">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?service=Training Education" class="btn btn-service">
+                                    <i class="fas fa-calendar me-2"></i>Schedule Training
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 - Technical Support -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card h-100 text-center">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="service-icon text-warning">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h4 class="card-title fw-bold text-dark mb-3">Technical Support</h4>
+                            <p class="card-text text-muted flex-grow-1">24/7 technical support and troubleshooting assistance for all our products and solutions.</p>
+                            <div class="mt-3 mb-3">
+                                <span class="badge bg-warning me-1 text-dark">24/7</span>
+                                <span class="badge bg-success">Remote</span>
+                            </div>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal3">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?service=Technical Support" class="btn btn-service">
+                                    <i class="fas fa-phone me-2"></i>Contact Support
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 4 - Equipment Installation -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card h-100 text-center">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="service-icon text-primary">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h4 class="card-title fw-bold text-dark mb-3">Equipment Installation</h4>
+                            <p class="card-text text-muted flex-grow-1">Professional installation and commissioning services for all medical equipment.</p>
+                            <div class="mt-3 mb-3">
+                                <span class="badge bg-primary me-1">Certified</span>
+                                <span class="badge bg-success">Quick Setup</span>
+                            </div>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal4">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?service=Equipment Installation" class="btn btn-service">
+                                    <i class="fas fa-calendar me-2"></i>Schedule Installation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 5 - Consultation Services -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card h-100 text-center">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="service-icon text-info">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h4 class="card-title fw-bold text-dark mb-3">Consultation Services</h4>
+                            <p class="card-text text-muted flex-grow-1">Expert consultation for laboratory setup, equipment selection, and workflow optimization.</p>
+                            <div class="mt-3 mb-3">
+                                <span class="badge bg-primary me-1">Expert</span>
+                                <span class="badge bg-success">Free Assessment</span>
+                            </div>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal5">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?service=Consultation Services" class="btn btn-service">
+                                    <i class="fas fa-calendar me-2"></i>Schedule Consultation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 6 - Warranty Services -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card service-card h-100 text-center">
+                        <div class="card-body p-4 d-flex flex-column">
+                            <div class="service-icon text-success">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4 class="card-title fw-bold text-dark mb-3">Warranty Services</h4>
+                            <p class="card-text text-muted flex-grow-1">Comprehensive warranty packages and extended service contracts for peace of mind.</p>
+                            <div class="mt-3 mb-3">
+                                <span class="badge bg-primary me-1">Extended</span>
+                                <span class="badge bg-success">Comprehensive</span>
+                            </div>
+                            <div class="mt-auto d-grid gap-2">
+                                <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal6">
+                                    <i class="fas fa-info-circle me-2"></i>View Details
+                                </button>
+                                <a href="contact.html?service=Warranty Services" class="btn btn-service">
+                                    <i class="fas fa-file-contract me-2"></i>Get Warranty Info
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Process -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark mb-3">Our Service Process</h2>
+                <p class="lead text-muted">A systematic approach to ensure quality service delivery</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3 process-step">
+                    <div class="step-number">1</div>
+                    <h5 class="fw-bold text-dark">Assessment</h5>
+                    <p class="text-muted">We evaluate your equipment needs and current setup to understand requirements.</p>
+                </div>
+                <div class="col-md-3 process-step">
+                    <div class="step-number">2</div>
+                    <h5 class="fw-bold text-dark">Planning</h5>
+                    <p class="text-muted">We develop a customized service plan tailored to your specific requirements.</p>
+                </div>
+                <div class="col-md-3 process-step">
+                    <div class="step-number">3</div>
+                    <h5 class="fw-bold text-dark">Implementation</h5>
+                    <p class="text-muted">Our certified technicians execute the service plan with precision and care.</p>
+                </div>
+                <div class="col-md-3 process-step">
+                    <div class="step-number">4</div>
+                    <h5 class="fw-bold text-dark">Follow-up</h5>
+                    <p class="text-muted">We conduct post-service evaluation and provide ongoing support as needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Details Modals -->
+    <!-- Modal 1 - Equipment Maintenance -->
+    <div class="modal fade" id="serviceModal1" tabindex="-1" aria-labelledby="serviceModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="serviceModalLabel1">Equipment Maintenance Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center mb-4">
+                            <i class="fas fa-tools modal-service-icon text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="fw-bold">Service Description</h6>
+                            <p>Comprehensive preventive maintenance and calibration services to ensure optimal performance of your medical equipment. Regular maintenance extends equipment lifespan and prevents unexpected breakdowns.</p>
+                            
+                            <h6 class="fw-bold mt-4">What's Included</h6>
+                            <ul>
+                                <li>Regular equipment inspection and testing</li>
+                                <li>Calibration to manufacturer specifications</li>
+                                <li>Performance optimization</li>
+                                <li>Safety compliance verification</li>
+                                <li>Replacement of worn components</li>
+                                <li>Detailed maintenance report</li>
+                            </ul>
+                            
+                            <h6 class="fw-bold mt-4">Maintenance Plans</h6>
+                            <ul>
+                                <li><strong>Basic:</strong> Quarterly inspections and calibration</li>
+                                <li><strong>Standard:</strong> Monthly inspections + emergency support</li>
+                                <li><strong>Premium:</strong> Bi-weekly inspections + 24/7 priority support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact.html?service=Equipment Maintenance" class="btn btn-service">Schedule Maintenance</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 - Training & Education -->
+    <div class="modal fade" id="serviceModal2" tabindex="-1" aria-labelledby="serviceModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="serviceModalLabel2">Training & Education Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center mb-4">
+                            <i class="fas fa-user-graduate modal-service-icon text-success"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="fw-bold">Service Description</h6>
+                            <p>Specialized training programs for healthcare professionals on equipment operation, maintenance, and best practices. Our training ensures your staff can maximize equipment potential while maintaining safety standards.</p>
+                            
+                            <h6 class="fw-bold mt-4">Training Programs</h6>
+                            <ul>
+                                <li>Equipment operation and functionality</li>
+                                <li>Basic troubleshooting and maintenance</li>
+                                <li>Safety protocols and best practices</li>
+                                <li>Advanced features and optimization</li>
+                                <li>Quality control procedures</li>
+                                <li>Regulatory compliance training</li>
+                            </ul>
+                            
+                            <h6 class="fw-bold mt-4">Delivery Options</h6>
+                            <ul>
+                                <li><strong>On-site:</strong> Hands-on training at your facility</li>
+                                <li><strong>Virtual:</strong> Remote training sessions</li>
+                                <li><strong>Hybrid:</strong> Combination of on-site and virtual</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact.html?service=Training Education" class="btn btn-service">Schedule Training</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3 - Technical Support -->
+    <div class="modal fade" id="serviceModal3" tabindex="-1" aria-labelledby="serviceModalLabel3" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="serviceModalLabel3">Technical Support Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center mb-4">
+                            <i class="fas fa-headset modal-service-icon text-warning"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="fw-bold">Service Description</h6>
+                            <p>24/7 technical support and troubleshooting assistance for all our products and solutions. Our expert support team is always ready to help you resolve any equipment issues quickly and efficiently.</p>
+                            
+                            <h6 class="fw-bold mt-4">Support Features</h6>
+                            <ul>
+                                <li>24/7 emergency hotline for critical issues</li>
+                                <li>Remote diagnostics and troubleshooting</li>
+                                <li>On-site technical support when needed</li>
+                                <li>Regular software updates and patches</li>
+                                <li>Performance monitoring and optimization</li>
+                                <li>Comprehensive support documentation</li>
+                            </ul>
+                            
+                            <h6 class="fw-bold mt-4">Response Times</h6>
+                            <ul>
+                                <li><strong>Emergency:</strong> Within 2 hours</li>
+                                <li><strong>High Priority:</strong> Within 4 hours</li>
+                                <li><strong>Standard:</strong> Within 24 hours</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact.html?service=Technical Support" class="btn btn-service">Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4 - Equipment Installation -->
+    <div class="modal fade" id="serviceModal4" tabindex="-1" aria-labelledby="serviceModalLabel4" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="serviceModalLabel4">Equipment Installation Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center mb-4">
+                            <i class="fas fa-cogs modal-service-icon text-primary"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="fw-bold">Service Description</h6>
+                            <p>Professional installation and commissioning services for all medical equipment. Our certified technicians ensure proper setup, calibration, and integration with your existing systems.</p>
+                            
+                            <h6 class="fw-bold mt-4">Installation Process</h6>
+                            <ul>
+                                <li>Site assessment and preparation</li>
+                                <li>Equipment unpacking and assembly</li>
+                                <li>Electrical and network connectivity setup</li>
+                                <li>Calibration and performance testing</li>
+                                <li>Integration with existing systems</li>
+                                <li>Safety compliance verification</li>
+                            </ul>
+                            
+                            <h6 class="fw-bold mt-4">Certifications</h6>
+                            <ul>
+                                <li>Manufacturer-certified installation technicians</li>
+                                <li>ISO 13485 quality standards compliance</li>
+                                <li>Local regulatory compliance</li>
+                                <li>Safety and electrical standards adherence</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact.html?service=Equipment Installation" class="btn btn-service">Schedule Installation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 5 - Consultation Services -->
+    <div class="modal fade" id="serviceModal5" tabindex="-1" aria-labelledby="serviceModalLabel5" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="serviceModalLabel5">Consultation Services</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center mb-4">
+                            <i class="fas fa-comments modal-service-icon text-info"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="fw-bold">Service Description</h6>
+                            <p>Expert consultation for laboratory setup, equipment selection, and workflow optimization. Our experienced consultants help you make informed decisions for your healthcare facility.</p>
+                            
+                            <h6 class="fw-bold mt-4">Consultation Areas</h6>
+                            <ul>
+                                <li>Laboratory design and layout optimization</li>
+                                <li>Equipment selection and procurement</li>
+                                <li>Workflow analysis and improvement</li>
+                                <li>Regulatory compliance assessment</li>
+                                <li>Staff training needs analysis</li>
+                                <li>Technology integration planning</li>
+                            </ul>
+                            
+                            <h6 class="fw-bold mt-4">Consultation Packages</h6>
+                            <ul>
+                                <li><strong>Basic Assessment:</strong> Free initial consultation</li>
+                                <li><strong>Comprehensive Review:</strong> Detailed facility analysis</li>
+                                <li><strong>Implementation Support:</strong> Full project management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact.html?service=Consultation Services" class="btn btn-service">Schedule Consultation</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6 - Warranty Services -->
+    <div class="modal fade" id="serviceModal6" tabindex="-1" aria-labelledby="serviceModalLabel6" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fw-bold" id="serviceModalLabel6">Warranty Services</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 text-center mb-4">
+                            <i class="fas fa-shield-alt modal-service-icon text-success"></i>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6 class="fw-bold">Service Description</h6>
+                            <p>Comprehensive warranty packages and extended service contracts for peace of mind. Protect your investment with our reliable warranty and service agreements.</p>
+                            
+                            <h6 class="fw-bold mt-4">Warranty Coverage</h6>
+                            <ul>
+                                <li>Standard manufacturer warranty</li>
+                                <li>Extended warranty options</li>
+                                <li>Comprehensive service contracts</li>
+                                <li>Preventive maintenance inclusion</li>
+                                <li>Priority technical support</li>
+                                <li>Parts and labor coverage</li>
+                            </ul>
+                            
+                            <h6 class="fw-bold mt-4">Service Contract Options</h6>
+                            <ul>
+                                <li><strong>Basic:</strong> Parts and labor coverage</li>
+                                <li><strong>Standard:</strong> Includes preventive maintenance</li>
+                                <li><strong>Premium:</strong> Full coverage with priority support</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <a href="contact.html?service=Warranty Services" class="btn btn-service">Get Warranty Info</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Benefits -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark mb-3">Why Choose Our Services?</h2>
+                <p class="lead text-muted">We provide comprehensive support to ensure your medical equipment operates at peak performance.</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-icon-bg">
+                        <i class="fas fa-user-shield feature-icon"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Certified Technicians</h5>
+                    <p class="text-muted">Our certified technicians have extensive experience with medical equipment maintenance and repair.</p>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-icon-bg">
+                        <i class="fas fa-toolbox feature-icon"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Genuine Parts</h5>
+                    <p class="text-muted">We use only manufacturer-approved parts to ensure optimal performance and safety.</p>
+                </div>
+                <div class="col-md-4 text-center mb-4">
+                    <div class="feature-icon-bg">
+                        <i class="fas fa-clock feature-icon"></i>
+                    </div>
+                    <h5 class="fw-bold text-dark">Quick Response</h5>
+                    <p class="text-muted">Rapid response times to minimize equipment downtime in your healthcare facility.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3 class="fw-bold mb-3">Ready to Get Started?</h3>
+                    <p class="lead mb-0">Contact us today to discuss how our services can benefit your healthcare facility.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="contact.html" class="btn btn-light btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Contact Us
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 class="text-white">Brentag Kenya Ltd</h5>
+                    <p class="text-light">Your trusted partner for state-of-the-art medical devices, laboratory instruments, and healthcare solutions in Kenya and East Africa.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Contact Info</h5>
+                    <p class="text-light"><i class="fas fa-phone me-2"></i> +254711867765</p>
+                    <p class="text-light"><i class="fas fa-envelope me-2"></i> info@brentag.co.ke</p>
+                    <p class="text-light"><i class="fas fa-map-marker-alt me-2"></i> Ridgeways Road, Nairobi, Kenya</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-white">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
+                        <li><a href="products.html" class="text-light text-decoration-none">Products</a></li>
+                        <li><a href="services.html" class="text-light text-decoration-none">Services</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p class="text-light mb-0">&copy; 2024 Brentag Kenya Ltd. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
