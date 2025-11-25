@@ -1,196 +1,291 @@
-// js/main.js - Professional Enhanced Version
+// ===== MAIN APPLICATION JS =====
 document.addEventListener('DOMContentLoaded', function() {
-    initializeWebsite();
+    initializeApp();
 });
 
-function initializeWebsite() {
-    initHeroSections();
+function initializeApp() {
+    // Initialize all components
+    initNavbar();
+    initSmoothScroll();
+    initFormValidation();
     initLightbox();
-    initSmoothScrolling();
-    initImageLoading();
-    initNavigation();
-    initContactFeatures();
-}
-
-// Fix Hero Section Backgrounds
-function initHeroSections() {
-    const heroSections = document.querySelectorAll('.hero-section');
+    initAnimations();
+    initContactForm();
+    initProductModals();
+    initServiceModals();
+    initFAQAccordion();
     
-    heroSections.forEach(section => {
-        // Ensure background images load properly
-        section.style.backgroundAttachment = 'fixed';
-        
-        // Add loading class
-        section.classList.add('fade-in');
-    });
+    console.log('Brentag Kenya Ltd - Website initialized successfully');
 }
 
-// Enhanced Lightbox with Professional Setup
-function initLightbox() {
-    if (typeof lightbox !== 'undefined') {
-        lightbox.option({
-            'resizeDuration': 300,
-            'wrapAround': true,
-            'imageFadeDuration': 400,
-            'positionFromTop': 100,
-            'showImageNumberLabel': true,
-            'alwaysShowNavOnTouchDevices': true,
-            'fitImagesInViewport': true,
-            'maxWidth': 1200,
-            'maxHeight': 800
-        });
-        
-        // Add custom lightbox event listeners
-        document.addEventListener('click', function(e) {
-            if (e.target.matches('[data-lightbox]')) {
-                const imageTitle = e.target.getAttribute('data-title') || 'Medical Equipment';
-                console.log('Lightbox opened for:', imageTitle);
-                
-                // Track lightbox usage (for analytics)
-                if (typeof gtag !== 'undefined') {
-                    gtag('event', 'image_view', {
-                        'event_category': 'Products',
-                        'event_label': imageTitle
-                    });
-                }
-            }
-        });
-    } else {
-        console.warn('Lightbox not loaded - check CDN');
-        // Fallback: open image in new tab
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('[data-lightbox]')) {
-                e.preventDefault();
-                const link = e.target.closest('[data-lightbox]');
-                window.open(link.href, '_blank');
-            }
-        });
-    }
-}
-
-// Smooth Scrolling for Category Navigation
-function initSmoothScrolling() {
-    const links = document.querySelectorAll('a[href^="#"]');
+// ===== NAVBAR FUNCTIONALITY =====
+function initNavbar() {
+    const navbar = document.querySelector('.navbar');
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const navbarCollapse = document.querySelector('.navbar-collapse');
     
-    links.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            
-            if (href !== '#' && document.querySelector(href)) {
-                e.preventDefault();
-                
-                const target = document.querySelector(href);
-                const headerHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Update URL without page jump
-                history.pushState(null, null, href);
-            }
-        });
-    });
-}
-
-// Professional Image Loading with Fallbacks
-function initImageLoading() {
-    const images = document.querySelectorAll('img[data-src], .hero-section');
-    
-    images.forEach(image => {
-        if (image.tagName === 'IMG') {
-            // Lazy loading for images
-            if ('IntersectionObserver' in window) {
-                const imageObserver = new IntersectionObserver((entries, observer) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            const img = entry.target;
-                            img.src = img.dataset.src;
-                            img.classList.remove('lazy');
-                            imageObserver.unobserve(img);
-                        }
-                    });
-                });
-                
-                imageObserver.observe(image);
-            } else {
-                // Fallback for older browsers
-                image.src = image.dataset.src;
-            }
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+        if (window.scrollY > 100) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
         }
     });
     
-    // Preload critical images
-    preloadImages([
-        'images/hero_medical_equipment.jpg',
-        'images/service_technical_support.jpg',
-        'images/product_4_patient_monitor.jpg'
-    ]);
+    // Close mobile menu when clicking on links
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (navbarCollapse.classList.contains('show')) {
+                navbarToggler.click();
+            }
+        });
+    });
+    
+    // Add active class based on current page
+    setActiveNavLink();
 }
 
-function preloadImages(imageUrls) {
-    imageUrls.forEach(url => {
-        const img = new Image();
-        img.src = url;
+function setActiveNavLink() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
     });
 }
 
-// Enhanced Navigation
-function initNavigation() {
-    const navbar = document.querySelector('.navbar');
+// ===== SMOOTH SCROLL =====
+function initSmoothScroll() {
+    const scrollLinks = document.querySelectorAll('a[href^="#"]');
     
-    if (navbar) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.style.background = 'rgba(255,255,255,0.98)';
-                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                navbar.style.background = 'rgba(255,255,255,0.95)';
-                navbar.style.boxShadow = 'none';
+    scrollLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 80;
+                
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
             }
+        });
+    });
+}
+
+// ===== FORM VALIDATION =====
+function initFormValidation() {
+    const forms = document.querySelectorAll('.needs-validation');
+    
+    forms.forEach(form => {
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            
+            form.classList.add('was-validated');
+        }, false);
+    });
+}
+
+// ===== LIGHTBOX INITIALIZATION =====
+function initLightbox() {
+    if (typeof lightbox !== 'undefined') {
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'imageFadeDuration': 300,
+            'positionFromTop': 100
         });
     }
 }
 
-// Contact Page Features
-function initContactFeatures() {
-    // Phone number click tracking
-    const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
+// ===== ANIMATIONS =====
+function initAnimations() {
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
     
-    phoneLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            console.log('Phone call initiated:', this.href);
-            
-            // Analytics tracking
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'phone_call', {
-                    'event_category': 'Contact',
-                    'event_label': this.textContent.trim()
-                });
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fade-in-up');
+                observer.unobserve(entry.target);
             }
         });
+    }, observerOptions);
+    
+    // Observe elements for animation
+    const animateElements = document.querySelectorAll('.card, .process-step, .feature-icon-bg');
+    animateElements.forEach(el => {
+        observer.observe(el);
     });
+}
+
+// ===== CONTACT FORM HANDLING =====
+function initContactForm() {
+    const contactForm = document.querySelector('form[action*="formspree.io"]');
+    if (!contactForm) return;
     
-    // Email link tracking
-    const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
-    
-    emailLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            console.log('Email initiated:', this.href);
-            
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'email_click', {
-                    'event_category': 'Contact',
-                    'event_label': this.href.replace('mailto:', '')
-                });
+    // File upload validation
+    const fileInput = document.getElementById('upload');
+    if (fileInput) {
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file && file.size > 10 * 1024 * 1024) { // 10MB limit
+                alert('File size must be less than 10MB');
+                this.value = '';
             }
+        });
+    }
+    
+    // Pre-fill form based on URL parameters
+    prefillContactForm();
+    
+    // Form submission handling
+    contactForm.addEventListener('submit', function(e) {
+        const submitBtn = this.querySelector('button[type="submit"]');
+        if (submitBtn) {
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+            submitBtn.disabled = true;
+        }
+        
+        // You can add additional form submission logic here
+        setTimeout(() => {
+            if (submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
+            }
+            trackFormSubmission('contact_form');
+        }, 2000);
+    });
+}
+
+function prefillContactForm() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+    const service = urlParams.get('service');
+    
+    const subjectSelect = document.getElementById('subject');
+    const messageTextarea = document.getElementById('message');
+    
+    if (product && subjectSelect && messageTextarea) {
+        subjectSelect.value = 'Product Inquiry';
+        messageTextarea.value = `I'm interested in learning more about your ${product}. Please send me detailed information, specifications, and pricing.`;
+    }
+    
+    if (service && subjectSelect && messageTextarea) {
+        subjectSelect.value = 'Service Request';
+        messageTextarea.value = `I'm interested in your ${service} service. Please contact me to discuss my requirements and schedule a consultation.`;
+    }
+}
+
+// ===== PRODUCT MODALS =====
+function initProductModals() {
+    const productModals = document.querySelectorAll('[id^="productModal"]');
+    
+    productModals.forEach(modal => {
+        modal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const productTitle = button.closest('.card').querySelector('.card-title').textContent;
+            
+            // You can add additional product modal initialization here
+            console.log('Opening product modal:', productTitle);
         });
     });
 }
 
-// Utility function for debouncing
+// ===== SERVICE MODALS =====
+function initServiceModals() {
+    const serviceModals = document.querySelectorAll('[id^="serviceModal"]');
+    
+    serviceModals.forEach(modal => {
+        modal.addEventListener('show.bs.modal', function(event) {
+            const button = event.relatedTarget;
+            const serviceTitle = button.closest('.card').querySelector('.card-title').textContent;
+            
+            // You can add additional service modal initialization here
+            console.log('Opening service modal:', serviceTitle);
+        });
+    });
+}
+
+// ===== FAQ ACCORDION =====
+function initFAQAccordion() {
+    const accordionItems = document.querySelectorAll('.accordion-button');
+    
+    accordionItems.forEach(button => {
+        button.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            trackEvent('faq_interaction', isExpanded ? 'close' : 'open', this.textContent.trim());
+        });
+    });
+}
+
+// ===== ANALYTICS AND TRACKING =====
+function trackPhoneCall() {
+    console.log('Phone call initiated - +254711867765');
+    
+    // Google Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'phone_call', {
+            'event_category': 'Contact',
+            'event_label': 'Phone Call Initiated'
+        });
+    }
+    
+    // Custom tracking
+    trackEvent('phone_call', 'click', '+254711867765');
+}
+
+function trackFormSubmission(formName) {
+    console.log(`Form submitted: ${formName}`);
+    
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submit', {
+            'event_category': 'Contact',
+            'event_label': formName
+        });
+    }
+    
+    trackEvent('form_submission', 'submit', formName);
+}
+
+function trackEvent(action, category, label) {
+    // Custom event tracking - you can integrate with your analytics service
+    const eventData = {
+        action: action,
+        category: category,
+        label: label,
+        timestamp: new Date().toISOString(),
+        url: window.location.href
+    };
+    
+    console.log('Event tracked:', eventData);
+    
+    // Send to your analytics endpoint
+    // fetch('/api/analytics', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(eventData)
+    // });
+}
+
+// ===== UTILITY FUNCTIONS =====
 function debounce(func, wait, immediate) {
     let timeout;
     return function executedFunction(...args) {
@@ -205,77 +300,53 @@ function debounce(func, wait, immediate) {
     };
 }
 
-// Scroll to top functionality
-function initScrollToTop() {
-    const scrollButton = document.createElement('button');
-    scrollButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
-    scrollButton.className = 'scroll-to-top btn btn-primary';
-    scrollButton.style.cssText = `
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 1000;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: none;
-        border: none;
-        font-size: 18px;
-        background: var(--primary-blue);
-        color: white;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(0,102,204,0.3);
-    `;
-    
-    document.body.appendChild(scrollButton);
-    
-    scrollButton.addEventListener('click', () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    });
-    
-    scrollButton.addEventListener('mouseenter', () => {
-        scrollButton.style.transform = 'scale(1.1)';
-    });
-    
-    scrollButton.addEventListener('mouseleave', () => {
-        scrollButton.style.transform = 'scale(1)';
-    });
-    
-    window.addEventListener('scroll', debounce(() => {
-        if (window.pageYOffset > 500) {
-            scrollButton.style.display = 'block';
-            setTimeout(() => {
-                scrollButton.style.opacity = '1';
-            }, 50);
-        } else {
-            scrollButton.style.opacity = '0';
-            setTimeout(() => {
-                scrollButton.style.display = 'none';
-            }, 300);
+function throttle(func, limit) {
+    let inThrottle;
+    return function(...args) {
+        if (!inThrottle) {
+            func.apply(this, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
         }
-    }, 100));
+    }
 }
 
-// Initialize scroll to top
-initScrollToTop();
-
-// Performance monitoring
-window.addEventListener('load', function() {
-    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-    console.log('Page load time:', loadTime + 'ms');
-    
-    // Remove loading states
-    document.body.classList.add('loaded');
-    
-    // Initialize animations after load
-    setTimeout(() => {
-        const elements = document.querySelectorAll('.fade-in');
-        elements.forEach(el => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0)';
+// ===== PERFORMANCE OPTIMIZATIONS =====
+// Lazy loading for images
+function initLazyLoading() {
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    imageObserver.unobserve(img);
+                }
+            });
         });
-    }, 100);
+
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    }
+}
+
+// ===== ERROR HANDLING =====
+window.addEventListener('error', function(e) {
+    console.error('JavaScript Error:', e.error);
+    
+    // You can send errors to your error tracking service
+    // trackEvent('javascript_error', 'error', e.message);
 });
+
+// ===== EXPORT FOR MODULAR USE =====
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+        initializeApp,
+        trackPhoneCall,
+        trackFormSubmission,
+        debounce,
+        throttle
+    };
+}
