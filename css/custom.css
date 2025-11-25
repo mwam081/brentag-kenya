@@ -1,11 +1,11 @@
-/* css/custom.css - Updated with all fixes */
+/* css/custom.css - Professional Fix */
 :root {
     --primary-blue: #0066cc;
     --fresh-green: #27ae60;
     --accent-yellow: #f39c12;
     --text-dark: #2c3e50;
     --text-muted: #7f8c8d;
-    --bg-light: #ecf0f1;
+    --bg-light: #f8f9fa;
     --white: #ffffff;
     --transition: all 0.3s ease;
 }
@@ -17,123 +17,171 @@
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
     line-height: 1.6;
     color: var(--text-dark);
     overflow-x: hidden;
 }
 
-/* Fixed Hero Section */
+/* Fixed Hero Sections with Background Images */
 .hero-section {
-    background: linear-gradient(135deg, var(--primary-blue) 0%, #004499 100%) !important;
-    padding: 120px 0;
-    position: relative;
-    overflow: hidden;
-    min-height: 400px;
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 68, 153, 0.9) 100%), 
+                url('../images/hero_medical_equipment.jpg') center/cover no-repeat !important;
+    min-height: 60vh;
     display: flex;
     align-items: center;
+    position: relative;
+    padding: 120px 0;
 }
 
-.hero-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('../images/pattern.png') repeat;
-    opacity: 0.1;
+/* Specific hero backgrounds for each page */
+.products-hero {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 68, 153, 0.9) 100%), 
+                url('../images/product_4_patient_monitor.jpg') center/cover no-repeat !important;
+}
+
+.about-hero {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 68, 153, 0.9) 100%), 
+                url('../images/service_technical_support.jpg') center/cover no-repeat !important;
+}
+
+.services-hero {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 68, 153, 0.9) 100%), 
+                url('../images/service_technical_support.jpg') center/cover no-repeat !important;
+}
+
+.contact-hero {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 68, 153, 0.9) 100%), 
+                url('../images/hero_medical_equipment.jpg') center/cover no-repeat !important;
+}
+
+.home-hero {
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.9) 0%, rgba(0, 68, 153, 0.9) 100%), 
+                url('../images/hero_medical_equipment.jpg') center/cover no-repeat !important;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+/* Lightbox Fixes */
+.lightboxOverlay {
+    background: rgba(0, 0, 0, 0.9) !important;
+}
+
+.lightbox .lb-image {
+    border: 3px solid white !important;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.lightbox .lb-nav a.lb-prev,
+.lightbox .lb-nav a.lb-next {
+    background-color: rgba(255,255,255,0.2);
+    border-radius: 50%;
 }
 
 /* Product Cards */
 .product-card {
-    transition: all 0.3s ease;
+    transition: var(--transition);
     border: none;
-    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.product-image {
+    height: 280px;
+    object-fit: cover;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
 }
 
 .status-badge {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
     z-index: 10;
-}
-
-.product-image {
-    height: 250px;
-    object-fit: cover;
-    width: 100%;
-    display: block;
-}
-
-.card-img-top {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-}
-
-/* Category Cards */
-.category-card {
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.category-card:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    font-size: 0.75rem;
+    padding: 6px 12px;
 }
 
 /* Buttons */
 .btn-inquire {
-    background: linear-gradient(135deg, #0066cc, #004499);
+    background: linear-gradient(135deg, var(--primary-blue), #004499);
     color: white;
     border: none;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
 .btn-inquire:hover {
     background: linear-gradient(135deg, #004499, #003366);
     color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,102,204,0.3);
 }
 
-.btn-details {
-    border: 2px solid #0066cc;
-    color: #0066cc;
+.btn-view-products {
     background: transparent;
+    border: 2px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: var(--transition);
 }
 
-.btn-details:hover {
-    background: #0066cc;
+.btn-view-products:hover {
+    background: var(--primary-blue);
     color: white;
+    transform: translateY(-2px);
+}
+
+/* Category Cards - Remove buttons */
+.category-card {
+    transition: var(--transition);
+    border: none;
+    background: white;
+    height: 100%;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.category-card .card-body {
+    padding: 2.5rem 1.5rem;
 }
 
 /* Navigation */
+.navbar {
+    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.95) !important;
+}
+
 .navbar-logo {
-    height: 40px;
+    height: 45px;
+    transition: var(--transition);
 }
 
-/* Lightbox fixes */
-.lightbox-image {
-    max-width: 100%;
-    height: auto;
+.navbar-logo:hover {
+    transform: scale(1.05);
 }
 
-.lightboxOverlay {
-    background: rgba(0, 0, 0, 0.8) !important;
-}
-
-.lightbox .lb-image {
-    border: none !important;
-    border-radius: 8px;
-}
-
-/* Section spacing */
+/* Section Spacing */
 section {
-    padding: 80px 0;
+    padding: 100px 0;
 }
 
 section.bg-light {
@@ -142,14 +190,14 @@ section.bg-light {
 
 /* Footer */
 footer.bg-dark {
-    background-color: #2c3e50 !important;
+    background: #1a1a1a !important;
 }
 
-/* Responsive fixes */
+/* Responsive Design */
 @media (max-width: 768px) {
     .hero-section {
+        min-height: 50vh;
         padding: 80px 0;
-        min-height: 300px;
     }
     
     .display-2 {
@@ -164,7 +212,45 @@ footer.bg-dark {
         font-size: 1.75rem;
     }
     
-    .display-5 {
-        font-size: 1.5rem;
+    .product-image {
+        height: 220px;
     }
+    
+    section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        min-height: 40vh;
+        padding: 60px 0;
+    }
+    
+    .display-2 {
+        font-size: 2rem;
+    }
+    
+    .display-3 {
+        font-size: 1.75rem;
+    }
+}
+
+/* Loading States */
+.fade-in {
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Utility Classes */
+.text-shadow {
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.box-shadow {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }

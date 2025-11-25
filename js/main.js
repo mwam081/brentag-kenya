@@ -1,80 +1,74 @@
-// js/main.js - Enhanced with all functionality
-
+// js/main.js - Professional Enhanced Version
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize all functionality
-    initScrollToCategory();
-    initProductFiltering();
-    initSmoothScrolling();
-    initContactForm();
-    initLightboxEnhancements();
+    initializeWebsite();
 });
 
-// Smooth scrolling for category links
-function initScrollToCategory() {
-    const categoryLinks = document.querySelectorAll('a[href^="#"]');
+function initializeWebsite() {
+    initHeroSections();
+    initLightbox();
+    initSmoothScrolling();
+    initImageLoading();
+    initNavigation();
+    initContactFeatures();
+}
+
+// Fix Hero Section Backgrounds
+function initHeroSections() {
+    const heroSections = document.querySelectorAll('.hero-section');
     
-    categoryLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 100;
+    heroSections.forEach(section => {
+        // Ensure background images load properly
+        section.style.backgroundAttachment = 'fixed';
+        
+        // Add loading class
+        section.classList.add('fade-in');
+    });
+}
+
+// Enhanced Lightbox with Professional Setup
+function initLightbox() {
+    if (typeof lightbox !== 'undefined') {
+        lightbox.option({
+            'resizeDuration': 300,
+            'wrapAround': true,
+            'imageFadeDuration': 400,
+            'positionFromTop': 100,
+            'showImageNumberLabel': true,
+            'alwaysShowNavOnTouchDevices': true,
+            'fitImagesInViewport': true,
+            'maxWidth': 1200,
+            'maxHeight': 800
+        });
+        
+        // Add custom lightbox event listeners
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('[data-lightbox]')) {
+                const imageTitle = e.target.getAttribute('data-title') || 'Medical Equipment';
+                console.log('Lightbox opened for:', imageTitle);
                 
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
+                // Track lightbox usage (for analytics)
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'image_view', {
+                        'event_category': 'Products',
+                        'event_label': imageTitle
+                    });
+                }
             }
         });
-    });
-}
-
-// Product filtering by category
-function initProductFiltering() {
-    const filterButtons = document.querySelectorAll('[data-filter]');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filterValue = this.getAttribute('data-filter');
-            filterProducts(filterValue);
+    } else {
+        console.warn('Lightbox not loaded - check CDN');
+        // Fallback: open image in new tab
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('[data-lightbox]')) {
+                e.preventDefault();
+                const link = e.target.closest('[data-lightbox]');
+                window.open(link.href, '_blank');
+            }
         });
-    });
+    }
 }
 
-function filterProducts(category) {
-    const products = document.querySelectorAll('.product-card');
-    const activeClass = 'active-category';
-    
-    // Remove active class from all buttons
-    document.querySelectorAll('[data-filter]').forEach(btn => {
-        btn.classList.remove(activeClass);
-    });
-    
-    // Add active class to clicked button
-    event.target.classList.add(activeClass);
-    
-    products.forEach(product => {
-        if (category === 'all' || product.getAttribute('data-category') === category) {
-            product.style.display = 'block';
-            setTimeout(() => {
-                product.style.opacity = '1';
-                product.style.transform = 'scale(1)';
-            }, 100);
-        } else {
-            product.style.opacity = '0';
-            product.style.transform = 'scale(0.8)';
-            setTimeout(() => {
-                product.style.display = 'none';
-            }, 300);
-        }
-    });
-}
-
-// Enhanced smooth scrolling
+// Smooth Scrolling for Category Navigation
 function initSmoothScrolling() {
     const links = document.querySelectorAll('a[href^="#"]');
     
@@ -82,194 +76,119 @@ function initSmoothScrolling() {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            if (href !== '#' && href.startsWith('#')) {
+            if (href !== '#' && document.querySelector(href)) {
                 e.preventDefault();
-                const target = document.querySelector(href);
                 
-                if (target) {
-                    const headerHeight = document.querySelector('.navbar').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight - 20;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+                const target = document.querySelector(href);
+                const headerHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Update URL without page jump
+                history.pushState(null, null, href);
             }
         });
     });
 }
 
-// Contact form enhancements
-function initContactForm() {
-    const contactForm = document.getElementById('contactForm');
+// Professional Image Loading with Fallbacks
+function initImageLoading() {
+    const images = document.querySelectorAll('img[data-src], .hero-section');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const formObject = Object.fromEntries(formData);
-            
-            // Simple validation
-            if (validateForm(formObject)) {
-                showFormSuccess();
-                this.reset();
+    images.forEach(image => {
+        if (image.tagName === 'IMG') {
+            // Lazy loading for images
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                imageObserver.observe(image);
+            } else {
+                // Fallback for older browsers
+                image.src = image.dataset.src;
+            }
+        }
+    });
+    
+    // Preload critical images
+    preloadImages([
+        'images/hero_medical_equipment.jpg',
+        'images/service_technical_support.jpg',
+        'images/product_4_patient_monitor.jpg'
+    ]);
+}
+
+function preloadImages(imageUrls) {
+    imageUrls.forEach(url => {
+        const img = new Image();
+        img.src = url;
+    });
+}
+
+// Enhanced Navigation
+function initNavigation() {
+    const navbar = document.querySelector('.navbar');
+    
+    if (navbar) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255,255,255,0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                navbar.style.background = 'rgba(255,255,255,0.95)';
+                navbar.style.boxShadow = 'none';
             }
         });
     }
-    
-    // Pre-fill service/product in contact form from URL parameters
-    prefillContactForm();
 }
 
-function prefillContactForm() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const service = urlParams.get('service');
-    const product = urlParams.get('product');
-    
-    if (service) {
-        const messageField = document.querySelector('textarea[name="message"]');
-        if (messageField) {
-            messageField.value = `I'm interested in your ${service} service. Please contact me with more information.`;
-        }
-    }
-    
-    if (product) {
-        const messageField = document.querySelector('textarea[name="message"]');
-        if (messageField) {
-            messageField.value = `I'm interested in your ${product}. Please send me pricing and specifications.`;
-        }
-    }
-}
-
-function validateForm(formData) {
-    // Basic validation
-    if (!formData.name || formData.name.trim().length < 2) {
-        showFormError('Please enter your full name');
-        return false;
-    }
-    
-    if (!formData.email || !isValidEmail(formData.email)) {
-        showFormError('Please enter a valid email address');
-        return false;
-    }
-    
-    if (!formData.message || formData.message.trim().length < 10) {
-        showFormError('Please enter a message with at least 10 characters');
-        return false;
-    }
-    
-    return true;
-}
-
-function isValidEmail(email) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
-}
-
-function showFormError(message) {
-    // Create or show error message
-    let errorDiv = document.querySelector('.form-error');
-    
-    if (!errorDiv) {
-        errorDiv = document.createElement('div');
-        errorDiv.className = 'form-error alert alert-danger mt-3';
-        document.querySelector('form').appendChild(errorDiv);
-    }
-    
-    errorDiv.textContent = message;
-    errorDiv.style.display = 'block';
-    
-    setTimeout(() => {
-        errorDiv.style.display = 'none';
-    }, 5000);
-}
-
-function showFormSuccess() {
-    // Create or show success message
-    let successDiv = document.querySelector('.form-success');
-    
-    if (!successDiv) {
-        successDiv = document.createElement('div');
-        successDiv.className = 'form-success alert alert-success mt-3';
-        document.querySelector('form').appendChild(successDiv);
-    }
-    
-    successDiv.textContent = 'Thank you! Your message has been sent. We will contact you soon.';
-    successDiv.style.display = 'block';
-    
-    setTimeout(() => {
-        successDiv.style.display = 'none';
-    }, 5000);
-}
-
-// Lightbox enhancements
-function initLightboxEnhancements() {
-    // Configure lightbox defaults
-    if (typeof lightbox !== 'undefined') {
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'imageFadeDuration': 300,
-            'positionFromTop': 100,
-            'showImageNumberLabel': true,
-            'alwaysShowNavOnTouchDevices': true
-        });
-    }
-}
-
-// Phone number click tracking
-function trackPhoneCall() {
-    // This would integrate with analytics in a real implementation
-    console.log('Phone number clicked - tracking call');
-    
-    // Example: Send to Google Analytics
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'click', {
-            'event_category': 'Contact',
-            'event_label': 'Phone Call'
-        });
-    }
-}
-
-// Add click event to all phone links
-document.addEventListener('DOMContentLoaded', function() {
+// Contact Page Features
+function initContactFeatures() {
+    // Phone number click tracking
     const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
     
     phoneLinks.forEach(link => {
-        link.addEventListener('click', trackPhoneCall);
+        link.addEventListener('click', function(e) {
+            console.log('Phone call initiated:', this.href);
+            
+            // Analytics tracking
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'phone_call', {
+                    'event_category': 'Contact',
+                    'event_label': this.textContent.trim()
+                });
+            }
+        });
     });
-});
-
-// Lazy loading for images
-function initLazyLoading() {
-    if ('IntersectionObserver' in window) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.classList.remove('lazy');
-                    imageObserver.unobserve(img);
-                }
-            });
-        });
-
-        document.querySelectorAll('img[data-src]').forEach(img => {
-            imageObserver.observe(img);
-        });
-    }
-}
-
-// Initialize when page loads
-window.addEventListener('load', function() {
-    initLazyLoading();
     
-    // Add loading animation removal
-    document.body.classList.add('loaded');
-});
+    // Email link tracking
+    const emailLinks = document.querySelectorAll('a[href^="mailto:"]');
+    
+    emailLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            console.log('Email initiated:', this.href);
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'email_click', {
+                    'event_category': 'Contact',
+                    'event_label': this.href.replace('mailto:', '')
+                });
+            }
+        });
+    });
+}
 
 // Utility function for debouncing
 function debounce(func, wait, immediate) {
@@ -289,19 +208,23 @@ function debounce(func, wait, immediate) {
 // Scroll to top functionality
 function initScrollToTop() {
     const scrollButton = document.createElement('button');
-    scrollButton.innerHTML = '↑';
+    scrollButton.innerHTML = '<i class="fas fa-chevron-up"></i>';
     scrollButton.className = 'scroll-to-top btn btn-primary';
     scrollButton.style.cssText = `
         position: fixed;
-        bottom: 20px;
-        right: 20px;
+        bottom: 30px;
+        right: 30px;
         z-index: 1000;
         width: 50px;
         height: 50px;
         border-radius: 50%;
         display: none;
         border: none;
-        font-size: 20px;
+        font-size: 18px;
+        background: var(--primary-blue);
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0,102,204,0.3);
     `;
     
     document.body.appendChild(scrollButton);
@@ -313,14 +236,46 @@ function initScrollToTop() {
         });
     });
     
+    scrollButton.addEventListener('mouseenter', () => {
+        scrollButton.style.transform = 'scale(1.1)';
+    });
+    
+    scrollButton.addEventListener('mouseleave', () => {
+        scrollButton.style.transform = 'scale(1)';
+    });
+    
     window.addEventListener('scroll', debounce(() => {
-        if (window.pageYOffset > 300) {
+        if (window.pageYOffset > 500) {
             scrollButton.style.display = 'block';
+            setTimeout(() => {
+                scrollButton.style.opacity = '1';
+            }, 50);
         } else {
-            scrollButton.style.display = 'none';
+            scrollButton.style.opacity = '0';
+            setTimeout(() => {
+                scrollButton.style.display = 'none';
+            }, 300);
         }
     }, 100));
 }
 
 // Initialize scroll to top
 initScrollToTop();
+
+// Performance monitoring
+window.addEventListener('load', function() {
+    const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+    console.log('Page load time:', loadTime + 'ms');
+    
+    // Remove loading states
+    document.body.classList.add('loaded');
+    
+    // Initialize animations after load
+    setTimeout(() => {
+        const elements = document.querySelectorAll('.fade-in');
+        elements.forEach(el => {
+            el.style.opacity = '1';
+            el.style.transform = 'translateY(0)';
+        });
+    }, 100);
+});
