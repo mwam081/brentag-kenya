@@ -6,7 +6,8 @@
     <title>Contact Us - Brentag Kenya Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/custom.css?v=7.0">
+    <link rel="stylesheet" href="css/custom.css?v=9.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
 </head>
 <body>
     <!-- Navigation -->
@@ -32,11 +33,11 @@
     </nav>
 
     <!-- Contact Header -->
-    <section class="py-5">
+    <section class="hero-section">
         <div class="container">
-            <div class="text-center">
-                <h1 class="display-4 fw-bold">Contact Us</h1>
-                <p class="lead text-muted">Get in touch with our team for inquiries and support</p>
+            <div class="hero-content text-center">
+                <h1 class="display-2 fw-bold text-white">Contact Us</h1>
+                <p class="lead text-white">Get in Touch with Our Medical Equipment Experts</p>
             </div>
         </div>
     </section>
@@ -49,36 +50,14 @@
                     <div class="card border-0 shadow">
                         <div class="card-body p-4 p-md-5">
                             <h3 class="fw-bold mb-4 text-dark">Send us a Message</h3>
+                            <p class="text-muted mb-4">Fill out the form below and we'll get back to you within 2 hours during business hours.</p>
                             
-                            <form id="contactForm">
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="name" class="form-label">Full Name *</label>
-                                        <input type="text" class="form-control" id="name" name="name" required>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="email" class="form-label">Email Address *</label>
-                                        <input type="email" class="form-control" id="email" name="email" required>
-                                    </div>
+                            <!-- Zoho Form Integration -->
+                            <div class="zoho-form-container">
+                                <div class="zoho-form-wrapper">
+                                    <div id="zf_div_gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc"></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                        <label for="phone" class="form-label">Phone Number</label>
-                                        <input type="tel" class="form-control" id="phone" name="phone">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label for="subject" class="form-label">Subject *</label>
-                                        <input type="text" class="form-control" id="subject" name="subject" required>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="message" class="form-label">Message *</label>
-                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                                </div>
-                                <button type="submit" class="btn btn-primary btn-lg">
-                                    <i class="fas fa-paper-plane me-2"></i>Send Message
-                                </button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,7 +69,7 @@
                             
                             <div class="d-flex mb-4">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-phone text-lemon-green fa-lg"></i>
+                                    <i class="fas fa-phone fa-lg text-primary-blue"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fw-bold text-dark">Phone</h6>
@@ -100,7 +79,7 @@
                             
                             <div class="d-flex mb-4">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-envelope text-lemon-green fa-lg"></i>
+                                    <i class="fas fa-envelope fa-lg text-fresh-green"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fw-bold text-dark">Email</h6>
@@ -110,17 +89,17 @@
                             
                             <div class="d-flex mb-4">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt text-lemon-green fa-lg"></i>
+                                    <i class="fas fa-map-marker-alt fa-lg text-accent-yellow"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fw-bold text-dark">Address</h6>
-                                    <p class="mb-0 text-muted">Ridgeways Road, Building: 14 High View Lane Ridgeways, Kiambu, Kenya</p>
+                                    <p class="mb-0 text-muted">Ridgeways Road, Building: 14 High View Lane<br>Ridgeways, Kiambu, Kenya</p>
                                 </div>
                             </div>
                             
                             <div class="d-flex">
                                 <div class="flex-shrink-0">
-                                    <i class="fas fa-clock text-lemon-green fa-lg"></i>
+                                    <i class="fas fa-clock fa-lg text-primary-blue"></i>
                                 </div>
                                 <div class="flex-grow-1 ms-3">
                                     <h6 class="fw-bold text-dark">Business Hours</h6>
@@ -131,7 +110,7 @@
                     </div>
                     
                     <!-- Emergency Support -->
-                    <div class="card border-0 mt-4" style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);">
+                    <div class="card border-0 mt-4 bg-accent-yellow">
                         <div class="card-body p-4 text-center">
                             <i class="fas fa-exclamation-triangle fa-2x mb-3 text-dark"></i>
                             <h5 class="fw-bold text-dark">Emergency Technical Support</h5>
@@ -145,7 +124,7 @@
                     <!-- Quick Contact -->
                     <div class="card border-0 shadow mt-4">
                         <div class="card-body p-4 text-center">
-                            <i class="fas fa-headset fa-2x text-lemon-green mb-3"></i>
+                            <i class="fas fa-headset fa-2x text-primary-blue mb-3"></i>
                             <h5 class="fw-bold text-dark">Quick Response</h5>
                             <p class="text-muted mb-3">We typically respond to inquiries within 2 hours during business hours</p>
                             <div class="d-grid gap-2">
@@ -185,7 +164,7 @@
                         </iframe>
                     </div>
                     <div class="p-4 text-center bg-white">
-                        <i class="fas fa-map-marker-alt fa-2x text-lemon-green mb-3"></i>
+                        <i class="fas fa-map-marker-alt fa-2x text-primary-blue mb-3"></i>
                         <h4 class="text-dark">Office Location</h4>
                         <p class="mb-0 text-muted">Ridgeways Road, Building: 14 High View Lane Ridgeways, Kiambu, Kenya</p>
                         <small class="text-muted">Westlands Business Center, Nairobi, Kenya</small>
@@ -197,7 +176,7 @@
             <div class="text-center mt-4">
                 <a href="https://maps.google.com/maps?q=Westlands+Business+Center+Nairobi+Kenya" 
                    target="_blank" 
-                   class="btn btn-primary">
+                   class="btn btn-primary btn-lg">
                     <i class="fas fa-directions me-2"></i>Get Directions
                 </a>
             </div>
@@ -208,7 +187,7 @@
     <section class="py-5">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold">Frequently Asked Questions</h2>
+                <h2 class="display-5 fw-bold text-dark">Frequently Asked Questions</h2>
                 <p class="lead text-muted">Quick answers to common questions</p>
             </div>
             
@@ -253,6 +232,19 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="accordion-item border-0 shadow-sm mb-3">
+                            <h2 class="accordion-header" id="faq4">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4">
+                                    How quickly will I receive a response after submitting the contact form?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    We typically respond to all contact form submissions within 2 hours during business hours (Monday-Friday, 8:00 AM - 5:00 PM). For inquiries submitted outside business hours, we'll respond first thing the next business day.
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -260,36 +252,85 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-light text-dark py-4 mt-5">
+    <footer class="bg-dark text-white py-4 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h5 class="text-dark">Brentag Kenya Ltd</h5>
-                    <p class="text-muted">Your trusted partner for state-of-the-art medical devices, laboratory instruments, and healthcare solutions in Kenya and East Africa.</p>
+                    <h5 class="text-white">Brentag Kenya Ltd</h5>
+                    <p class="text-light">Your trusted partner for state-of-the-art medical devices, laboratory instruments, and healthcare solutions in Kenya and East Africa.</p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-dark">Contact Info</h5>
-                    <p class="text-muted"><i class="fas fa-phone me-2"></i> +254711867765</p>
-                    <p class="text-muted"><i class="fas fa-envelope me-2"></i> info@brentag.co.ke</p>
-                    <p class="text-muted"><i class="fas fa-map-marker-alt me-2"></i> Ridgeways Road, Building: 14 High View Lane Ridgeways, Kiambu, Kenya</p>
+                    <h5 class="text-white">Contact Info</h5>
+                    <p class="text-light"><i class="fas fa-phone me-2"></i> +254711867765</p>
+                    <p class="text-light"><i class="fas fa-envelope me-2"></i> info@brentag.co.ke</p>
+                    <p class="text-light"><i class="fas fa-map-marker-alt me-2"></i> Ridgeways Road, Nairobi, Kenya</p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-dark">Quick Links</h5>
+                    <h5 class="text-white">Quick Links</h5>
                     <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-muted text-decoration-none">Home</a></li>
-                        <li><a href="about.html" class="text-muted text-decoration-none">About Us</a></li>
-                        <li><a href="products.html" class="text-muted text-decoration-none">Products</a></li>
-                        <li><a href="services.html" class="text-muted text-decoration-none">Services</a></li>
-                        <li><a href="contact.html" class="text-muted text-decoration-none">Contact</a></li>
+                        <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+                        <li><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
+                        <li><a href="products.html" class="text-light text-decoration-none">Products</a></li>
+                        <li><a href="services.html" class="text-light text-decoration-none">Services</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
                     </ul>
                 </div>
             </div>
-            <hr class="my-4">
+            <hr class="my-4 bg-light">
             <div class="text-center">
-                <p class="text-muted">&copy; 2024 Brentag Kenya Ltd. All rights reserved.</p>
+                <p class="text-light mb-0">&copy; 2024 Brentag Kenya Ltd. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Zoho Form Script -->
+    <script type="text/javascript">
+    (function() {
+        try{
+            var f = document.createElement("iframe");
+            var ifrmSrc = 'https://forms.zohopublic.com/infobre1/form/ContactUs/formperma/gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc?zf_rszfm=1';
+            
+            f.src = ifrmSrc;
+            f.style.border="none";
+            f.style.height="1267px";
+            f.style.width="90%";
+            f.style.transition="all 0.5s ease";
+            f.setAttribute("aria-label", 'Contact Us');
+            
+            var d = document.getElementById("zf_div_gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc");
+            d.appendChild(f);
+            window.addEventListener('message', function (){
+                var evntData = event.data;
+                if( evntData && evntData.constructor == String ){
+                    var zf_ifrm_data = evntData.split("|");
+                    if ( zf_ifrm_data.length == 2 || zf_ifrm_data.length == 3 ) {
+                        var zf_perma = zf_ifrm_data[0];
+                        var zf_ifrm_ht_nw = ( parseInt(zf_ifrm_data[1], 10) + 15 ) + "px";
+                        var iframe = document.getElementById("zf_div_gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc").getElementsByTagName("iframe")[0];
+                        if ( (iframe.src).indexOf('formperma') > 0 && (iframe.src).indexOf(zf_perma) > 0 ) {
+                            var prevIframeHeight = iframe.style.height;
+                            var zf_tout = false;
+                            if( zf_ifrm_data.length == 3 ) {
+                                iframe.scrollIntoView();
+                                zf_tout = true;
+                            }
+
+                            if ( prevIframeHeight != zf_ifrm_ht_nw ) {
+                                if( zf_tout ) {
+                                    setTimeout(function(){
+                                        iframe.style.height = zf_ifrm_ht_nw;
+                                    },500);
+                                } else {
+                                    iframe.style.height = zf_ifrm_ht_nw;
+                                }
+                            }
+                        }
+                    }
+                }
+            }, false);
+        }catch(e){}
+    })();
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>
