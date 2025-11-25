@@ -6,8 +6,13 @@
     <title>Our Products - Brentag Kenya Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="css/custom.css?v=9.0">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏥</text></svg>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
+    <link rel="stylesheet" href="css/custom.css?v=10.0">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+    <link rel="manifest" href="images/site.webmanifest">
 </head>
 <body>
     <!-- Navigation -->
@@ -45,194 +50,284 @@
     <!-- Products Grid -->
     <section class="py-5">
         <div class="container">
-            <div class="row g-4">
-                <!-- Product 1 -->
+            <div class="row g-4 products-grid">
+                <!-- Product 1 - Chemistry Analyzers -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
-                        <img src="images/product_1_chemistry_analyzer.jpg" class="card-img-top product-image" alt="Chemistry Analyzers">
+                        <span class="status-badge bg-primary-blue">In Stock</span>
+                        <a href="images/product_1_chemistry_analyzer.jpg" data-lightbox="product-1" data-title="Chemistry Analyzers">
+                            <img src="images/product_1_chemistry_analyzer.jpg" 
+                                 class="card-img-top product-image" 
+                                 alt="Chemistry Analyzers"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWNmMGYxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzJjM2U1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkNoZW1pc3RyeSBBbmFseXplcnM8L3RleHQ+PC9zdmc+'">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Chemistry Analyzers</h5>
                             <p class="card-text text-muted">Advanced automated systems for clinical chemistry testing with high precision and reliability.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=Chemistry Analyzers" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-1.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Chemistry Analyzers" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 2 -->
+                <!-- Product 2 - Laboratory Microscopes -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
-                        <img src="images/product_2_microscope.jpg" class="card-img-top product-image" alt="Laboratory Microscopes">
+                        <span class="status-badge bg-primary-blue">In Stock</span>
+                        <a href="images/product_2_microscope.jpg" data-lightbox="product-2" data-title="Laboratory Microscopes">
+                            <img src="images/product_2_microscope.jpg" 
+                                 class="card-img-top product-image" 
+                                 alt="Laboratory Microscopes"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWNmMGYxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzJjM2U1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkxhYm9yYXRvcnkgTWljcm9zY29wZXM8L3RleHQ+PC9zdmc+'">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Laboratory Microscopes</h5>
                             <p class="card-text text-muted">High-precision microscopes for clinical diagnostics, research, and educational applications.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=Laboratory Microscopes" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-2.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Laboratory Microscopes" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 3 -->
+                <!-- Product 3 - Hematology Analyzers -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
-                        <img src="images/product_3_haematology-machine.jpg" class="card-img-top product-image" alt="Hematology Analyzers">
+                        <span class="status-badge bg-fresh-green">New Arrival</span>
+                        <a href="images/product_3_haematology-machine.jpg" data-lightbox="product-3" data-title="Hematology Analyzers">
+                            <img src="images/product_3_haematology-machine.jpg" 
+                                 class="card-img-top product-image" 
+                                 alt="Hematology Analyzers"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWNmMGYxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzJjM2U1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkhlbWF0b2xvZ3kgQW5hbHl6ZXJzPC90ZXh0Pjwvc3ZnPg=='">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Hematology Analyzers</h5>
                             <p class="card-text text-muted">Automated blood cell counters with advanced parameters for comprehensive hematology testing.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-fresh-green">New Arrival</span>
-                                <a href="contact.html?product=Hematology Analyzers" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-3.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Hematology Analyzers" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 4 -->
+                <!-- Product 4 - Patient Monitors -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
-                        <img src="images/product_4_patient_monitor.jpg" class="card-img-top product-image" alt="Patient Monitors">
+                        <span class="status-badge bg-primary-blue">In Stock</span>
+                        <a href="images/product_4_patient_monitor.jpg" data-lightbox="product-4" data-title="Patient Monitors">
+                            <img src="images/product_4_patient_monitor.jpg" 
+                                 class="card-img-top product-image" 
+                                 alt="Patient Monitors"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWNmMGYxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzJjM2U1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlBhdGllbnQgTW9uaXRvcnM8L3RleHQ+PC9zdmc+'">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Patient Monitors</h5>
                             <p class="card-text text-muted">Advanced patient monitoring systems for critical care and general ward applications.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=Patient Monitors" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-4.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Patient Monitors" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 5 -->
+                <!-- Product 5 - Laboratory Centrifuges -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
-                        <img src="images/product_5_centrifuge.jpg" class="card-img-top product-image" alt="Laboratory Centrifuges">
+                        <span class="status-badge bg-primary-blue">In Stock</span>
+                        <a href="images/product_5_centrifuge.jpg" data-lightbox="product-5" data-title="Laboratory Centrifuges">
+                            <img src="images/product_5_centrifuge.jpg" 
+                                 class="card-img-top product-image" 
+                                 alt="Laboratory Centrifuges"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWNmMGYxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzJjM2U1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkxhYm9yYXRvcnkgQ2VudHJpZnVnZXM8L3RleHQ+PC9zdmc+'">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Laboratory Centrifuges</h5>
                             <p class="card-text text-muted">High-speed centrifuges for various laboratory applications including blood separation.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=Laboratory Centrifuges" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-5.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Laboratory Centrifuges" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Product 6 -->
+                <!-- Product 6 - Ultrasound Systems -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
-                        <img src="images/product_6_Ultrasound_Systems.jpg" class="card-img-top product-image" alt="Ultrasound Systems">
+                        <span class="status-badge bg-accent-yellow">Limited Stock</span>
+                        <a href="images/product_6_Ultrasound_Systems.jpg" data-lightbox="product-6" data-title="Ultrasound Systems">
+                            <img src="images/product_6_Ultrasound_Systems.jpg" 
+                                 class="card-img-top product-image" 
+                                 alt="Ultrasound Systems"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZWNmMGYxIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzJjM2U1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPlVsdHJhc291bmQgU3lzdGVtczwvdGV4dD48L3N2Zz4='">
+                        </a>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Ultrasound Systems</h5>
                             <p class="card-text text-muted">High-resolution ultrasound machines for diagnostic imaging applications.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-accent-yellow">Limited Stock</span>
-                                <a href="contact.html?product=Ultrasound Systems" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-6.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Ultrasound Systems" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 7 -->
+                <!-- Product 7 - Medical Examination Beds -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
+                        <span class="status-badge bg-primary-blue">In Stock</span>
                         <div class="card-img-top product-image bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
                             <i class="fas fa-procedures fa-4x text-primary-blue"></i>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Medical Examination Beds</h5>
                             <p class="card-text text-muted">Ergonomic and adjustable examination beds for patient comfort and medical efficiency.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=Medical Examination Beds" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-7.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Medical Examination Beds" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 8 -->
+                <!-- Product 8 - Laboratory Workstations -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
+                        <span class="status-badge bg-primary-blue">In Stock</span>
                         <div class="card-img-top product-image bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
                             <i class="fas fa-vial fa-4x text-fresh-green"></i>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Laboratory Workstations</h5>
                             <p class="card-text text-muted">Customizable laboratory workstations for efficient and organized laboratory operations.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=Laboratory Workstations" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-8.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Laboratory Workstations" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 9 -->
+                <!-- Product 9 - Medical Storage Cabinets -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
+                        <span class="status-badge bg-primary-blue">In Stock</span>
                         <div class="card-img-top product-image bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
                             <i class="fas fa-cabinet-filing fa-4x text-accent-yellow"></i>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">Medical Storage Cabinets</h5>
                             <p class="card-text text-muted">Secure and organized storage solutions for medical supplies and pharmaceuticals.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=Medical Storage Cabinets" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-9.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Medical Storage Cabinets" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 10 -->
+                <!-- Product 10 - Hospital Trolleys & Carts -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
+                        <span class="status-badge bg-fresh-green">New Arrival</span>
                         <div class="card-img-top product-image bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
                             <i class="fas fa-bed fa-4x text-primary-blue"></i>
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title fw-bold text-dark">Hospital Beds</h5>
-                            <p class="card-text text-muted">Advanced hospital beds with electric controls and patient safety features.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-fresh-green">New Arrival</span>
-                                <a href="contact.html?product=Hospital Beds" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <h5 class="card-title fw-bold text-dark">Hospital Trolleys & Carts</h5>
+                            <p class="card-text text-muted">Mobile storage and transport solutions for efficient healthcare facility operations.</p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-10.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=Hospital Trolleys & Carts" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Product 11 -->
+                <!-- Product 11 - X-Ray Machines -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card product-card h-100">
+                        <span class="status-badge bg-primary-blue">In Stock</span>
                         <div class="card-img-top product-image bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
                             <i class="fas fa-x-ray fa-4x text-fresh-green"></i>
                         </div>
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-dark">X-Ray Machines</h5>
                             <p class="card-text text-muted">Digital X-ray systems for high-quality diagnostic imaging.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=X-Ray Machines" class="btn btn-outline-primary btn-sm">Inquire</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product 12 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card product-card h-100">
-                        <div class="card-img-top product-image bg-light d-flex align-items-center justify-content-center" style="height: 250px;">
-                            <i class="fas fa-thermometer-half fa-4x text-accent-yellow"></i>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title fw-bold text-dark">Vital Signs Monitors</h5>
-                            <p class="card-text text-muted">Comprehensive vital signs monitoring equipment for patient assessment.</p>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <span class="badge bg-primary-blue">In Stock</span>
-                                <a href="contact.html?product=Vital Signs Monitors" class="btn btn-outline-primary btn-sm">Inquire</a>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <div>
+                                    <a href="product-detail-11.html" class="btn btn-details btn-sm me-2">
+                                        <i class="fas fa-eye me-1"></i>View Details
+                                    </a>
+                                    <a href="contact.html?product=X-Ray Machines" class="btn btn-inquire btn-sm">
+                                        <i class="fas fa-envelope me-1"></i>Inquire
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -251,7 +346,7 @@
             
             <div class="row g-4">
                 <div class="col-md-3">
-                    <div class="card text-center service-card">
+                    <div class="card text-center service-card h-100">
                         <div class="card-body">
                             <i class="fas fa-microscope fa-3x text-primary-blue mb-3"></i>
                             <h5 class="fw-bold text-dark">Laboratory Equipment</h5>
@@ -260,7 +355,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card text-center service-card">
+                    <div class="card text-center service-card h-100">
                         <div class="card-body">
                             <i class="fas fa-heartbeat fa-3x text-fresh-green mb-3"></i>
                             <h5 class="fw-bold text-dark">Patient Monitoring</h5>
@@ -269,7 +364,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card text-center service-card">
+                    <div class="card text-center service-card h-100">
                         <div class="card-body">
                             <i class="fas fa-procedures fa-3x text-accent-yellow mb-3"></i>
                             <h5 class="fw-bold text-dark">Hospital Furniture</h5>
@@ -278,7 +373,7 @@
                     </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="card text-center service-card">
+                    <div class="card text-center service-card h-100">
                         <div class="card-body">
                             <i class="fas fa-x-ray fa-3x text-primary-blue mb-3"></i>
                             <h5 class="fw-bold text-dark">Imaging Equipment</h5>
@@ -340,6 +435,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
