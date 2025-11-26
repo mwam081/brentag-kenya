@@ -13,6 +13,38 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/site.webmanifest">
+    <style>
+        /* Additional inline styles for hero section */
+        .hero-section.home {
+            background: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url('images/hero-home.jpg') center/cover no-repeat;
+            padding: 120px 0;
+            position: relative;
+        }
+        
+        .text-shadow {
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+        }
+        
+        .hero-buttons .btn {
+            transition: all 0.3s ease;
+        }
+        
+        .hero-buttons .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Ensure proper contrast for accessibility */
+        @media (max-width: 768px) {
+            .hero-section.home {
+                padding: 80px 0;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -22,7 +54,7 @@
                 <img src="images/logo_logo_color_0.png" alt="Brentag Kenya Ltd" class="navbar-logo">
                 <span class="text-dark fw-bold">Brentag Kenya Ltd</span>
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -38,17 +70,17 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section home">
+    <section class="hero-section home" role="banner" aria-label="Main banner with company introduction">
         <div class="container">
             <div class="hero-content text-center text-white">
                 <h1 class="display-3 fw-bold text-shadow mb-4">Advanced Medical & Laboratory Equipment</h1>
                 <p class="lead text-shadow mb-4">Your trusted partner for state-of-the-art healthcare solutions in Kenya and East Africa</p>
                 <div class="hero-buttons">
-                    <a href="products.html" class="btn btn-light btn-lg me-3">
-                        <i class="fas fa-boxes me-2"></i>View Products
+                    <a href="products.html" class="btn btn-light btn-lg me-3" aria-label="View our products">
+                        <i class="fas fa-boxes me-2" aria-hidden="true"></i>View Products
                     </a>
-                    <a href="contact.html" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-envelope me-2"></i>Contact Us
+                    <a href="contact.html" class="btn btn-outline-light btn-lg" aria-label="Contact us">
+                        <i class="fas fa-envelope me-2" aria-hidden="true"></i>Contact Us
                     </a>
                 </div>
             </div>
@@ -146,7 +178,7 @@
     <section class="py-5">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <h2 class="display-5 fw-bold text-dark mb-4">Comprehensive Support Services</h2>
                     <p class="lead text-muted mb-4">We provide end-to-end solutions including installation, training, maintenance, and 24/7 technical support for all our medical equipment.</p>
                     <ul class="list-unstyled">
@@ -159,9 +191,6 @@
                     <a href="services.html" class="btn btn-outline-primary btn-lg mt-3">
                         <i class="fas fa-cogs me-2"></i>Our Services
                     </a>
-                </div>
-                <div class="col-lg-6">
-                    <img src="images/service_technical_support.jpg" alt="Technical Support" class="img-fluid rounded shadow" style="height: 400px; object-fit: cover;">
                 </div>
             </div>
         </div>
@@ -176,8 +205,8 @@
                     <p class="lead mb-0">Contact us today for a free consultation and discover how our solutions can benefit your organization.</p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
-                    <a href="contact.html" class="btn btn-light btn-lg">
-                        <i class="fas fa-phone me-2"></i>Get In Touch
+                    <a href="mailto:sales@brentag.co.ke" class="btn btn-light btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Get In Touch
                     </a>
                 </div>
             </div>
@@ -240,6 +269,16 @@
         // Touch device support
         if ('ontouchstart' in window) {
             document.body.classList.add('touch-device');
+        }
+        
+        // Add loading state for hero image
+        const heroSection = document.querySelector('.hero-section.home');
+        if (heroSection) {
+            const img = new Image();
+            img.src = 'images/hero-home.jpg';
+            img.onload = function() {
+                heroSection.style.background = 'linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url("images/hero-home.jpg") center/cover no-repeat';
+            };
         }
     });
     </script>

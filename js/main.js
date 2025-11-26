@@ -1,181 +1,121 @@
-// ===== MAIN APPLICATION JS =====
+// main.js v14.0 - Brentag Kenya Ltd
+
+// DOM Ready Function
 document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
+    initializeWebsite();
 });
 
-function initializeApp() {
-    // Initialize all components
-    initNavbar();
-    initSmoothScroll();
-    initFormValidation();
-    initLightbox();
-    initAnimations();
-    initContactForm();
-    initProductModals();
-    initServiceModals();
-    initFAQAccordion();
-    
-    console.log('Brentag Kenya Ltd - Website initialized successfully');
+// Main Initialization Function
+function initializeWebsite() {
+    initializeNavigation();
+    initializeForms();
+    initializeModals();
+    initializeLightbox();
+    initializeScrollEffects();
+    initializeTouchSupport();
+    initializePerformanceOptimizations();
 }
 
-// ===== NAVBAR FUNCTIONALITY =====
-function initNavbar() {
-    const navbar = document.querySelector('.navbar');
+// Navigation Management
+function initializeNavigation() {
+    // Active page highlighting
+    const currentPage = window.location.pathname.split('/').pop();
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+    
+    navLinks.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
+        } else {
+            link.classList.remove('active');
+            link.removeAttribute('aria-current');
+        }
+    });
+    
+    // Mobile menu improvements
     const navbarToggler = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
     
-    // Navbar scroll effect
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
-    
-    // Close mobile menu when clicking on links
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (navbarCollapse.classList.contains('show')) {
-                navbarToggler.click();
-            }
+    if (navbarToggler && navbarCollapse) {
+        navbarToggler.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            console.log('Mobile menu toggled:', isExpanded ? 'close' : 'open');
         });
-    });
+    }
     
-    // Add active class based on current page
-    setActiveNavLink();
-}
-
-function setActiveNavLink() {
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
-    
-    navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-}
-
-// ===== SMOOTH SCROLL =====
-function initSmoothScroll() {
-    const scrollLinks = document.querySelectorAll('a[href^="#"]');
-    
-    scrollLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-            
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const offsetTop = targetElement.offsetTop - 80;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
                 });
             }
         });
     });
 }
 
-// ===== FORM VALIDATION =====
-function initFormValidation() {
+// Form Handling
+function initializeForms() {
+    // Contact form validation
     const forms = document.querySelectorAll('.needs-validation');
-    
     forms.forEach(form => {
         form.addEventListener('submit', function(event) {
             if (!form.checkValidity()) {
                 event.preventDefault();
                 event.stopPropagation();
+            } else {
+                // Form is valid - show loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
+                    submitBtn.disabled = true;
+                }
+                
+                // Track form submission
+                trackFormSubmission(form);
             }
-            
             form.classList.add('was-validated');
         }, false);
     });
-}
-
-// ===== LIGHTBOX INITIALIZATION =====
-function initLightbox() {
-    if (typeof lightbox !== 'undefined') {
-        lightbox.option({
-            'resizeDuration': 200,
-            'wrapAround': true,
-            'imageFadeDuration': 300,
-            'positionFromTop': 100
-        });
-    }
-}
-
-// ===== ANIMATIONS =====
-function initAnimations() {
-    // Intersection Observer for scroll animations
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    // Observe elements for animation
-    const animateElements = document.querySelectorAll('.card, .process-step, .feature-icon-bg');
-    animateElements.forEach(el => {
-        observer.observe(el);
-    });
-}
-
-// ===== CONTACT FORM HANDLING =====
-function initContactForm() {
-    const contactForm = document.querySelector('form[action*="formspree.io"]');
-    if (!contactForm) return;
     
     // File upload validation
-    const fileInput = document.getElementById('upload');
-    if (fileInput) {
-        fileInput.addEventListener('change', function() {
+    const fileInputs = document.querySelectorAll('input[type="file"]');
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function() {
             const file = this.files[0];
-            if (file && file.size > 10 * 1024 * 1024) { // 10MB limit
-                alert('File size must be less than 10MB');
-                this.value = '';
+            if (file) {
+                // Check file size (10MB limit)
+                if (file.size > 10 * 1024 * 1024) {
+                    alert('File size must be less than 10MB');
+                    this.value = '';
+                    return;
+                }
+                
+                // Check file type
+                const allowedTypes = ['application/pdf', 'application/msword', 
+                                    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                    'image/jpeg', 'image/jpg', 'image/png'];
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Please select a valid file type (PDF, Word, JPEG, PNG)');
+                    this.value = '';
+                    return;
+                }
+                
+                console.log('File selected:', file.name, 'Size:', (file.size / 1024 / 1024).toFixed(2) + 'MB');
             }
         });
-    }
+    });
     
     // Pre-fill form based on URL parameters
-    prefillContactForm();
-    
-    // Form submission handling
-    contactForm.addEventListener('submit', function(e) {
-        const submitBtn = this.querySelector('button[type="submit"]');
-        if (submitBtn) {
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-            submitBtn.disabled = true;
-        }
-        
-        // You can add additional form submission logic here
-        setTimeout(() => {
-            if (submitBtn) {
-                submitBtn.innerHTML = '<i class="fas fa-check me-2"></i>Message Sent!';
-            }
-            trackFormSubmission('contact_form');
-        }, 2000);
-    });
+    prefillFormFromURL();
 }
 
-function prefillContactForm() {
+// Pre-fill form based on URL parameters
+function prefillFormFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     const product = urlParams.get('product');
     const service = urlParams.get('service');
@@ -185,7 +125,7 @@ function prefillContactForm() {
     
     if (product && subjectSelect && messageTextarea) {
         subjectSelect.value = 'Product Inquiry';
-        messageTextarea.value = `I'm interested in learning more about your ${product}. Please send me detailed information, specifications, and pricing.`;
+        messageTextarea.value = `I'm interested in learning more about your ${product}. Please send me more information about specifications, pricing, and availability.`;
     }
     
     if (service && subjectSelect && messageTextarea) {
@@ -194,126 +134,127 @@ function prefillContactForm() {
     }
 }
 
-// ===== PRODUCT MODALS =====
-function initProductModals() {
-    const productModals = document.querySelectorAll('[id^="productModal"]');
-    
-    productModals.forEach(modal => {
-        modal.addEventListener('show.bs.modal', function(event) {
+// Modal Management
+function initializeModals() {
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.addEventListener('show.bs.modal', function (event) {
             const button = event.relatedTarget;
-            const productTitle = button.closest('.card').querySelector('.card-title').textContent;
+            const modalTitle = modal.querySelector('.modal-title');
             
-            // You can add additional product modal initialization here
-            console.log('Opening product modal:', productTitle);
-        });
-    });
-}
-
-// ===== SERVICE MODALS =====
-function initServiceModals() {
-    const serviceModals = document.querySelectorAll('[id^="serviceModal"]');
-    
-    serviceModals.forEach(modal => {
-        modal.addEventListener('show.bs.modal', function(event) {
-            const button = event.relatedTarget;
-            const serviceTitle = button.closest('.card').querySelector('.card-title').textContent;
+            // Track modal opening
+            console.log('Modal opened:', modalTitle ? modalTitle.textContent : 'Unknown');
             
-            // You can add additional service modal initialization here
-            console.log('Opening service modal:', serviceTitle);
+            // Add loading state for modal images
+            const modalImages = modal.querySelectorAll('img');
+            modalImages.forEach(img => {
+                if (!img.complete) {
+                    img.style.opacity = '0.7';
+                    img.addEventListener('load', function() {
+                        this.style.opacity = '1';
+                    });
+                }
+            });
+        });
+        
+        modal.addEventListener('hidden.bs.modal', function () {
+            // Reset form if exists in modal
+            const form = modal.querySelector('form');
+            if (form) {
+                form.reset();
+                form.classList.remove('was-validated');
+            }
         });
     });
 }
 
-// ===== FAQ ACCORDION =====
-function initFAQAccordion() {
-    const accordionItems = document.querySelectorAll('.accordion-button');
-    
-    accordionItems.forEach(button => {
-        button.addEventListener('click', function() {
-            const isExpanded = this.getAttribute('aria-expanded') === 'true';
-            trackEvent('faq_interaction', isExpanded ? 'close' : 'open', this.textContent.trim());
+// Lightbox Initialization
+function initializeLightbox() {
+    if (typeof lightbox !== 'undefined') {
+        lightbox.option({
+            'resizeDuration': 200,
+            'wrapAround': true,
+            'imageFadeDuration': 300,
+            'positionFromTop': 50,
+            'showImageNumberLabel': true,
+            'alwaysShowNavOnTouchDevices': true
         });
-    });
+    }
 }
 
-// ===== ANALYTICS AND TRACKING =====
-function trackPhoneCall() {
-    console.log('Phone call initiated - +254711867765');
+// Scroll Effects
+function initializeScrollEffects() {
+    // Navbar background on scroll
+    let lastScrollTop = 0;
+    const navbar = document.querySelector('.navbar');
     
-    // Google Analytics tracking
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'phone_call', {
-            'event_category': 'Contact',
-            'event_label': 'Phone Call Initiated'
+    if (navbar) {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.backdropFilter = 'blur(10px)';
+            } else {
+                navbar.style.background = 'white';
+                navbar.style.backdropFilter = 'none';
+            }
+            
+            lastScrollTop = scrollTop;
         });
     }
     
-    // Custom tracking
-    trackEvent('phone_call', 'click', '+254711867765');
-}
-
-function trackFormSubmission(formName) {
-    console.log(`Form submitted: ${formName}`);
-    
-    if (typeof gtag !== 'undefined') {
-        gtag('event', 'form_submit', {
-            'event_category': 'Contact',
-            'event_label': formName
-        });
-    }
-    
-    trackEvent('form_submission', 'submit', formName);
-}
-
-function trackEvent(action, category, label) {
-    // Custom event tracking - you can integrate with your analytics service
-    const eventData = {
-        action: action,
-        category: category,
-        label: label,
-        timestamp: new Date().toISOString(),
-        url: window.location.href
+    // Fade in elements on scroll
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
     };
     
-    console.log('Event tracked:', eventData);
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
     
-    // Send to your analytics endpoint
-    // fetch('/api/analytics', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(eventData)
-    // });
+    fadeElements.forEach(element => {
+        element.style.opacity = '0';
+        element.style.transform = 'translateY(20px)';
+        element.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(element);
+    });
 }
 
-// ===== UTILITY FUNCTIONS =====
-function debounce(func, wait, immediate) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            timeout = null;
-            if (!immediate) func(...args);
+// Touch Device Support
+function initializeTouchSupport() {
+    if ('ontouchstart' in window) {
+        document.body.classList.add('touch-device');
+        
+        // Add touch feedback for interactive elements
+        const touchElements = document.querySelectorAll('.btn, .nav-link, .card, .product-card, .service-card');
+        
+        const handleTouchStart = function() {
+            this.style.transform = 'scale(0.98)';
         };
-        const callNow = immediate && !timeout;
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-        if (callNow) func(...args);
-    };
-}
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function(...args) {
-        if (!inThrottle) {
-            func.apply(this, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
+        
+        const handleTouchEnd = function() {
+            this.style.transform = 'scale(1)';
+        };
+        
+        touchElements.forEach(element => {
+            element.addEventListener('touchstart', handleTouchStart, { passive: true });
+            element.addEventListener('touchend', handleTouchEnd, { passive: true });
+            element.addEventListener('touchcancel', handleTouchEnd, { passive: true });
+        });
     }
 }
 
-// ===== PERFORMANCE OPTIMIZATIONS =====
-// Lazy loading for images
-function initLazyLoading() {
+// Performance Optimizations
+function initializePerformanceOptimizations() {
+    // Lazy loading for images
     if ('IntersectionObserver' in window) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -325,28 +266,93 @@ function initLazyLoading() {
                 }
             });
         });
-
+        
         document.querySelectorAll('img[data-src]').forEach(img => {
             imageObserver.observe(img);
         });
     }
+    
+    // Preload critical images
+    preloadCriticalImages();
 }
 
-// ===== ERROR HANDLING =====
+// Preload Critical Images
+function preloadCriticalImages() {
+    const criticalImages = [
+        'images/hero-home.jpg',
+        'images/hero-about.jpg',
+        'images/hero-products.jpg',
+        'images/hero-services.jpg',
+        'images/hero-contact.jpg'
+    ];
+    
+    criticalImages.forEach(src => {
+        const img = new Image();
+        img.src = src;
+    });
+}
+
+// Analytics and Tracking
+function trackFormSubmission(form) {
+    const formData = new FormData(form);
+    const formType = form.getAttribute('id') || 'contact-form';
+    
+    console.log('Form submission tracked:', formType, Object.fromEntries(formData));
+    
+    // Google Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_submission', {
+            'event_category': 'Contact',
+            'event_label': formType
+        });
+    }
+}
+
+// Phone Call Tracking
+function trackPhoneCall(phoneNumber = '+254711867765') {
+    console.log('Phone call initiated:', phoneNumber);
+    
+    // Google Analytics tracking
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'phone_call', {
+            'event_category': 'Contact',
+            'event_label': phoneNumber
+        });
+    }
+    
+    // Fallback for devices without tel support
+    setTimeout(() => {
+        window.location.href = `tel:${phoneNumber}`;
+    }, 100);
+}
+
+// Email Tracking
+function trackEmailClick(email = 'info@brentag.co.ke') {
+    console.log('Email click tracked:', email);
+    
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'email_click', {
+            'event_category': 'Contact',
+            'event_label': email
+        });
+    }
+}
+
+// Error Handling
 window.addEventListener('error', function(e) {
     console.error('JavaScript Error:', e.error);
-    
-    // You can send errors to your error tracking service
-    // trackEvent('javascript_error', 'error', e.message);
 });
 
-// ===== EXPORT FOR MODULAR USE =====
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        initializeApp,
-        trackPhoneCall,
-        trackFormSubmission,
-        debounce,
-        throttle
-    };
+// Export functions for global access
+window.Brentag = {
+    trackPhoneCall,
+    trackEmailClick,
+    initializeWebsite
+};
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeWebsite);
+} else {
+    initializeWebsite();
 }

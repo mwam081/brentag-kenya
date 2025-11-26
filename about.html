@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - Brentag Kenya Ltd</title>
+    <title>About Us - Brentag Kenya Ltd | Medical & Laboratory Equipment</title>
+    <meta name="description" content="Learn about Brentag Kenya Ltd - leading provider of advanced medical and laboratory equipment solutions across East Africa. Our mission, vision, and values.">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="preload" href="css/custom.css?v=13.0" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     <link rel="stylesheet" href="css/custom.css?v=13.0">
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
@@ -15,20 +24,24 @@
     <link rel="manifest" href="images/site.webmanifest">
 </head>
 <body>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="visually-hidden-focusable">Skip to main content</a>
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-white bg-white sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-white bg-white sticky-top" aria-label="Main navigation">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo_logo_color_0.png" alt="Brentag Kenya Ltd" class="navbar-logo">
+            <a class="navbar-brand" href="index.html" aria-label="Brentag Kenya Ltd Home">
+                <img src="images/logo_logo_color_0.png" alt="Brentag Kenya Ltd" class="navbar-logo" width="40" height="40">
                 <span class="text-dark fw-bold">Brentag Kenya Ltd</span>
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link text-dark" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark active" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark active" href="about.html" aria-current="page">About</a></li>
                     <li class="nav-item"><a class="nav-link text-dark" href="products.html">Products</a></li>
                     <li class="nav-item"><a class="nav-link text-dark" href="services.html">Services</a></li>
                     <li class="nav-item"><a class="nav-link text-dark" href="contact.html">Contact</a></li>
@@ -38,225 +51,225 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section about">
+    <section class="hero-section about" style="background: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url('images/hero-about.jpg') center/cover no-repeat;" 
+             aria-labelledby="hero-heading">
         <div class="container">
             <div class="hero-content text-center text-white">
-                <h1 class="display-3 fw-bold text-shadow mb-4">About Brentag Kenya Ltd</h1>
+                <h1 id="hero-heading" class="display-3 fw-bold text-shadow mb-4">About Brentag Kenya Ltd</h1>
                 <p class="lead text-shadow mb-4">Leading the way in advanced medical and laboratory equipment solutions across East Africa</p>
             </div>
         </div>
     </section>
 
-    <!-- Company Overview -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h2 class="display-5 fw-bold text-dark mb-4">Our Story & Mission</h2>
-                    <p class="lead text-muted mb-4">Brentag Kenya Ltd has been at the forefront of medical equipment distribution and healthcare solutions since our establishment. We are committed to enhancing healthcare delivery through cutting-edge technology and unparalleled support services.</p>
-                    
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="d-flex mb-4">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-bullseye fa-2x text-primary"></i>
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="fw-bold text-dark">Our Mission</h5>
-                                    <p class="text-muted mb-0">To provide advanced medical solutions that improve patient care and healthcare efficiency.</p>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Company Overview -->
+        <section class="py-5" aria-labelledby="company-overview">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-12">
+                        <h2 id="company-overview" class="display-5 fw-bold text-dark mb-4 text-center">Our Story & Mission</h2>
+                        <p class="lead text-muted mb-4 text-center">Brentag Kenya Ltd has been at the forefront of medical equipment distribution and healthcare solutions since our establishment. We are committed to enhancing healthcare delivery through cutting-edge technology and unparalleled support services.</p>
+                        
+                        <div class="row justify-content-center">
+                            <div class="col-md-6">
+                                <div class="d-flex mb-4">
+                                    <div class="flex-shrink-0" aria-hidden="true">
+                                        <i class="fas fa-bullseye fa-2x text-primary"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h3 class="h5 fw-bold text-dark">Our Mission</h3>
+                                        <p class="text-muted mb-0">To provide advanced medical solutions that improve patient care and healthcare efficiency.</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="d-flex mb-4">
-                                <div class="flex-shrink-0">
-                                    <i class="fas fa-eye fa-2x text-success"></i>
-                                </div>
-                                <div class="flex-grow-1 ms-3">
-                                    <h5 class="fw-bold text-dark">Our Vision</h5>
-                                    <p class="text-muted mb-0">To be East Africa's most trusted partner in medical technology and healthcare innovation.</p>
+                            <div class="col-md-6">
+                                <div class="d-flex mb-4">
+                                    <div class="flex-shrink-0" aria-hidden="true">
+                                        <i class="fas fa-eye fa-2x text-success"></i>
+                                    </div>
+                                    <div class="flex-grow-1 ms-3">
+                                        <h3 class="h5 fw-bold text-dark">Our Vision</h3>
+                                        <p class="text-muted mb-0">To be East Africa's most trusted partner in medical technology and healthcare innovation.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
-                    <a href="contact.html" class="btn btn-primary btn-lg mt-3">
-                        <i class="fas fa-handshake me-2"></i>Partner With Us
-                    </a>
-                </div>
-                <div class="col-lg-6">
-                    <img src="images/about_company_overview.jpg" alt="Brentag Kenya Team" class="img-fluid rounded shadow">
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Why Choose Us -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-dark">Why Choose Brentag Kenya?</h2>
-                <p class="lead text-muted">We stand out through our commitment to quality, service, and innovation</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 text-center">
-                        <div class="card-body p-4">
-                            <i class="fas fa-award fa-3x text-warning mb-3"></i>
-                            <h4 class="fw-bold text-dark">Quality Certified</h4>
-                            <p class="text-muted">All our equipment meets international standards with proper certifications and quality assurance.</p>
-                        </div>
-                    </div>
+        <!-- Why Choose Us -->
+        <section class="py-5 bg-light" aria-labelledby="why-choose-us">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 id="why-choose-us" class="display-5 fw-bold text-dark">Why Choose Brentag Kenya?</h2>
+                    <p class="lead text-muted">We stand out through our commitment to quality, service, and innovation</p>
                 </div>
                 
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 text-center">
-                        <div class="card-body p-4">
-                            <i class="fas fa-users fa-3x text-primary mb-3"></i>
-                            <h4 class="fw-bold text-dark">Expert Team</h4>
-                            <p class="text-muted">Our team comprises experienced healthcare professionals and technical experts.</p>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-award fa-3x text-warning mb-3" aria-hidden="true"></i>
+                                <h3 class="h4 fw-bold text-dark">Quality Certified</h3>
+                                <p class="text-muted">All our equipment meets international standards with proper certifications and quality assurance.</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card border-0 shadow-sm h-100 text-center">
-                        <div class="card-body p-4">
-                            <i class="fas fa-shield-alt fa-3x text-success mb-3"></i>
-                            <h4 class="fw-bold text-dark">Reliable Support</h4>
-                            <p class="text-muted">24/7 technical support and comprehensive after-sales service across East Africa.</p>
+                    
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-users fa-3x text-primary mb-3" aria-hidden="true"></i>
+                                <h3 class="h4 fw-bold text-dark">Expert Team</h3>
+                                <p class="text-muted">Our team comprises experienced healthcare professionals and technical experts.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <div class="card border-0 shadow-sm h-100 text-center">
+                            <div class="card-body p-4">
+                                <i class="fas fa-shield-alt fa-3x text-success mb-3" aria-hidden="true"></i>
+                                <h3 class="h4 fw-bold text-dark">Reliable Support</h3>
+                                <p class="text-muted">24/7 technical support and comprehensive after-sales service across East Africa.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Our Values -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <h2 class="display-5 fw-bold text-dark mb-4">Our Core Values</h2>
-                    <div class="d-flex mb-4">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-heart fa-2x text-danger"></i>
+        <!-- Our Values -->
+        <section class="py-5" aria-labelledby="our-values">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2 id="our-values" class="display-5 fw-bold text-dark mb-4">Our Core Values</h2>
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0" aria-hidden="true">
+                                <i class="fas fa-heart fa-2x text-danger"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h3 class="h5 fw-bold text-dark">Integrity</h3>
+                                <p class="text-muted">We conduct our business with honesty, transparency, and ethical practices in all our dealings.</p>
+                            </div>
                         </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fw-bold text-dark">Integrity</h5>
-                            <p class="text-muted">We conduct our business with honesty, transparency, and ethical practices in all our dealings.</p>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0" aria-hidden="true">
+                                <i class="fas fa-lightbulb fa-2x text-warning"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h3 class="h5 fw-bold text-dark">Innovation</h3>
+                                <p class="text-muted">We continuously seek and implement cutting-edge technologies to advance healthcare delivery.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex mb-4">
+                            <div class="flex-shrink-0" aria-hidden="true">
+                                <i class="fas fa-hand-holding-heart fa-2x text-success"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h3 class="h5 fw-bold text-dark">Customer Focus</h3>
+                                <p class="text-muted">Our clients' success and satisfaction are at the heart of everything we do.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="d-flex">
+                            <div class="flex-shrink-0" aria-hidden="true">
+                                <i class="fas fa-chart-line fa-2x text-info"></i>
+                            </div>
+                            <div class="flex-grow-1 ms-3">
+                                <h3 class="h5 fw-bold text-dark">Excellence</h3>
+                                <p class="text-muted">We strive for excellence in product quality, service delivery, and customer support.</p>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="d-flex mb-4">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-lightbulb fa-2x text-warning"></i>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fw-bold text-dark">Innovation</h5>
-                            <p class="text-muted">We continuously seek and implement cutting-edge technologies to advance healthcare delivery.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex mb-4">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-hand-holding-heart fa-2x text-success"></i>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fw-bold text-dark">Customer Focus</h5>
-                            <p class="text-muted">Our clients' success and satisfaction are at the heart of everything we do.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="d-flex">
-                        <div class="flex-shrink-0">
-                            <i class="fas fa-chart-line fa-2x text-info"></i>
-                        </div>
-                        <div class="flex-grow-1 ms-3">
-                            <h5 class="fw-bold text-dark">Excellence</h5>
-                            <p class="text-muted">We strive for excellence in product quality, service delivery, and customer support.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow">
-                        <div class="card-body p-4">
-                            <h4 class="fw-bold text-dark mb-4">Our Expertise</h4>
-                            <div class="mb-4">
-                                <h6 class="fw-bold text-dark">Medical Equipment</h6>
-                                <div class="progress mb-3">
-                                    <div class="progress-bar bg-primary" style="width: 95%">95%</div>
+                    <div class="col-lg-6">
+                        <div class="card border-0 shadow">
+                            <div class="card-body p-4">
+                                <h3 class="fw-bold text-dark mb-4">Our Expertise</h3>
+                                <div class="mb-4">
+                                    <h4 class="h6 fw-bold text-dark">Medical Equipment</h4>
+                                    <div class="progress mb-3" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-primary" style="width: 95%">95%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6 class="fw-bold text-dark">Laboratory Instruments</h6>
-                                <div class="progress mb-3">
-                                    <div class="progress-bar bg-success" style="width: 90%">90%</div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="h6 fw-bold text-dark">Laboratory Instruments</h4>
+                                    <div class="progress mb-3" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-success" style="width: 90%">90%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6 class="fw-bold text-dark">Technical Support</h6>
-                                <div class="progress mb-3">
-                                    <div class="progress-bar bg-warning" style="width: 98%">98%</div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="h6 fw-bold text-dark">Technical Support</h4>
+                                    <div class="progress mb-3" role="progressbar" aria-valuenow="98" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-warning" style="width: 98%">98%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <h6 class="fw-bold text-dark">Training & Education</h6>
-                                <div class="progress mb-3">
-                                    <div class="progress-bar bg-info" style="width: 92%">92%</div>
+                                
+                                <div class="mb-4">
+                                    <h4 class="h6 fw-bold text-dark">Training & Education</h4>
+                                    <div class="progress mb-3" role="progressbar" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar bg-info" style="width: 92%">92%</div>
+                                    </div>
                                 </div>
-                            </div>
-                            
-                            <div class="text-center mt-4">
-                                <a href="services.html" class="btn btn-outline-primary">
-                                    <i class="fas fa-cogs me-2"></i>Explore Our Services
-                                </a>
+                                
+                                <div class="text-center mt-4">
+                                    <a href="services.html" class="btn btn-outline-primary">
+                                        <i class="fas fa-cogs me-2" aria-hidden="true"></i>Explore Our Services
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Call to Action -->
-    <section class="py-5 bg-primary text-white">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h3 class="fw-bold mb-3">Ready to Transform Your Healthcare Services?</h3>
-                    <p class="lead mb-0">Partner with us to access cutting-edge medical technology and comprehensive support.</p>
-                </div>
-                <div class="col-lg-4 text-lg-end">
-                    <a href="contact.html" class="btn btn-light btn-lg">
-                        <i class="fas fa-phone me-2"></i>Contact Us Today
-                    </a>
+        <!-- Call to Action -->
+        <section class="py-5 bg-primary text-white" aria-labelledby="cta-heading">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <h3 id="cta-heading" class="fw-bold mb-3">Ready to Transform Your Healthcare Services?</h3>
+                        <p class="lead mb-0">Contact us to access cutting-edge medical technology and comprehensive support.</p>
+                    </div>
+                    <div class="col-lg-4 text-lg-end">
+                        <a href="contact.html" class="btn btn-light btn-lg">
+                            <i class="fas fa-phone me-2" aria-hidden="true"></i>Contact Us Today
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
+    <footer class="bg-dark text-white py-4 mt-5" aria-labelledby="footer-heading">
         <div class="container">
+            <h2 id="footer-heading" class="visually-hidden">Footer Navigation</h2>
             <div class="row">
                 <div class="col-md-4">
-                    <h5 class="text-white">Brentag Kenya Ltd</h5>
+                    <h3 class="h5 text-white">Brentag Kenya Ltd</h3>
                     <p class="text-light">Your trusted partner for state-of-the-art medical devices, laboratory instruments, and healthcare solutions in Kenya and East Africa.</p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white">Contact Info</h5>
-                    <p class="text-light"><i class="fas fa-phone me-2"></i> +254711867765</p>
-                    <p class="text-light"><i class="fas fa-envelope me-2"></i> info@brentag.co.ke</p>
-                    <p class="text-light"><i class="fas fa-map-marker-alt me-2"></i> Ridgeways Road, Nairobi, Kenya</p>
+                    <h3 class="h5 text-white">Contact Info</h3>
+                    <address class="text-light mb-0">
+                        <p class="mb-1"><i class="fas fa-phone me-2" aria-hidden="true"></i> +254711867765</p>
+                        <p class="mb-1"><i class="fas fa-envelope me-2" aria-hidden="true"></i> info@brentag.co.ke</p>
+                        <p class="mb-0"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i> Ridgeways Road, Nairobi, Kenya</p>
+                    </address>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white">Quick Links</h5>
+                    <h3 class="h5 text-white">Quick Links</h3>
                     <ul class="list-unstyled">
                         <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
                         <li><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
@@ -273,13 +286,14 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     <script src="js/main.js"></script>
     
     <script>
-    // Active navigation highlighting
+    // Enhanced navigation highlighting with performance optimization
     document.addEventListener('DOMContentLoaded', function() {
         const currentPage = window.location.pathname.split('/').pop();
         const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
@@ -294,18 +308,21 @@
             }
         });
         
-        // Touch device support
+        // Enhanced touch device support
         if ('ontouchstart' in window) {
             document.body.classList.add('touch-device');
-            // Add touch feedback for buttons
+            // Add touch feedback for buttons with performance optimization
             const buttons = document.querySelectorAll('.btn, .nav-link');
+            const handleTouchStart = function() {
+                this.style.transform = 'scale(0.98)';
+            };
+            const handleTouchEnd = function() {
+                this.style.transform = 'scale(1)';
+            };
+            
             buttons.forEach(button => {
-                button.addEventListener('touchstart', function() {
-                    this.style.transform = 'scale(0.98)';
-                });
-                button.addEventListener('touchend', function() {
-                    this.style.transform = 'scale(1)';
-                });
+                button.addEventListener('touchstart', handleTouchStart, { passive: true });
+                button.addEventListener('touchend', handleTouchEnd, { passive: true });
             });
         }
     });
