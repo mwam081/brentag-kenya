@@ -107,6 +107,43 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
         }
+
+        /* Updated Badge Styles to Match Button Design */
+        .service-badge {
+            background: white;
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            display: inline-block;
+            margin: 0.25rem;
+        }
+
+        .service-badge:hover {
+            background: white;
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 102, 204, 0.15);
+        }
+
+        .badge-primary:hover {
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
+        }
+
+        .badge-success:hover {
+            color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+
+        .badge-warning:hover {
+            color: #ffc107;
+            border-color: #ffc107;
+        }
         
         /* Enhanced Hero Section */
         .hero-section {
@@ -231,6 +268,11 @@
                 padding: 0.75rem 1rem;
                 margin: 0.25rem 0;
             }
+
+            .service-badge {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
         }
         
         .process-step {
@@ -289,14 +331,6 @@
             color: white;
         }
 
-        /* Badge Styles */
-        .badge {
-            font-weight: 500;
-            padding: 0.5rem 0.75rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-        }
-
         /* Section Spacing */
         section {
             padding: 5rem 0;
@@ -334,6 +368,10 @@
             }
             
             .btn-service, .btn-details {
+                border: 2px solid currentColor;
+            }
+            
+            .service-badge {
                 border: 2px solid currentColor;
             }
         }
@@ -397,8 +435,8 @@
                             <h3 class="card-title h4 fw-bold text-dark mb-3">Equipment Maintenance</h3>
                             <p class="card-text text-muted flex-grow-1">Comprehensive preventive maintenance and calibration services to ensure optimal performance of your medical equipment.</p>
                             <div class="mt-3 mb-3">
-                                <span class="badge bg-primary me-1">Monthly Plans</span>
-                                <span class="badge bg-success">Emergency</span>
+                                <span class="service-badge badge-primary">Monthly Plans</span>
+                                <span class="service-badge badge-success">Emergency</span>
                             </div>
                             <div class="mt-auto d-grid gap-2">
                                 <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal1">
@@ -422,8 +460,8 @@
                             <h3 class="card-title h4 fw-bold text-dark mb-3">Training & Education</h3>
                             <p class="card-text text-muted flex-grow-1">Specialized training programs for healthcare professionals on equipment operation and best practices.</p>
                             <div class="mt-3 mb-3">
-                                <span class="badge bg-primary me-1">On-site</span>
-                                <span class="badge bg-success">Virtual</span>
+                                <span class="service-badge badge-primary">On-site</span>
+                                <span class="service-badge badge-success">Virtual</span>
                             </div>
                             <div class="mt-auto d-grid gap-2">
                                 <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal2">
@@ -447,8 +485,8 @@
                             <h3 class="card-title h4 fw-bold text-dark mb-3">Technical Support</h3>
                             <p class="card-text text-muted flex-grow-1">24/7 technical support and troubleshooting assistance for all our products and solutions.</p>
                             <div class="mt-3 mb-3">
-                                <span class="badge bg-warning me-1 text-dark">24/7</span>
-                                <span class="badge bg-success">Remote</span>
+                                <span class="service-badge badge-warning">24/7</span>
+                                <span class="service-badge badge-success">Remote</span>
                             </div>
                             <div class="mt-auto d-grid gap-2">
                                 <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal3">
@@ -472,8 +510,8 @@
                             <h3 class="card-title h4 fw-bold text-dark mb-3">Equipment Installation</h3>
                             <p class="card-text text-muted flex-grow-1">Professional installation and commissioning services for all medical equipment.</p>
                             <div class="mt-3 mb-3">
-                                <span class="badge bg-primary me-1">Certified</span>
-                                <span class="badge bg-success">Quick Setup</span>
+                                <span class="service-badge badge-primary">Certified</span>
+                                <span class="service-badge badge-success">Quick Setup</span>
                             </div>
                             <div class="mt-auto d-grid gap-2">
                                 <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal4">
@@ -497,8 +535,8 @@
                             <h3 class="card-title h4 fw-bold text-dark mb-3">Consultation Services</h3>
                             <p class="card-text text-muted flex-grow-1">Expert consultation for laboratory setup, equipment selection, and workflow optimization.</p>
                             <div class="mt-3 mb-3">
-                                <span class="badge bg-primary me-1">Expert</span>
-                                <span class="badge bg-success">Free Assessment</span>
+                                <span class="service-badge badge-primary">Expert</span>
+                                <span class="service-badge badge-success">Free Assessment</span>
                             </div>
                             <div class="mt-auto d-grid gap-2">
                                 <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal5">
@@ -522,8 +560,8 @@
                             <h3 class="card-title h4 fw-bold text-dark mb-3">Warranty Services</h3>
                             <p class="card-text text-muted flex-grow-1">Comprehensive warranty packages and extended service contracts for peace of mind.</p>
                             <div class="mt-3 mb-3">
-                                <span class="badge bg-primary me-1">Extended</span>
-                                <span class="badge bg-success">Comprehensive</span>
+                                <span class="service-badge badge-primary">Extended</span>
+                                <span class="service-badge badge-success">Comprehensive</span>
                             </div>
                             <div class="mt-auto d-grid gap-2">
                                 <button type="button" class="btn btn-details" data-bs-toggle="modal" data-bs-target="#serviceModal6">
