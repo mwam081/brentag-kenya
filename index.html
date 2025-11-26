@@ -7,42 +7,295 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
-    <link rel="stylesheet" href="css/custom.css?v=13.0">
+    <link rel="stylesheet" href="css/custom.css?v=14.0">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/site.webmanifest">
     <style>
-        /* Additional inline styles for hero section */
-        .hero-section.home {
-            background: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url('images/hero-home.jpg') center/cover no-repeat;
-            padding: 120px 0;
+        :root {
+            --primary: #0d6efd;
+            --secondary: #6c757d;
+            --success: #198754;
+            --info: #0dcaf0;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --teal-blue: #20c997;
+            --ocean-blue: #0dcaf0;
+        }
+        
+        /* Improved base styles */
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+        }
+        
+        /* Enhanced Hero Section - More Transparent Overlay */
+        .hero-section {
+            padding: 140px 0 120px;
             position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section.home {
+            background: 
+                linear-gradient(135deg, 
+                    rgba(32, 201, 151, 0.05) 0%, 
+                    rgba(13, 202, 240, 0.05) 100%),
+                url('images/hero-home.jpg') center/cover no-repeat;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, 
+                rgba(32, 201, 151, 0.08) 0%, 
+                rgba(13, 202, 240, 0.12) 50%, 
+                rgba(13, 110, 253, 0.06) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         .text-shadow {
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
         
-        .hero-buttons .btn {
+        /* Enhanced button styles */
+        .btn {
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-light {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid transparent;
+            color: var(--dark);
+        }
+        
+        .btn-light:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn-outline-light {
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            background: transparent;
+            color: white;
+        }
+        
+        .btn-outline-light:hover {
+            background: white;
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Improved navigation */
+        .navbar {
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+        
+        .navbar-logo {
+            height: 45px;
+            margin-right: 12px;
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar-brand:hover .navbar-logo {
+            transform: scale(1.05);
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            position: relative;
+            padding: 8px 16px !important;
+            border-radius: 6px;
             transition: all 0.3s ease;
         }
         
-        .hero-buttons .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
         
-        /* Ensure proper contrast for accessibility */
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 80%;
+        }
+        
+        /* Enhanced card styles */
+        .product-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-image {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+        
+        /* Improved section spacing */
+        section {
+            padding: 80px 0;
+        }
+        
+        .bg-light {
+            background-color: #f8fafc !important;
+        }
+        
+        /* Enhanced features section */
+        .features-section i {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, var(--teal-blue), var(--ocean-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .features-section .text-center:hover i {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        /* Improved footer */
+        footer {
+            background: linear-gradient(135deg, #1a1a1a, #2d3748) !important;
+        }
+        
+        /* Loading animation */
+        .loading-skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        /* Accessibility improvements */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* Focus styles for accessibility */
+        .btn:focus,
+        .nav-link:focus,
+        .form-control:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+        
+        /* Responsive improvements */
         @media (max-width: 768px) {
-            .hero-section.home {
-                padding: 80px 0;
+            .hero-section {
+                padding: 100px 0 80px;
             }
             
             .hero-content h1 {
-                font-size: 2.5rem;
+                font-size: 2.2rem;
             }
+            
+            .hero-buttons .btn {
+                display: block;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .hero-buttons .btn:last-child {
+                margin-bottom: 0;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .navbar,
+            .hero-buttons,
+            footer {
+                display: none;
+            }
+            
+            .hero-section {
+                background: none !important;
+                color: black;
+                padding: 20px 0;
+            }
+        }
+
+        /* Animation for hero content */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
         }
     </style>
 </head>
@@ -50,11 +303,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-white bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="index.html" aria-label="Brentag Kenya Ltd Home">
                 <img src="images/logo_logo_color_0.png" alt="Brentag Kenya Ltd" class="navbar-logo">
                 <span class="text-dark fw-bold">Brentag Kenya Ltd</span>
             </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -70,16 +323,20 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-section home" role="banner" aria-label="Main banner with company introduction">
+    <section class="hero-section home" role="banner" aria-labelledby="hero-heading">
         <div class="container">
             <div class="hero-content text-center text-white">
-                <h1 class="display-3 fw-bold text-shadow mb-4">Advanced Medical & Laboratory Equipment</h1>
-                <p class="lead text-shadow mb-4">Your trusted partner for state-of-the-art healthcare solutions in Kenya and East Africa</p>
-                <div class="hero-buttons">
-                    <a href="products.html" class="btn btn-light btn-lg me-3" aria-label="View our products">
+                <h1 id="hero-heading" class="display-3 fw-bold text-shadow mb-4 animate-fade-in">
+                    Advanced Medical & Laboratory Equipment
+                </h1>
+                <p class="lead text-shadow mb-5 fs-4 animate-fade-in" style="animation-delay: 0.2s;">
+                    Your trusted partner for state-of-the-art healthcare solutions in Kenya and East Africa
+                </p>
+                <div class="hero-buttons animate-fade-in" style="animation-delay: 0.4s;">
+                    <a href="products.html?source=hero" class="btn btn-light btn-lg me-3" aria-label="View our medical products">
                         <i class="fas fa-boxes me-2" aria-hidden="true"></i>View Products
                     </a>
-                    <a href="contact.html" class="btn btn-outline-light btn-lg" aria-label="Contact us">
+                    <a href="contact.html?source=hero" class="btn btn-outline-light btn-lg" aria-label="Contact us for more information">
                         <i class="fas fa-envelope me-2" aria-hidden="true"></i>Contact Us
                     </a>
                 </div>
@@ -88,26 +345,26 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-5 features-section">
+    <section class="py-5 features-section" aria-labelledby="features-heading">
         <div class="container">
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="text-center">
-                        <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
+                        <i class="fas fa-shield-alt fa-3x mb-3" aria-hidden="true"></i>
                         <h4 class="fw-bold text-dark">Quality Assurance</h4>
                         <p class="text-muted">All our equipment meets international quality standards and certifications.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="text-center">
-                        <i class="fas fa-headset fa-3x text-success mb-3"></i>
+                        <i class="fas fa-headset fa-3x mb-3" aria-hidden="true"></i>
                         <h4 class="fw-bold text-dark">24/7 Support</h4>
                         <p class="text-muted">Round-the-clock technical support and maintenance services.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="text-center">
-                        <i class="fas fa-shipping-fast fa-3x text-warning mb-3"></i>
+                        <i class="fas fa-shipping-fast fa-3x mb-3" aria-hidden="true"></i>
                         <h4 class="fw-bold text-dark">Fast Delivery</h4>
                         <p class="text-muted">Quick and reliable delivery across Kenya and East Africa.</p>
                     </div>
@@ -117,79 +374,87 @@
     </section>
 
     <!-- Featured Products -->
-    <section class="py-5 bg-light">
+    <section class="py-5 bg-light" aria-labelledby="products-heading">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-dark">Featured Products</h2>
+                <h2 id="products-heading" class="display-5 fw-bold text-dark">Featured Products</h2>
                 <p class="lead text-muted">Explore our range of advanced medical equipment</p>
             </div>
             
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
                     <div class="card product-card h-100 shadow-sm">
-                        <img src="images/product_1_chemistry_analyzer.jpg" class="card-img-top product-image" alt="Chemistry Analyzers">
+                        <img src="images/product_1_chemistry_analyzer.jpg" class="card-img-top product-image" alt="Chemistry Analyzers for clinical testing" loading="lazy">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold text-dark">Chemistry Analyzers</h5>
+                            <h3 class="card-title h5 fw-bold text-dark">Chemistry Analyzers</h3>
                             <p class="card-text text-muted flex-grow-1">Advanced automated systems for clinical chemistry testing with precision and reliability for accurate diagnostic results.</p>
+                            <a href="products.html?source=featured-products&product=chemistry" class="btn btn-primary mt-auto" aria-label="Learn more about Chemistry Analyzers">Learn More</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-lg-3">
                     <div class="card product-card h-100 shadow-sm">
-                        <img src="images/product_2_microscope.jpg" class="card-img-top product-image" alt="Laboratory Microscopes">
+                        <img src="images/product_2_microscope.jpg" class="card-img-top product-image" alt="Laboratory Microscopes for diagnostics" loading="lazy">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold text-dark">Laboratory Microscopes</h5>
+                            <h3 class="card-title h5 fw-bold text-dark">Laboratory Microscopes</h3>
                             <p class="card-text text-muted flex-grow-1">High-precision microscopes for clinical diagnostics with advanced imaging capabilities and ergonomic design.</p>
+                            <a href="products.html?source=featured-products&product=microscopes" class="btn btn-primary mt-auto" aria-label="Learn more about Laboratory Microscopes">Learn More</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-lg-3">
                     <div class="card product-card h-100 shadow-sm">
-                        <img src="images/product_3_haematology-machine.jpg" class="card-img-top product-image" alt="Hematology Analyzers">
+                        <img src="images/product_3_haematology-machine.jpg" class="card-img-top product-image" alt="Hematology Analyzers for blood testing" loading="lazy">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold text-dark">Hematology Analyzers</h5>
+                            <h3 class="card-title h5 fw-bold text-dark">Hematology Analyzers</h3>
                             <p class="card-text text-muted flex-grow-1">Automated blood cell counters with advanced parameters for comprehensive hematological analysis and diagnostics.</p>
+                            <a href="products.html?source=featured-products&product=hematology" class="btn btn-primary mt-auto" aria-label="Learn more about Hematology Analyzers">Learn More</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-lg-3">
                     <div class="card product-card h-100 shadow-sm">
-                        <img src="images/product_4_patient_monitor.jpg" class="card-img-top product-image" alt="Patient Monitors">
+                        <img src="images/product_4_patient_monitor.jpg" class="card-img-top product-image" alt="Patient Monitors for critical care" loading="lazy">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title fw-bold text-dark">Patient Monitors</h5>
+                            <h3 class="card-title h5 fw-bold text-dark">Patient Monitors</h3>
                             <p class="card-text text-muted flex-grow-1">Advanced monitoring systems for critical care with real-time vital signs tracking and comprehensive patient data.</p>
+                            <a href="products.html?source=featured-products&product=monitors" class="btn btn-primary mt-auto" aria-label="Learn more about Patient Monitors">Learn More</a>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="text-center mt-4">
-                <a href="products.html" class="btn btn-primary btn-lg">
-                    <i class="fas fa-boxes me-2"></i>View All Products
+            <div class="text-center mt-5">
+                <a href="products.html?source=featured-products" class="btn btn-primary btn-lg px-5">
+                    <i class="fas fa-boxes me-2" aria-hidden="true"></i>View All Products
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Services Preview -->
-    <section class="py-5">
+    <section class="py-5" aria-labelledby="services-heading">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <h2 class="display-5 fw-bold text-dark mb-4">Comprehensive Support Services</h2>
-                    <p class="lead text-muted mb-4">We provide end-to-end solutions including installation, training, maintenance, and 24/7 technical support for all our medical equipment.</p>
-                    <ul class="list-unstyled">
-                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Equipment Installation & Commissioning</li>
-                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Staff Training & Education</li>
-                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Preventive Maintenance</li>
-                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Emergency Repairs</li>
-                        <li class="mb-3"><i class="fas fa-check text-success me-2"></i> Calibration Services</li>
-                    </ul>
-                    <a href="services.html" class="btn btn-outline-primary btn-lg mt-3">
-                        <i class="fas fa-cogs me-2"></i>Our Services
+                <div class="col-lg-12 text-center">
+                    <h2 id="services-heading" class="display-5 fw-bold text-dark mb-4">Comprehensive Support Services</h2>
+                    <p class="lead text-muted mb-5 mx-auto" style="max-width: 800px;">We provide end-to-end solutions including installation, training, maintenance, and 24/7 technical support for all our medical equipment.</p>
+                    <div class="row justify-content-center">
+                        <div class="col-md-8">
+                            <ul class="list-unstyled">
+                                <li class="mb-3 fs-5"><i class="fas fa-check text-success me-3"></i> Equipment Installation & Commissioning</li>
+                                <li class="mb-3 fs-5"><i class="fas fa-check text-success me-3"></i> Staff Training & Education</li>
+                                <li class="mb-3 fs-5"><i class="fas fa-check text-success me-3"></i> Preventive Maintenance</li>
+                                <li class="mb-3 fs-5"><i class="fas fa-check text-success me-3"></i> Emergency Repairs</li>
+                                <li class="mb-3 fs-5"><i class="fas fa-check text-success me-3"></i> Calibration Services</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a href="services.html?source=services-preview" class="btn btn-outline-primary btn-lg mt-4 px-5">
+                        <i class="fas fa-cogs me-2" aria-hidden="true"></i>Our Services
                     </a>
                 </div>
             </div>
@@ -197,16 +462,16 @@
     </section>
 
     <!-- Call to Action -->
-    <section class="py-5 bg-primary text-white">
+    <section class="py-5 bg-primary text-white" aria-labelledby="cta-heading">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-8">
-                    <h3 class="fw-bold mb-3">Ready to Enhance Your Healthcare Facility?</h3>
+                    <h3 id="cta-heading" class="fw-bold mb-3">Ready to Enhance Your Healthcare Facility?</h3>
                     <p class="lead mb-0">Contact us today for a free consultation and discover how our solutions can benefit your organization.</p>
                 </div>
                 <div class="col-lg-4 text-lg-end">
-                    <a href="mailto:sales@brentag.co.ke" class="btn btn-light btn-lg">
-                        <i class="fas fa-envelope me-2"></i>Get In Touch
+                    <a href="mailto:sales@brentag.co.ke?subject=Website%20Inquiry&body=Source:%20Call%20to%20Action" class="btn btn-light btn-lg px-4">
+                        <i class="fas fa-envelope me-2" aria-hidden="true"></i>Get In Touch
                     </a>
                 </div>
             </div>
@@ -214,27 +479,27 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
+    <footer class="bg-dark text-white py-5">
         <div class="container">
             <div class="row">
-                <div class="col-md-4">
-                    <h5 class="text-white">Brentag Kenya Ltd</h5>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3 class="h5 text-white mb-3">Brentag Kenya Ltd</h3>
                     <p class="text-light">Your trusted partner for state-of-the-art medical devices, laboratory instruments, and healthcare solutions in Kenya and East Africa.</p>
                 </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Contact Info</h5>
-                    <p class="text-light"><i class="fas fa-phone me-2"></i> +254711867765</p>
-                    <p class="text-light"><i class="fas fa-envelope me-2"></i> info@brentag.co.ke</p>
-                    <p class="text-light"><i class="fas fa-map-marker-alt me-2"></i> Ridgeways Road, Nairobi, Kenya</p>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h4 class="h5 text-white mb-3">Contact Info</h4>
+                    <p class="text-light mb-2"><i class="fas fa-phone me-2" aria-hidden="true"></i> +254711867765</p>
+                    <p class="text-light mb-2"><i class="fas fa-envelope me-2" aria-hidden="true"></i> info@brentag.co.ke</p>
+                    <p class="text-light mb-0"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i> Ridgeways Road, Nairobi, Kenya</p>
                 </div>
                 <div class="col-md-4">
-                    <h5 class="text-white">Quick Links</h5>
+                    <h4 class="h5 text-white mb-3">Quick Links</h4>
                     <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
-                        <li><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
-                        <li><a href="products.html" class="text-light text-decoration-none">Products</a></li>
-                        <li><a href="services.html" class="text-light text-decoration-none">Services</a></li>
-                        <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
+                        <li class="mb-2"><a href="products.html" class="text-light text-decoration-none">Products</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-light text-decoration-none">Services</a></li>
+                        <li class="mb-0"><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -251,8 +516,11 @@
     <script src="js/main.js"></script>
     
     <script>
-    // Active navigation highlighting
+    // Enhanced JavaScript with best practices
     document.addEventListener('DOMContentLoaded', function() {
+        'use strict';
+        
+        // Active navigation highlighting
         const currentPage = window.location.pathname.split('/').pop();
         const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
         
@@ -271,15 +539,110 @@
             document.body.classList.add('touch-device');
         }
         
-        // Add loading state for hero image
+        // Enhanced hero image loading with fallback
         const heroSection = document.querySelector('.hero-section.home');
         if (heroSection) {
             const img = new Image();
             img.src = 'images/hero-home.jpg';
+            
             img.onload = function() {
-                heroSection.style.background = 'linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url("images/hero-home.jpg") center/cover no-repeat';
+                heroSection.style.background = 
+                    'linear-gradient(135deg, rgba(32, 201, 151, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%), url("images/hero-home.jpg") center/cover no-repeat';
+            };
+            
+            img.onerror = function() {
+                console.warn('Hero image failed to load, using gradient fallback');
+                heroSection.style.background = 
+                    'linear-gradient(135deg, var(--teal-blue), var(--ocean-blue))';
             };
         }
+        
+        // Enhanced analytics tracking
+        const trackEvent = (category, action, label) => {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', action, {
+                    'event_category': category,
+                    'event_label': label
+                });
+            }
+            
+            // Fallback to console and localStorage
+            const eventData = {
+                category,
+                action,
+                label,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+                page: window.location.pathname
+            };
+            
+            console.log('Analytics Event:', eventData);
+            
+            let analyticsData = JSON.parse(localStorage.getItem('website_analytics') || '[]');
+            analyticsData.push(eventData);
+            
+            // Keep only last 100 events to prevent storage bloat
+            if (analyticsData.length > 100) {
+                analyticsData = analyticsData.slice(-100);
+            }
+            
+            localStorage.setItem('website_analytics', JSON.stringify(analyticsData));
+        };
+        
+        // Track link clicks
+        document.querySelectorAll('a[href*="source="]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const url = new URL(this.href);
+                const source = url.searchParams.get('source');
+                const product = url.searchParams.get('product');
+                
+                trackEvent('Navigation', 'Link Click', `${source}${product ? ` - ${product}` : ''}`);
+            });
+        });
+        
+        // Performance monitoring
+        const perfObserver = new PerformanceObserver((list) => {
+            list.getEntries().forEach((entry) => {
+                if (entry.entryType === 'navigation') {
+                    trackEvent('Performance', 'Page Load', `Load Time: ${Math.round(entry.loadEventEnd)}ms`);
+                }
+            });
+        });
+        
+        perfObserver.observe({ entryTypes: ['navigation'] });
+        
+        // Lazy loading for images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('loading-skeleton');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+            
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+        
+        // Error handling
+        window.addEventListener('error', (e) => {
+            trackEvent('Error', 'JavaScript Error', e.message);
+        });
+        
+        // Print functionality
+        const printButton = document.createElement('button');
+        printButton.className = 'btn btn-outline-secondary btn-sm position-fixed d-print-none';
+        printButton.style.bottom = '20px';
+        printButton.style.right = '20px';
+        printButton.style.zIndex = '1000';
+        printButton.innerHTML = '<i class="fas fa-print me-1"></i> Print';
+        printButton.onclick = () => window.print();
+        document.body.appendChild(printButton);
     });
     </script>
 </body>
