@@ -28,6 +28,7 @@
             --dark-green: #198754;
             --text-dark: #2c3e50;
             --text-muted: #6c757d;
+            --border-color: #dee2e6;
             --shadow-light: rgba(0,0,0,0.1);
             --shadow-medium: rgba(0,0,0,0.15);
             --transition: all 0.3s ease;
@@ -70,10 +71,11 @@
             transform: scale(1.1);
         }
         
+        /* Updated Button Styles - Subtle and Clean */
         .btn-service {
-            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
-            color: white;
-            border: none;
+            background: white;
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
             padding: 12px 24px;
             border-radius: 8px;
             font-weight: 600;
@@ -81,16 +83,17 @@
         }
         
         .btn-service:hover {
-            background: linear-gradient(135deg, var(--dark-blue), var(--darker-blue));
-            color: white;
+            background: white;
+            color: var(--primary-blue);
+            border-color: var(--primary-blue);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
         }
         
         .btn-details {
-            background: linear-gradient(135deg, var(--primary-green), var(--teal-green));
-            color: white;
-            border: none;
+            background: white;
+            color: var(--text-dark);
+            border: 2px solid var(--border-color);
             padding: 12px 24px;
             border-radius: 8px;
             font-weight: 600;
@@ -98,10 +101,11 @@
         }
         
         .btn-details:hover {
-            background: linear-gradient(135deg, var(--teal-green), var(--dark-green));
-            color: white;
+            background: white;
+            color: var(--primary-green);
+            border-color: var(--primary-green);
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.15);
         }
         
         /* Enhanced Hero Section */

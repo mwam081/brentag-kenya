@@ -34,7 +34,7 @@
             color: var(--dark);
         }
         
-        /* Enhanced Hero Section - More Transparent Overlay */
+        /* Enhanced Hero Section - 30% Opacity Overlay */
         .hero-section {
             padding: 140px 0 120px;
             position: relative;
@@ -44,8 +44,8 @@
         .hero-section.home {
             background: 
                 linear-gradient(135deg, 
-                    rgba(32, 201, 151, 0.05) 0%, 
-                    rgba(13, 202, 240, 0.05) 100%),
+                    rgba(32, 201, 151, 0.3) 0%, 
+                    rgba(13, 202, 240, 0.3) 100%),
                 url('images/hero-home.jpg') center/cover no-repeat;
         }
         
@@ -57,9 +57,9 @@
             right: 0;
             bottom: 0;
             background: linear-gradient(135deg, 
-                rgba(32, 201, 151, 0.08) 0%, 
-                rgba(13, 202, 240, 0.12) 50%, 
-                rgba(13, 110, 253, 0.06) 100%);
+                rgba(32, 201, 151, 0.4) 0%, 
+                rgba(13, 202, 240, 0.5) 50%, 
+                rgba(13, 110, 253, 0.3) 100%);
             z-index: 1;
         }
         
@@ -69,7 +69,7 @@
         }
         
         .text-shadow {
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.5);
         }
         
         /* Enhanced button styles */
@@ -105,11 +105,11 @@
         .btn-light:hover {
             background: white;
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
         
         .btn-outline-light {
-            border: 2px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.9);
             background: transparent;
             color: white;
         }
@@ -118,7 +118,7 @@
             background: white;
             color: var(--dark);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
         
         /* Improved navigation */
@@ -169,11 +169,12 @@
             border: none;
             border-radius: 12px;
             overflow: hidden;
+            cursor: pointer;
         }
         
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
         
         .product-image {
@@ -223,6 +224,22 @@
         @keyframes loading {
             0% { background-position: 200% 0; }
             100% { background-position: -200% 0; }
+        }
+        
+        /* Animation for hero content */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.8s ease-out forwards;
         }
         
         /* Accessibility improvements */
@@ -280,22 +297,6 @@
                 color: black;
                 padding: 20px 0;
             }
-        }
-
-        /* Animation for hero content */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fade-in {
-            animation: fadeInUp 0.8s ease-out forwards;
         }
     </style>
 </head>
@@ -383,45 +384,41 @@
             
             <div class="row g-4">
                 <div class="col-md-6 col-lg-3">
-                    <div class="card product-card h-100 shadow-sm">
+                    <div class="card product-card h-100 shadow-sm" onclick="window.location.href='products.html?source=featured-products&product=chemistry'">
                         <img src="images/product_1_chemistry_analyzer.jpg" class="card-img-top product-image" alt="Chemistry Analyzers for clinical testing" loading="lazy">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title h5 fw-bold text-dark">Chemistry Analyzers</h3>
                             <p class="card-text text-muted flex-grow-1">Advanced automated systems for clinical chemistry testing with precision and reliability for accurate diagnostic results.</p>
-                            <a href="products.html?source=featured-products&product=chemistry" class="btn btn-primary mt-auto" aria-label="Learn more about Chemistry Analyzers">Learn More</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-lg-3">
-                    <div class="card product-card h-100 shadow-sm">
+                    <div class="card product-card h-100 shadow-sm" onclick="window.location.href='products.html?source=featured-products&product=microscopes'">
                         <img src="images/product_2_microscope.jpg" class="card-img-top product-image" alt="Laboratory Microscopes for diagnostics" loading="lazy">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title h5 fw-bold text-dark">Laboratory Microscopes</h3>
                             <p class="card-text text-muted flex-grow-1">High-precision microscopes for clinical diagnostics with advanced imaging capabilities and ergonomic design.</p>
-                            <a href="products.html?source=featured-products&product=microscopes" class="btn btn-primary mt-auto" aria-label="Learn more about Laboratory Microscopes">Learn More</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-lg-3">
-                    <div class="card product-card h-100 shadow-sm">
+                    <div class="card product-card h-100 shadow-sm" onclick="window.location.href='products.html?source=featured-products&product=hematology'">
                         <img src="images/product_3_haematology-machine.jpg" class="card-img-top product-image" alt="Hematology Analyzers for blood testing" loading="lazy">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title h5 fw-bold text-dark">Hematology Analyzers</h3>
                             <p class="card-text text-muted flex-grow-1">Automated blood cell counters with advanced parameters for comprehensive hematological analysis and diagnostics.</p>
-                            <a href="products.html?source=featured-products&product=hematology" class="btn btn-primary mt-auto" aria-label="Learn more about Hematology Analyzers">Learn More</a>
                         </div>
                     </div>
                 </div>
                 
                 <div class="col-md-6 col-lg-3">
-                    <div class="card product-card h-100 shadow-sm">
+                    <div class="card product-card h-100 shadow-sm" onclick="window.location.href='products.html?source=featured-products&product=monitors'">
                         <img src="images/product_4_patient_monitor.jpg" class="card-img-top product-image" alt="Patient Monitors for critical care" loading="lazy">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title h5 fw-bold text-dark">Patient Monitors</h3>
                             <p class="card-text text-muted flex-grow-1">Advanced monitoring systems for critical care with real-time vital signs tracking and comprehensive patient data.</p>
-                            <a href="products.html?source=featured-products&product=monitors" class="btn btn-primary mt-auto" aria-label="Learn more about Patient Monitors">Learn More</a>
                         </div>
                     </div>
                 </div>
@@ -547,7 +544,7 @@
             
             img.onload = function() {
                 heroSection.style.background = 
-                    'linear-gradient(135deg, rgba(32, 201, 151, 0.05) 0%, rgba(13, 202, 240, 0.05) 100%), url("images/hero-home.jpg") center/cover no-repeat';
+                    'linear-gradient(135deg, rgba(32, 201, 151, 0.3) 0%, rgba(13, 202, 240, 0.3) 100%), url("images/hero-home.jpg") center/cover no-repeat';
             };
             
             img.onerror = function() {
@@ -556,6 +553,18 @@
                     'linear-gradient(135deg, var(--teal-blue), var(--ocean-blue))';
             };
         }
+        
+        // Make entire product cards clickable
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', function(e) {
+                // Don't trigger if user clicked on a link inside the card
+                if (e.target.tagName !== 'A' && !e.target.closest('a')) {
+                    const url = this.getAttribute('onclick').match(/window\.location\.href='([^']+)'/)[1];
+                    window.location.href = url;
+                }
+            });
+        });
         
         // Enhanced analytics tracking
         const trackEvent = (category, action, label) => {
@@ -597,6 +606,18 @@
                 const product = url.searchParams.get('product');
                 
                 trackEvent('Navigation', 'Link Click', `${source}${product ? ` - ${product}` : ''}`);
+            });
+        });
+        
+        // Track product card clicks
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const url = this.getAttribute('onclick').match(/window\.location\.href='([^']+)'/)[1];
+                const urlObj = new URL(url, window.location.origin);
+                const source = urlObj.searchParams.get('source');
+                const product = urlObj.searchParams.get('product');
+                
+                trackEvent('Navigation', 'Product Card Click', `${source} - ${product}`);
             });
         });
         

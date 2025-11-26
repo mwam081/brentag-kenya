@@ -1,4 +1,4 @@
-/* custom.css v17.0 - Brentag Kenya Ltd - Professional Medical Equipment */
+/* custom.css v18.0 - Brentag Kenya Ltd - Professional Medical Equipment */
 :root {
     --primary-color: #0066cc;
     --secondary-color: #004499;
@@ -92,6 +92,19 @@ body {
     box-shadow: none !important;
 }
 
+/* Ensure Products menu maintains consistent styling */
+.navbar-nav .nav-link[href="products.html"] {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-dark) !important;
+}
+
+.navbar-nav .nav-link[href="products.html"]:hover,
+.navbar-nav .nav-link[href="products.html"].active {
+    color: var(--primary-color) !important;
+    background: transparent !important;
+}
+
 /* Remove all button-like styles */
 .navbar-nav .nav-link:focus,
 .navbar-nav .nav-link:hover {
@@ -113,16 +126,80 @@ body {
     font-weight: 600;
 }
 
-/* Mobile Menu Cleanup */
+/* Enhanced Burger Menu - Green to Blue Transition */
 .navbar-toggler {
-    border: 1px solid rgba(0,0,0,0.1) !important;
+    border: 2px solid var(--success-color) !important;
     background: transparent !important;
     box-shadow: none !important;
+    padding: 0.5rem 0.75rem;
+    transition: var(--transition-standard);
+}
+
+.navbar-toggler:hover {
+    border-color: var(--primary-color) !important;
+    background: rgba(0, 102, 204, 0.05) !important;
 }
 
 .navbar-toggler:focus {
-    box-shadow: none !important;
-    outline: 1px solid var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 102, 204, 0.25) !important;
+    outline: none !important;
+}
+
+.navbar-toggler:not(.collapsed) {
+    border-color: var(--primary-color) !important;
+    background: rgba(0, 102, 204, 0.1) !important;
+}
+
+/* Burger Menu Icon Styling */
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2328a745' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    transition: var(--transition-standard);
+    width: 1.5em;
+    height: 1.5em;
+}
+
+.navbar-toggler:hover .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%230066cc' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%230066cc' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+/* Mobile Menu Cleanup */
+.navbar-collapse {
+    background: transparent !important;
+}
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        padding: 0.75rem 1rem;
+        text-align: center;
+        border: none !important;
+        background: transparent !important;
+        margin: 0.25rem 0;
+    }
+    
+    .navbar-nav .nav-link:hover {
+        background: rgba(0, 102, 204, 0.05) !important;
+        border-radius: var(--border-radius);
+    }
+    
+    .navbar-nav .nav-link.active {
+        background: rgba(0, 102, 204, 0.1) !important;
+        border-radius: var(--border-radius);
+    }
+    
+    .navbar-collapse {
+        background: rgba(255, 255, 255, 0.98) !important;
+        padding: 1rem;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-medium);
+        margin-top: 1rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
 }
 
 /* Hero Sections - Professional Opacity Levels */
@@ -344,23 +421,6 @@ body {
 }
 
 @media (max-width: 768px) {
-    .navbar-nav .nav-link {
-        padding: 0.75rem 1rem;
-        text-align: center;
-        border: none !important;
-        background: transparent !important;
-    }
-    
-    .navbar-collapse {
-        background: rgba(255, 255, 255, 0.98);
-        padding: 1rem;
-        border-radius: var(--border-radius-lg);
-        box-shadow: var(--shadow-medium);
-        margin-top: 1rem;
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(0,0,0,0.05);
-    }
-    
     .hero-section {
         padding: 120px 0 80px;
         min-height: 60vh;
@@ -427,6 +487,14 @@ body {
     .home-hero::before {
         background: rgba(0, 0, 0, 0.5);
     }
+    
+    .navbar-toggler {
+        border-color: #000 !important;
+    }
+    
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23000' stroke-linecap='round' stroke-miterlimit='10' stroke-width='3' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    }
 }
 
 /* Reduced Motion Support */
@@ -442,6 +510,10 @@ body {
     .btn,
     .product-card,
     .service-card {
+        transition: none;
+    }
+    
+    .navbar-toggler {
         transition: none;
     }
 }
@@ -461,6 +533,10 @@ body {
     .hero-section {
         display: none !important;
     }
+    
+    .navbar-toggler {
+        display: none !important;
+    }
 }
 
 /* Loading Optimization */
@@ -475,4 +551,8 @@ body {
 
 .hero-section::before {
     will-change: opacity;
+}
+
+.navbar-toggler {
+    will-change: border-color, background-color;
 }

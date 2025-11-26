@@ -3,346 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Brentag Kenya Ltd | Medical Equipment Experts</title>
-    <meta name="description" content="Get in touch with Brentag Kenya's medical equipment experts. Contact us for product inquiries, technical support, and healthcare solutions.">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    
-    <!-- Bootstrap CSS -->
+    <title>Contact Us - Brentag Kenya Ltd</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <!-- Lightbox CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
-    
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="css/custom.css?v=14.0">
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/site.webmanifest">
-    
     <style>
-        /* CSS Variables for consistent theming */
-        :root {
-            --primary-color: #0d6efd;
-            --secondary-color: #198754;
-            --accent-color: #20c997;
-            --dark-color: #212529;
-            --light-color: #f8f9fa;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --font-main: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            --shadow-light: 0 2px 10px rgba(0,0,0,0.08);
-            --shadow-medium: 0 5px 15px rgba(0,0,0,0.1);
-            --shadow-heavy: 0 10px 25px rgba(0,0,0,0.15);
-            --border-radius: 8px;
-            --transition: all 0.3s ease;
-        }
-        
-        /* Base styles */
-        * {
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: var(--font-main);
-            line-height: 1.6;
-            color: var(--dark-color);
-            overflow-x: hidden;
-        }
-        
-        /* Enhanced Hero Section */
-        .hero-section {
-            position: relative;
-            min-height: 70vh;
+        .contact-hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url('images/hero-contacts.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 60vh;
             display: flex;
             align-items: center;
-            overflow: hidden;
-        }
-        
-        .contact-hero {
-            background: 
-                /* Green-blue gradient overlay with 10% opacity */
-                linear-gradient(135deg, rgba(32, 201, 151, 0.1) 0%, rgba(13, 110, 253, 0.1) 100%),
-                /* Background image */
-                url('images/hero-contacts.jpg') center/cover no-repeat;
-        }
-        
-        /* Fallback background in case image doesn't load */
-        .contact-hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #20c997 0%, #0d6efd 100%);
-            opacity: 0.1;
-            z-index: -1;
-        }
-        
-        .hero-content {
             position: relative;
-            z-index: 2;
+        }
+        
+        /* Fallback background color in case image doesn't load */
+        .contact-hero {
+            background-color: #2c3e50;
         }
         
         .text-shadow {
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
         }
         
-        /* Improved Typography */
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 0.5em;
-        }
-        
-        .display-2 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-        }
-        
-        .lead {
-            font-size: 1.25rem;
-            font-weight: 400;
-        }
-        
-        /* Enhanced Cards */
-        .card {
-            border: none;
-            border-radius: var(--border-radius);
-            transition: var(--transition);
-            overflow: hidden;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-heavy) !important;
-        }
-        
-        .card-shadow {
-            box-shadow: var(--shadow-medium);
-        }
-        
-        /* Improved Buttons */
-        .btn {
-            border-radius: var(--border-radius);
-            font-weight: 600;
-            padding: 0.75rem 1.5rem;
-            transition: var(--transition);
-            border: none;
-        }
-        
-        .btn-lg {
-            padding: 1rem 2rem;
-            font-size: 1.125rem;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary-color), #0a58ca);
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #0a58ca, var(--primary-color));
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
-        }
-        
-        .btn-success {
-            background: linear-gradient(135deg, var(--secondary-color), #146c43);
-        }
-        
-        .btn-success:hover {
-            background: linear-gradient(135deg, #146c43, var(--secondary-color));
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(25, 135, 84, 0.4);
-        }
-        
-        /* Form Improvements */
-        .form-control, .form-select {
-            border-radius: var(--border-radius);
-            padding: 0.75rem 1rem;
-            border: 1px solid #dee2e6;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
-        }
-        
-        .form-label {
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        /* Contact Info Cards */
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-info-icon {
-            flex-shrink: 0;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 1rem;
-            font-size: 1.25rem;
-        }
-        
-        .icon-primary {
-            background-color: rgba(13, 110, 253, 0.1);
-            color: var(--primary-color);
-        }
-        
-        .icon-success {
-            background-color: rgba(25, 135, 84, 0.1);
-            color: var(--secondary-color);
-        }
-        
-        .icon-warning {
-            background-color: rgba(255, 193, 7, 0.1);
-            color: var(--warning-color);
-        }
-        
-        /* Accordion Improvements */
-        .accordion-button {
-            font-weight: 600;
-            padding: 1.25rem 1.5rem;
-            border-radius: var(--border-radius) !important;
-        }
-        
-        .accordion-button:not(.collapsed) {
-            background-color: rgba(13, 110, 253, 0.05);
-            color: var(--primary-color);
-        }
-        
-        .accordion-body {
-            padding: 1.5rem;
-        }
-        
-        /* Team Cards */
-        .feature-icon-bg {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem;
-            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: white;
-            font-size: 1.75rem;
-        }
-        
-        /* Map Container */
-        .map-container {
+        .hero-section {
             position: relative;
             overflow: hidden;
-            border-radius: var(--border-radius) var(--border-radius) 0 0;
         }
         
-        .map-container iframe {
-            display: block;
-            width: 100%;
-            height: 400px;
-            border: none;
+        /* Alternative approach with multiple image path attempts */
+        .contact-hero {
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), 
+                url('images/hero-contacts.jpg'),
+                url('../images/hero-contacts.jpg'),
+                url('./images/hero-contacts.jpg'),
+                url('hero-contacts.jpg');
         }
-        
-        /* Loading States */
-        .loading {
-            opacity: 0.7;
-            pointer-events: none;
+
+        /* Wave Divider Styles */
+        .wave-divider {
+            position: relative;
+            height: 80px;
+            overflow: hidden;
+            margin-top: -1px;
         }
-        
-        /* Focus styles for accessibility */
-        a:focus, button:focus, .form-control:focus, .form-select:focus {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-        
-        /* Skip link for accessibility */
-        .skip-link {
+
+        .wave-divider svg {
             position: absolute;
-            top: -40px;
-            left: 6px;
-            background: var(--primary-color);
-            color: white;
-            padding: 8px;
-            text-decoration: none;
-            border-radius: var(--border-radius);
-            z-index: 10000;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
         }
-        
-        .skip-link:focus {
-            top: 6px;
-        }
-        
-        /* Print styles */
-        @media print {
-            .navbar, .btn, .hero-section, footer {
-                display: none !important;
-            }
-            
-            .card {
-                box-shadow: none !important;
-                border: 1px solid #ddd !important;
-            }
-        }
-        
-        /* Reduced motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-            * {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .hero-section {
-                min-height: 60vh;
-                text-align: center;
-            }
-            
-            .display-2 {
-                font-size: 2.5rem;
-            }
-            
-            .contact-info-item {
-                flex-direction: column;
-                text-align: center;
-            }
-            
-            .contact-info-icon {
-                margin-right: 0;
-                margin-bottom: 0.75rem;
-            }
+
+        .wave-divider .wave-fill {
+            fill: #f8f9fa;
         }
     </style>
 </head>
 <body>
-    <!-- Skip link for keyboard navigation -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
-
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-white bg-white sticky-top">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Brentag Kenya Ltd Home">
-                <img src="images/logo_logo_color_0.png" alt="Brentag Kenya Ltd" class="navbar-logo me-2" height="40">
+            <a class="navbar-brand" href="index.html">
+                <img src="images/logo_logo_color_0.png" alt="Brentag Kenya Ltd" class="navbar-logo">
                 <span class="text-dark fw-bold">Brentag Kenya Ltd</span>
             </a>
             <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -354,14 +86,14 @@
                     <li class="nav-item"><a class="nav-link text-dark" href="about.html">About</a></li>
                     <li class="nav-item"><a class="nav-link text-dark" href="products.html">Products</a></li>
                     <li class="nav-item"><a class="nav-link text-dark" href="services.html">Services</a></li>
-                    <li class="nav-item"><a class="nav-link text-dark active" href="contact.html" aria-current="page">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link text-dark active" href="contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Contact Header -->
-    <section class="hero-section contact-hero" role="banner" aria-label="Contact Us Hero Section">
+    <section class="hero-section contact-hero">
         <div class="container">
             <div class="hero-content text-center text-white">
                 <h1 class="display-2 fw-bold text-shadow mb-4">Contact Us</h1>
@@ -375,421 +107,424 @@
         </div>
     </section>
 
-    <!-- Main Content -->
-    <main id="main-content">
-        <!-- Contact Content -->
-        <section class="py-5" aria-labelledby="contact-form-heading">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 mb-5">
-                        <div class="card card-shadow">
-                            <div class="card-body p-4 p-md-5">
-                                <h2 id="contact-form-heading" class="fw-bold mb-4 text-dark">Send us a Message</h2>
-                                <p class="text-muted mb-4">Fill out the form below and we'll get back to you within 2 hours during business hours.</p>
-                                
-                                <!-- Formspree Contact Form -->
-                                <div class="contact-form-container">
-                                    <form
-                                      action="https://formspree.io/f/mldkwvaj"
-                                      method="POST"
-                                      enctype="multipart/form-data"
-                                      class="needs-validation"
-                                      novalidate
-                                    >
-                                      <input type="hidden" name="_replyto" value="info@brentag.co.ke">
-                                      <input type="hidden" name="_cc" value="info@brentag.co.ke">
-                                      <input type="hidden" name="_subject" value="New Contact Form Submission - Brentag Kenya">
-                                      
-                                      <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                          <label for="name" class="form-label fw-bold text-dark">Full Name *</label>
-                                          <input type="text" class="form-control" id="name" name="name" required aria-required="true">
-                                          <div class="invalid-feedback">Please enter your full name.</div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                          <label for="email" class="form-label fw-bold text-dark">Email Address *</label>
-                                          <input type="email" class="form-control" id="email" name="email" required aria-required="true">
-                                          <div class="invalid-feedback">Please enter a valid email address.</div>
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="row">
-                                        <div class="col-md-6 mb-3">
-                                          <label for="phone" class="form-label fw-bold text-dark">Phone Number</label>
-                                          <input type="tel" class="form-control" id="phone" name="phone" aria-describedby="phoneHelp">
-                                          <div id="phoneHelp" class="form-text">We'll only contact you by phone if email is unavailable</div>
-                                        </div>
-                                        <div class="col-md-6 mb-3">
-                                          <label for="company" class="form-label fw-bold text-dark">Company/Organization</label>
-                                          <input type="text" class="form-control" id="company" name="company">
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="mb-3">
-                                        <label for="subject" class="form-label fw-bold text-dark">Subject *</label>
-                                        <select class="form-select" id="subject" name="subject" required aria-required="true">
-                                          <option value="">Select a subject...</option>
-                                          <option value="Product Inquiry">Product Inquiry</option>
-                                          <option value="Service Request">Service Request</option>
-                                          <option value="Technical Support">Technical Support</option>
-                                          <option value="Partnership">Partnership</option>
-                                          <option value="Other">Other</option>
-                                        </select>
-                                        <div class="invalid-feedback">Please select a subject.</div>
-                                      </div>
-                                      
-                                      <div class="mb-4">
-                                        <label for="message" class="form-label fw-bold text-dark">Message *</label>
-                                        <textarea class="form-control" id="message" name="message" rows="5" required aria-required="true"></textarea>
-                                        <div class="invalid-feedback">Please enter your message.</div>
-                                      </div>
+    <!-- Wave Divider -->
+    <div class="wave-divider">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
+            <path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" class="wave-fill"></path>
+            <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
+        </svg>
+    </div>
 
-                                      <!-- File Upload Section -->
-                                      <div class="mb-4">
-                                        <label for="upload" class="form-label fw-bold text-dark">
-                                          <i class="fas fa-paperclip me-2" aria-hidden="true"></i>Attach File (Optional)
-                                        </label>
-                                        <input type="file" class="form-control" id="upload" name="upload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" aria-describedby="fileHelp">
-                                        <div id="fileHelp" class="form-text">
-                                          You can attach specifications, photos, or documents (PDF, Word, Images up to 10MB)
-                                        </div>
-                                      </div>
-                                      
-                                      <div class="d-grid">
-                                        <button type="submit" class="btn btn-primary btn-lg">
-                                          <i class="fas fa-paper-plane me-2" aria-hidden="true"></i>Send Message
-                                        </button>
-                                      </div>
-                                      
-                                      <div class="text-center mt-3">
-                                        <small class="text-muted">
-                                          <i class="fas fa-clock me-1" aria-hidden="true"></i>We typically respond within 2 hours during business hours
-                                        </small>
-                                      </div>
-                                    </form>
+    <!-- Contact Content -->
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mb-5">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4 p-md-5">
+                            <h3 class="fw-bold mb-4 text-dark">Send us a Message</h3>
+                            <p class="text-muted mb-4">Fill out the form below and we'll get back to you within 2 hours during business hours.</p>
+                            
+                            <!-- Formspree Contact Form -->
+                            <div class="contact-form-container">
+                                <form
+                                  action="https://formspree.io/f/mldkwvaj"
+                                  method="POST"
+                                  enctype="multipart/form-data"
+                                  class="needs-validation"
+                                  novalidate
+                                >
+                                  <input type="hidden" name="_replyto" value="info@brentag.co.ke">
+                                  <input type="hidden" name="_cc" value="info@brentag.co.ke">
+                                  <input type="hidden" name="_subject" value="New Contact Form Submission - Brentag Kenya">
+                                  
+                                  <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                      <label for="name" class="form-label fw-bold text-dark">Full Name *</label>
+                                      <input type="text" class="form-control" id="name" name="name" required>
+                                      <div class="invalid-feedback">Please enter your full name.</div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                      <label for="email" class="form-label fw-bold text-dark">Email Address *</label>
+                                      <input type="email" class="form-control" id="email" name="email" required>
+                                      <div class="invalid-feedback">Please enter a valid email address.</div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                      <label for="phone" class="form-label fw-bold text-dark">Phone Number</label>
+                                      <input type="tel" class="form-control" id="phone" name="phone">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                      <label for="company" class="form-label fw-bold text-dark">Company/Organization</label>
+                                      <input type="text" class="form-control" id="company" name="company">
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="mb-3">
+                                    <label for="subject" class="form-label fw-bold text-dark">Subject *</label>
+                                    <select class="form-select" id="subject" name="subject" required>
+                                      <option value="">Select a subject...</option>
+                                      <option value="Product Inquiry">Product Inquiry</option>
+                                      <option value="Service Request">Service Request</option>
+                                      <option value="Technical Support">Technical Support</option>
+                                      <option value="Partnership">Partnership</option>
+                                      <option value="Other">Other</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a subject.</div>
+                                  </div>
+                                  
+                                  <div class="mb-4">
+                                    <label for="message" class="form-label fw-bold text-dark">Message *</label>
+                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+                                    <div class="invalid-feedback">Please enter your message.</div>
+                                  </div>
+
+                                  <!-- File Upload Section -->
+                                  <div class="mb-4">
+                                    <label for="upload" class="form-label fw-bold text-dark">
+                                      <i class="fas fa-paperclip me-2"></i>Attach File (Optional)
+                                    </label>
+                                    <input type="file" class="form-control" id="upload" name="upload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                                    <div class="form-text">
+                                      You can attach specifications, photos, or documents (PDF, Word, Images up to 10MB)
+                                    </div>
+                                  </div>
+                                  
+                                  <div class="d-grid">
+                                    <button type="submit" class="btn btn-primary btn-lg">
+                                      <i class="fas fa-paper-plane me-2"></i>Send Message
+                                    </button>
+                                  </div>
+                                  
+                                  <div class="text-center mt-3">
+                                    <small class="text-muted">
+                                      <i class="fas fa-clock me-1"></i>We typically respond within 2 hours during business hours
+                                    </small>
+                                  </div>
+                                </form>
+                            </div>
+                            <!-- End Formspree Contact Form -->
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4">
+                    <div class="card border-0 shadow">
+                        <div class="card-body p-4">
+                            <h4 class="fw-bold mb-4 text-dark">Contact Information</h4>
+                            
+                            <div class="d-flex mb-4">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-phone fa-lg text-primary"></i>
                                 </div>
-                                <!-- End Formspree Contact Form -->
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="fw-bold text-dark">Phone</h6>
+                                    <a href="tel:+254711867765" class="text-decoration-none text-muted" onclick="trackPhoneCall()">
+                                        <p class="mb-0">+254711867765</p>
+                                    </a>
+                                    <small class="text-muted">Click to call directly</small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex mb-4">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-envelope fa-lg text-success"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="fw-bold text-dark">Email</h6>
+                                    <a href="mailto:info@brentag.co.ke" class="text-decoration-none text-muted">
+                                        <p class="mb-0">info@brentag.co.ke</p>
+                                    </a>
+                                    <small class="text-muted">We respond within 2 hours</small>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex mb-4">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt fa-lg text-warning"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="fw-bold text-dark">Address</h6>
+                                    <p class="mb-0 text-muted">Ridgeways Road, Building: 14 High View Lane<br>Ridgeways, Kiambu, Kenya</p>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex">
+                                <div class="flex-shrink-0">
+                                    <i class="fas fa-clock fa-lg text-primary"></i>
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h6 class="fw-bold text-dark">Business Hours</h6>
+                                    <p class="mb-0 text-muted">Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="col-lg-4">
-                        <div class="card card-shadow mb-4">
-                            <div class="card-body p-4">
-                                <h3 class="fw-bold mb-4 text-dark">Contact Information</h3>
-                                
-                                <div class="contact-info-item">
-                                    <div class="contact-info-icon icon-primary">
-                                        <i class="fas fa-phone" aria-hidden="true"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="fw-bold text-dark h6">Phone</h4>
-                                        <a href="tel:+254711867765" class="text-decoration-none text-muted" onclick="trackPhoneCall()">
-                                            <p class="mb-0">+254711867765</p>
-                                        </a>
-                                        <small class="text-muted">Click to call directly</small>
-                                    </div>
-                                </div>
-                                
-                                <div class="contact-info-item">
-                                    <div class="contact-info-icon icon-success">
-                                        <i class="fas fa-envelope" aria-hidden="true"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="fw-bold text-dark h6">Email</h4>
-                                        <a href="mailto:info@brentag.co.ke" class="text-decoration-none text-muted">
-                                            <p class="mb-0">info@brentag.co.ke</p>
-                                        </a>
-                                        <small class="text-muted">We respond within 2 hours</small>
-                                    </div>
-                                </div>
-                                
-                                <div class="contact-info-item">
-                                    <div class="contact-info-icon icon-warning">
-                                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="fw-bold text-dark h6">Address</h4>
-                                        <p class="mb-0 text-muted">Ridgeways Road, Building: 14 High View Lane<br>Ridgeways, Kiambu, Kenya</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="contact-info-item">
-                                    <div class="contact-info-icon icon-primary">
-                                        <i class="fas fa-clock" aria-hidden="true"></i>
-                                    </div>
-                                    <div>
-                                        <h4 class="fw-bold text-dark h6">Business Hours</h4>
-                                        <p class="mb-0 text-muted">Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM</p>
-                                    </div>
+                    <!-- Emergency Support -->
+                    <div class="card border-0 mt-4 bg-warning">
+                        <div class="card-body p-4 text-center">
+                            <i class="fas fa-exclamation-triangle fa-2x text-dark mb-3"></i>
+                            <h5 class="fw-bold text-dark">Emergency Technical Support</h5>
+                            <p class="mb-3 text-dark">24/7 emergency support available for critical equipment issues</p>
+                            <a href="tel:+254711867765" class="btn btn-dark" onclick="trackPhoneCall()">
+                                <i class="fas fa-phone me-2"></i>Call +254 711 867 765
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Contact -->
+                    <div class="card border-0 shadow mt-4">
+                        <div class="card-body p-4 text-center">
+                            <i class="fas fa-headset fa-2x text-primary mb-3"></i>
+                            <h5 class="fw-bold text-dark">Quick Response</h5>
+                            <p class="text-muted mb-3">We typically respond to inquiries within 2 hours during business hours</p>
+                            <div class="d-grid gap-2">
+                                <a href="mailto:info@brentag.co.ke" class="btn btn-outline-primary">
+                                    <i class="fas fa-envelope me-2"></i>Email Us
+                                </a>
+                                <a href="tel:+254711867765" class="btn btn-outline-success" onclick="trackPhoneCall()">
+                                    <i class="fas fa-phone me-2"></i>Call Us
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-4">
+                <h3 class="fw-bold text-dark">Find Us</h3>
+                <p class="lead text-muted">Visit our office for a consultation</p>
+            </div>
+            <div class="card border-0 shadow">
+                <div class="card-body p-0">
+                    <!-- Google Maps Embed -->
+                    <div class="map-container">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.808722!2d36.807551!3d-1.268866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1738a7ca63a7%3A0x1e3e3e3e3e3e3e3e!2sWestlands%20Business%20Center%2C%20Nairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1234567890" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    <div class="p-4 text-center bg-white">
+                        <i class="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
+                        <h4 class="text-dark">Office Location</h4>
+                        <p class="mb-0 text-muted">Ridgeways Road, Building: 14 High View Lane Ridgeways, Kiambu, Kenya</p>
+                        <small class="text-muted">Westlands Business Center, Nairobi, Kenya</small>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Directions Button -->
+            <div class="text-center mt-4">
+                <a href="https://maps.google.com/maps?q=Westlands+Business+Center+Nairobi+Kenya" 
+                   target="_blank" 
+                   class="btn btn-primary btn-lg">
+                    <i class="fas fa-directions me-2"></i>Get Directions
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark">Frequently Asked Questions</h2>
+                <p class="lead text-muted">Quick answers to common questions</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item border-0 shadow-sm mb-3">
+                            <h2 class="accordion-header" id="faq1">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1">
+                                    What are your response times for emergency repairs?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    For critical equipment emergencies, we aim to respond within 2 hours and have a technician on-site within 4 hours during business hours. After-hours emergencies are handled by our on-call technical team.
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Emergency Support -->
-                        <div class="card border-0 mb-4 bg-warning">
-                            <div class="card-body p-4 text-center">
-                                <i class="fas fa-exclamation-triangle fa-2x text-dark mb-3" aria-hidden="true"></i>
-                                <h3 class="fw-bold text-dark h5">Emergency Technical Support</h3>
-                                <p class="mb-3 text-dark">24/7 emergency support available for critical equipment issues</p>
-                                <a href="tel:+254711867765" class="btn btn-dark" onclick="trackPhoneCall()">
-                                    <i class="fas fa-phone me-2" aria-hidden="true"></i>Call +254 711 867 765
-                                </a>
+                        <div class="accordion-item border-0 shadow-sm mb-3">
+                            <h2 class="accordion-header" id="faq2">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2">
+                                    Do you provide training for equipment operation?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Yes, we provide comprehensive training programs for all equipment we supply. Training can be conducted at your facility or ours, and includes both theoretical and hands-on practical sessions.
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 shadow-sm mb-3">
+                            <h2 class="accordion-header" id="faq3">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3">
+                                    What areas do you serve in Kenya?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    We serve healthcare facilities throughout Kenya, with our main office in Nairobi. We have service teams strategically located to provide support across all major regions including Mombasa, Kisumu, Nakuru, and Eldoret.
+                                </div>
                             </div>
                         </div>
 
-                        <!-- Quick Contact -->
-                        <div class="card card-shadow">
-                            <div class="card-body p-4 text-center">
-                                <i class="fas fa-headset fa-2x text-primary mb-3" aria-hidden="true"></i>
-                                <h3 class="fw-bold text-dark h5">Quick Response</h3>
-                                <p class="text-muted mb-3">We typically respond to inquiries within 2 hours during business hours</p>
-                                <div class="d-grid gap-2">
-                                    <a href="mailto:info@brentag.co.ke" class="btn btn-outline-primary">
-                                        <i class="fas fa-envelope me-2" aria-hidden="true"></i>Email Us
-                                    </a>
-                                    <a href="tel:+254711867765" class="btn btn-outline-success" onclick="trackPhoneCall()">
-                                        <i class="fas fa-phone me-2" aria-hidden="true"></i>Call Us
-                                    </a>
+                        <div class="accordion-item border-0 shadow-sm mb-3">
+                            <h2 class="accordion-header" id="faq4">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4">
+                                    Can I attach files to my inquiry?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Yes! You can attach files such as equipment specifications, photos of your current setup, or any relevant documents. We accept PDF, Word documents, and image files up to 10MB in size.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-0 shadow-sm mb-3">
+                            <h2 class="accordion-header" id="faq5">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5">
+                                    Do you offer equipment installation services?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    Yes, we provide professional installation services for all medical equipment. Our certified technicians handle everything from unpacking and assembly to calibration and staff training.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item border-0 shadow-sm mb-3">
+                            <h2 class="accordion-header" id="faq6">
+                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse6">
+                                    What warranty do you provide on your equipment?
+                                </button>
+                            </h2>
+                            <div id="faqCollapse6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body text-muted">
+                                    All our equipment comes with comprehensive manufacturer warranties. We also offer extended warranty packages and service contracts for additional peace of mind. Warranty periods vary by product but typically range from 1 to 3 years.
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Map Section -->
-        <section class="py-5 bg-light" aria-labelledby="location-heading">
-            <div class="container">
-                <div class="text-center mb-4">
-                    <h2 id="location-heading" class="fw-bold text-dark">Find Us</h2>
-                    <p class="lead text-muted">Visit our office for a consultation</p>
-                </div>
-                <div class="card card-shadow">
-                    <div class="card-body p-0">
-                        <!-- Google Maps Embed -->
-                        <div class="map-container">
-                            <iframe 
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.808722!2d36.807551!3d-1.268866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1738a7ca63a7%3A0x1e3e3e3e3e3e3e3e!2sWestlands%20Business%20Center%2C%20Nairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1234567890" 
-                                width="100%" 
-                                height="450" 
-                                style="border:0;" 
-                                allowfullscreen="" 
-                                loading="lazy" 
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="Brentag Kenya Office Location Map">
-                            </iframe>
-                        </div>
-                        <div class="p-4 text-center bg-white">
-                            <i class="fas fa-map-marker-alt fa-2x text-primary mb-3" aria-hidden="true"></i>
-                            <h3 class="text-dark h4">Office Location</h3>
-                            <p class="mb-0 text-muted">Ridgeways Road, Building: 14 High View Lane Ridgeways, Kiambu, Kenya</p>
-                            <small class="text-muted">Westlands Business Center, Nairobi, Kenya</small>
+    <!-- Team Contact Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="display-5 fw-bold text-dark">Our Contact Team</h2>
+                <p class="lead text-muted">Meet the experts ready to assist you</p>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow text-center">
+                        <div class="card-body p-4">
+                            <div class="feature-icon-bg mx-auto mb-3">
+                                <i class="fas fa-headset feature-icon"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark">Sales Team</h5>
+                            <p class="text-muted mb-3">Product inquiries, pricing, and equipment selection</p>
+                            <a href="mailto:info@brentag.co.ke?subject=Sales Inquiry" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-envelope me-1"></i>Email Sales
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Directions Button -->
-                <div class="text-center mt-4">
-                    <a href="https://maps.google.com/maps?q=Westlands+Business+Center+Nairobi+Kenya" 
-                       target="_blank" 
-                       class="btn btn-primary btn-lg"
-                       rel="noopener">
-                        <i class="fas fa-directions me-2" aria-hidden="true"></i>Get Directions
+                <div class="col-md-4">
+                    <div class="card border-0 shadow text-center">
+                        <div class="card-body p-4">
+                            <div class="feature-icon-bg mx-auto mb-3">
+                                <i class="fas fa-tools feature-icon"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark">Technical Support</h5>
+                            <p class="text-muted mb-3">Equipment troubleshooting and maintenance</p>
+                            <a href="mailto:info@brentag.co.ke?subject=Technical Support" class="btn btn-outline-success btn-sm">
+                                <i class="fas fa-envelope me-1"></i>Email Support
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="card border-0 shadow text-center">
+                        <div class="card-body p-4">
+                            <div class="feature-icon-bg mx-auto mb-3">
+                                <i class="fas fa-handshake feature-icon"></i>
+                            </div>
+                            <h5 class="fw-bold text-dark">Customer Service</h5>
+                            <p class="text-muted mb-3">General inquiries and account management</p>
+                            <a href="mailto:info@brentag.co.ke?subject=Customer Service" class="btn btn-outline-primary btn-sm">
+                                <i class="fas fa-envelope me-1"></i>Email Customer Service
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3 class="fw-bold mb-3">Ready to Get Started?</h3>
+                    <p class="lead mb-0">Contact us today to discuss your medical equipment needs and get expert advice.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a href="tel:+254711867765" class="btn btn-light btn-lg me-2" onclick="trackPhoneCall()">
+                        <i class="fas fa-phone me-2"></i>Call Now
+                    </a>
+                    <a href="mailto:info@brentag.co.ke" class="btn btn-outline-light btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Email Us
                     </a>
                 </div>
             </div>
-        </section>
-
-        <!-- FAQ Section -->
-        <section class="py-5" aria-labelledby="faq-heading">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 id="faq-heading" class="display-5 fw-bold text-dark">Frequently Asked Questions</h2>
-                    <p class="lead text-muted">Quick answers to common questions</p>
-                </div>
-                
-                <div class="row">
-                    <div class="col-lg-8 mx-auto">
-                        <div class="accordion" id="faqAccordion">
-                            <div class="accordion-item border-0 card-shadow mb-3">
-                                <h3 class="accordion-header" id="faq1">
-                                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="false" aria-controls="faqCollapse1">
-                                        What are your response times for emergency repairs?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" aria-labelledby="faq1">
-                                    <div class="accordion-body text-muted">
-                                        For critical equipment emergencies, we aim to respond within 2 hours and have a technician on-site within 4 hours during business hours. After-hours emergencies are handled by our on-call technical team.
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="accordion-item border-0 card-shadow mb-3">
-                                <h3 class="accordion-header" id="faq2">
-                                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
-                                        Do you provide training for equipment operation?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" aria-labelledby="faq2">
-                                    <div class="accordion-body text-muted">
-                                        Yes, we provide comprehensive training programs for all equipment we supply. Training can be conducted at your facility or ours, and includes both theoretical and hands-on practical sessions.
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="accordion-item border-0 card-shadow mb-3">
-                                <h3 class="accordion-header" id="faq3">
-                                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
-                                        What areas do you serve in Kenya?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" aria-labelledby="faq3">
-                                    <div class="accordion-body text-muted">
-                                        We serve healthcare facilities throughout Kenya, with our main office in Nairobi. We have service teams strategically located to provide support across all major regions including Mombasa, Kisumu, Nakuru, and Eldoret.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item border-0 card-shadow mb-3">
-                                <h3 class="accordion-header" id="faq4">
-                                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
-                                        Can I attach files to my inquiry?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" aria-labelledby="faq4">
-                                    <div class="accordion-body text-muted">
-                                        Yes! You can attach files such as equipment specifications, photos of your current setup, or any relevant documents. We accept PDF, Word documents, and image files up to 10MB in size.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item border-0 card-shadow mb-3">
-                                <h3 class="accordion-header" id="faq5">
-                                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
-                                        Do you offer equipment installation services?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" aria-labelledby="faq5">
-                                    <div class="accordion-body text-muted">
-                                        Yes, we provide professional installation services for all medical equipment. Our certified technicians handle everything from unpacking and assembly to calibration and staff training.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-item border-0 card-shadow mb-3">
-                                <h3 class="accordion-header" id="faq6">
-                                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
-                                        What warranty do you provide on your equipment?
-                                    </button>
-                                </h3>
-                                <div id="faqCollapse6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion" aria-labelledby="faq6">
-                                    <div class="accordion-body text-muted">
-                                        All our equipment comes with comprehensive manufacturer warranties. We also offer extended warranty packages and service contracts for additional peace of mind. Warranty periods vary by product but typically range from 1 to 3 years.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Team Contact Section -->
-        <section class="py-5 bg-light" aria-labelledby="team-heading">
-            <div class="container">
-                <div class="text-center mb-5">
-                    <h2 id="team-heading" class="display-5 fw-bold text-dark">Our Contact Team</h2>
-                    <p class="lead text-muted">Meet the experts ready to assist you</p>
-                </div>
-                
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="card card-shadow text-center h-100">
-                            <div class="card-body p-4">
-                                <div class="feature-icon-bg mx-auto mb-3">
-                                    <i class="fas fa-headset" aria-hidden="true"></i>
-                                </div>
-                                <h3 class="fw-bold text-dark h5">Sales Team</h3>
-                                <p class="text-muted mb-3">Product inquiries, pricing, and equipment selection</p>
-                                <a href="mailto:sales@brentag.co.ke" class="btn btn-outline-primary btn-sm">
-                                    <i class="fas fa-envelope me-1" aria-hidden="true"></i>Email Sales
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="card card-shadow text-center h-100">
-                            <div class="card-body p-4">
-                                <div class="feature-icon-bg mx-auto mb-3">
-                                    <i class="fas fa-tools" aria-hidden="true"></i>
-                                </div>
-                                <h3 class="fw-bold text-dark h5">Technical Support</h3>
-                                <p class="text-muted mb-3">Equipment troubleshooting and maintenance</p>
-                                <a href="mailto:support@brentag.co.ke" class="btn btn-outline-success btn-sm">
-                                    <i class="fas fa-envelope me-1" aria-hidden="true"></i>Email Support
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="card card-shadow text-center h-100">
-                            <div class="card-body p-4">
-                                <div class="feature-icon-bg mx-auto mb-3">
-                                    <i class="fas fa-handshake" aria-hidden="true"></i>
-                                </div>
-                                <h3 class="fw-bold text-dark h5">Customer Service</h3>
-                                <p class="text-muted mb-3">General inquiries and account management</p>
-                                <a href="mailto:info@brentag.co.ke" class="btn btn-outline-primary btn-sm">
-                                    <i class="fas fa-envelope me-1" aria-hidden="true"></i>Email Customer Service
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="py-5 bg-primary text-white" aria-label="Call to Action">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-8">
-                        <h3 class="fw-bold mb-3">Ready to Get Started?</h3>
-                        <p class="lead mb-0">Contact us today to discuss your medical equipment needs and get expert advice.</p>
-                    </div>
-                    <div class="col-lg-4 text-lg-end">
-                        <a href="tel:+254711867765" class="btn btn-light btn-lg me-2" onclick="trackPhoneCall()">
-                            <i class="fas fa-phone me-2" aria-hidden="true"></i>Call Now
-                        </a>
-                        <a href="mailto:info@brentag.co.ke" class="btn btn-outline-light btn-lg">
-                            <i class="fas fa-envelope me-2" aria-hidden="true"></i>Email Us
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5" role="contentinfo">
+    <footer class="bg-dark text-white py-4 mt-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <h2 class="h5 text-white">Brentag Kenya Ltd</h2>
+                    <h5 class="text-white">Brentag Kenya Ltd</h5>
                     <p class="text-light">Your trusted partner for state-of-the-art medical devices, laboratory instruments, and healthcare solutions in Kenya and East Africa.</p>
                 </div>
                 <div class="col-md-4">
-                    <h2 class="h5 text-white">Contact Info</h2>
-                    <p class="text-light"><i class="fas fa-phone me-2" aria-hidden="true"></i> +254711867765</p>
-                    <p class="text-light"><i class="fas fa-envelope me-2" aria-hidden="true"></i> info@brentag.co.ke</p>
-                    <p class="text-light"><i class="fas fa-map-marker-alt me-2" aria-hidden="true"></i> Ridgeways Road, Nairobi, Kenya</p>
+                    <h5 class="text-white">Contact Info</h5>
+                    <p class="text-light"><i class="fas fa-phone me-2"></i> +254711867765</p>
+                    <p class="text-light"><i class="fas fa-envelope me-2"></i> info@brentag.co.ke</p>
+                    <p class="text-light"><i class="fas fa-map-marker-alt me-2"></i> Ridgeways Road, Nairobi, Kenya</p>
                 </div>
                 <div class="col-md-4">
-                    <h2 class="h5 text-white">Quick Links</h2>
+                    <h5 class="text-white">Quick Links</h5>
                     <ul class="list-unstyled">
                         <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
                         <li><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
@@ -841,56 +576,8 @@
         }
     }
 
-    // Enhanced URL parameter handling
+    // Form submission success handler
     document.addEventListener('DOMContentLoaded', function() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const inquiry = urlParams.get('inquiry');
-        const service = urlParams.get('service');
-        const type = urlParams.get('type');
-        const source = urlParams.get('source');
-        
-        const subjectSelect = document.getElementById('subject');
-        const messageTextarea = document.getElementById('message');
-        
-        // Auto-scroll to contact form
-        if (inquiry || service || source) {
-            setTimeout(() => {
-                const formContainer = document.querySelector('.contact-form-container');
-                if (formContainer) {
-                    formContainer.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'center'
-                    });
-                }
-            }, 500);
-        }
-        
-        // Pre-fill form based on parameters
-        if (inquiry && type === 'product') {
-            if (subjectSelect) subjectSelect.value = 'Product Inquiry';
-            if (messageTextarea) {
-                messageTextarea.value = `I'm interested in your ${inquiry}. Please provide me with:\n\n• Detailed specifications\n• Pricing information\n• Availability and delivery time\n• Warranty details\n\nThank you!`;
-            }
-        }
-        
-        if (service && type === 'service') {
-            if (subjectSelect) subjectSelect.value = 'Service Request';
-            if (messageTextarea) {
-                messageTextarea.value = `I would like to schedule ${service} for my facility. Please contact me to:\n\n• Discuss my specific requirements\n• Provide service pricing\n• Schedule a convenient time\n• Share service contract details\n\nLooking forward to your response.`;
-            }
-        }
-        
-        if (source) {
-            // Generic pre-fill for general contact buttons
-            if (subjectSelect && !subjectSelect.value) {
-                subjectSelect.value = 'General Inquiry';
-            }
-            if (messageTextarea && !messageTextarea.value) {
-                messageTextarea.value = `Hello Brentag Kenya Team,\n\nI came from the ${source} page and I'm interested in learning more about your products and services. Please contact me with more information.\n\nThank you!`;
-            }
-        }
-
-        // Form submission success handler
         const form = document.querySelector('form');
         if (form) {
             form.addEventListener('submit', function() {
@@ -899,7 +586,6 @@
                 if (submitBtn) {
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
                     submitBtn.disabled = true;
-                    submitBtn.classList.add('loading');
                 }
             });
         }
@@ -916,22 +602,32 @@
             });
         }
 
-        // Check if hero image loaded successfully
-        const heroSection = document.querySelector('.contact-hero');
-        const heroImage = new Image();
+        // Get URL parameters for pre-filling form
+        const urlParams = new URLSearchParams(window.location.search);
+        const product = urlParams.get('product');
+        const service = urlParams.get('service');
         
-        heroImage.onload = function() {
-            console.log('Hero image loaded successfully');
-        };
-        
-        heroImage.onerror = function() {
-            console.log('Hero image failed to load, using fallback background');
-            if (heroSection) {
-                heroSection.style.backgroundImage = 'linear-gradient(135deg, rgba(32, 201, 151, 0.1) 0%, rgba(13, 110, 253, 0.1) 100%)';
+        if (product) {
+            const subjectSelect = document.getElementById('subject');
+            if (subjectSelect) {
+                subjectSelect.value = 'Product Inquiry';
             }
-        };
+            const messageTextarea = document.getElementById('message');
+            if (messageTextarea) {
+                messageTextarea.value = `I'm interested in learning more about your ${product}. Please send me more information about specifications, pricing, and availability.`;
+            }
+        }
         
-        heroImage.src = 'images/hero-contacts.jpg';
+        if (service) {
+            const subjectSelect = document.getElementById('subject');
+            if (subjectSelect) {
+                subjectSelect.value = 'Service Request';
+            }
+            const messageTextarea = document.getElementById('message');
+            if (messageTextarea) {
+                messageTextarea.value = `I'm interested in your ${service} service. Please contact me to discuss my requirements and schedule a consultation.`;
+            }
+        }
 
         // Initialize accordion
         const accordionItems = document.querySelectorAll('.accordion-button');
@@ -940,17 +636,6 @@
                 const isExpanded = this.getAttribute('aria-expanded') === 'true';
                 console.log('FAQ interaction:', isExpanded ? 'close' : 'open', this.textContent.trim());
             });
-        });
-        
-        // Add focus styles for keyboard navigation
-        document.addEventListener('keyup', function(e) {
-            if (e.key === 'Tab') {
-                document.documentElement.classList.add('keyboard-nav');
-            }
-        });
-        
-        document.addEventListener('mousedown', function() {
-            document.documentElement.classList.remove('keyboard-nav');
         });
     });
     </script>
