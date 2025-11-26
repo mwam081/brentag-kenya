@@ -72,7 +72,7 @@ body {
     top: 6px;
 }
 
-/* Navigation - Enhanced for UX */
+/* Navigation - Enhanced with Underline Effect */
 .navbar {
     box-shadow: var(--shadow-light);
     padding: 1rem 0;
@@ -110,8 +110,10 @@ body {
     transition: var(--transition-standard);
     color: var(--text-dark) !important;
     position: relative;
+    text-decoration: none;
 }
 
+/* Underline Effect on Hover */
 .navbar-nav .nav-link::after {
     content: '';
     position: absolute;
@@ -134,7 +136,7 @@ body {
     color: var(--primary-color) !important;
 }
 
-/* Hero Sections - Updated with 10% Opacity */
+/* Hero Sections - Updated with 20% Opacity for Better Contrast */
 .hero-section {
     padding: 140px 0 100px;
     background-size: cover;
@@ -155,7 +157,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.1); /* 10% opacity overlay */
+    background: rgba(0, 0, 0, 0.2); /* 20% opacity overlay for better text contrast */
     z-index: 1;
 }
 
@@ -178,34 +180,34 @@ body {
     margin-top: 2rem;
 }
 
-/* Specific Hero Backgrounds with Performance Optimization */
+/* Specific Hero Backgrounds with 20% Opacity */
 .home-hero {
     background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
         url('../images/hero-home.jpg');
 }
 
 .about-hero {
     background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
         url('../images/hero-about.jpg');
 }
 
 .products-hero {
     background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
         url('../images/hero-products.jpg');
 }
 
 .services-hero {
     background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
         url('../images/hero-services.jpg');
 }
 
 .contact-hero {
     background-image: 
-        linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+        linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
         url('../images/hero-contact.jpg');
 }
 
@@ -536,7 +538,15 @@ body {
 }
 
 .visually-hidden-focusable:not(:focus):not(:focus-within) {
-    @extend .visually-hidden;
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
 }
 
 .visually-hidden-focusable:focus {
@@ -779,7 +789,7 @@ footer a:hover {
     }
     
     .hero-section::before {
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.4);
     }
 }
 
@@ -836,20 +846,4 @@ footer a:hover {
         max-width: 100% !important;
         height: auto !important;
     }
-}
-
-/* Dark Mode Support (Future Enhancement) */
-@media (prefers-color-scheme: dark) {
-    /* Base dark mode styles can be added here */
-}
-
-/* Performance Optimizations */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Focus visible polyfill fallback */
-.js-focus-visible :focus:not(.focus-visible) {
-    outline: none;
 }
