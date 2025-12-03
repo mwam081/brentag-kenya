@@ -1,0 +1,30 @@
+For brentag.co.ke to work with GitHub Pages:
+
+A RECORDS (4 required):
+Name/Host: @ (or blank)
+Type: A
+Value: 185.199.108.153
+TTL: 3600
+
+Name/Host: @ (or blank)
+Type: A
+Value: 185.199.109.153
+TTL: 3600
+
+Name/Host: @ (or blank)
+Type: A
+Value: 185.199.110.153
+TTL: 3600
+
+Name/Host: @ (or blank)
+Type: A
+Value: 185.199.111.153
+TTL: 3600
+
+CNAME RECORD (for www):
+Name/Host: www
+Type: CNAME
+Value: mwam081.github.io
+TTL: 3600
+
+IMPORTANT: Remove any other A or CNAME records for brentag.co.ke
