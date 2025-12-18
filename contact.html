@@ -64,6 +64,21 @@
         .wave-divider .wave-fill {
             fill: #f8f9fa;
         }
+        
+        /* Zoho Forms iframe styling */
+        .zoho-form-iframe {
+            width: 100%;
+            border: none;
+            min-height: 650px;
+            border-radius: 8px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .zoho-form-iframe {
+                min-height: 800px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -123,75 +138,26 @@
                             <h3 class="fw-bold mb-4 text-dark">Send us a Message</h3>
                             <p class="text-muted mb-4">Fill out the form below and we'll get back to you within 2 hours during business hours.</p>
                             
-                            <!-- CORRECTED Formspree Contact Form -->
+                            <!-- ZOHO FORMS IFRAME - REPLACES FORMSPREE -->
                             <div class="contact-form-container">
-                                <form
-                                  action="https://formspree.io/f/mldkwvaj"
-                                  method="POST"
-                                  class="needs-validation"
-                                  novalidate
-                                >
-                                  <input type="hidden" name="_replyto" value="brentagke@proton.me">
-                                  <input type="hidden" name="_cc" value="info@brentag.co.ke">
-                                  <input type="hidden" name="_subject" value="New Contact Form Submission - Brentag Kenya">
-                                  
-                                  <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                      <label for="name" class="form-label fw-bold text-dark">Full Name *</label>
-                                      <input type="text" class="form-control" id="name" name="name" required>
-                                      <div class="invalid-feedback">Please enter your full name.</div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label for="email" class="form-label fw-bold text-dark">Email Address *</label>
-                                      <input type="email" class="form-control" id="email" name="email" required>
-                                      <div class="invalid-feedback">Please enter a valid email address.</div>
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="row">
-                                    <div class="col-md-6 mb-3">
-                                      <label for="phone" class="form-label fw-bold text-dark">Phone Number</label>
-                                      <input type="tel" class="form-control" id="phone" name="phone">
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                      <label for="company" class="form-label fw-bold text-dark">Company/Organization</label>
-                                      <input type="text" class="form-control" id="company" name="company">
-                                    </div>
-                                  </div>
-                                  
-                                  <div class="mb-3">
-                                    <label for="subject" class="form-label fw-bold text-dark">Subject *</label>
-                                    <select class="form-select" id="subject" name="subject" required>
-                                      <option value="">Select a subject...</option>
-                                      <option value="Product Inquiry">Product Inquiry</option>
-                                      <option value="Service Request">Service Request</option>
-                                      <option value="Technical Support">Technical Support</option>
-                                      <option value="Partnership">Partnership</option>
-                                      <option value="Other">Other</option>
-                                    </select>
-                                    <div class="invalid-feedback">Please select a subject.</div>
-                                  </div>
-                                  
-                                  <div class="mb-4">
-                                    <label for="message" class="form-label fw-bold text-dark">Message *</label>
-                                    <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
-                                    <div class="invalid-feedback">Please enter your message.</div>
-                                  </div>
-                                  
-                                  <div class="d-grid">
-                                    <button type="submit" class="btn btn-primary btn-lg">
-                                      <i class="fas fa-paper-plane me-2"></i>Send Message
-                                    </button>
-                                  </div>
-                                  
-                                  <div class="text-center mt-3">
-                                    <small class="text-muted">
-                                      <i class="fas fa-clock me-1"></i>We typically respond within 2 hours during business hours
-                                    </small>
-                                  </div>
-                                </form>
+                                <!-- Zoho Forms Iframe Embed -->
+                                <iframe 
+                                    aria-label='Contact Us' 
+                                    frameborder="0" 
+                                    style="height:650px;width:100%;border:none;" 
+                                    src='https://forms.zohopublic.com/infobre1/form/ContactUs/formperma/gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc'
+                                    class="zoho-form-iframe"
+                                    scrolling="auto"
+                                    allowtransparency>
+                                </iframe>
+                                <!-- End Zoho Forms Iframe -->
                             </div>
-                            <!-- End Formspree Contact Form -->
+                            
+                            <div class="text-center mt-4">
+                                <small class="text-muted">
+                                    <i class="fas fa-shield-alt me-1"></i>Your information is secure and will only be used to respond to your inquiry.
+                                </small>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -533,22 +499,6 @@
     <script src="js/main.js?v=14.0"></script>
     
     <script>
-    // Form validation
-    (function () {
-        'use strict'
-        var forms = document.querySelectorAll('.needs-validation')
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-
     // Phone call tracking function
     function trackPhoneCall() {
         console.log('Phone call initiated - +254711867765');
@@ -561,47 +511,7 @@
         }
     }
 
-    // Form submission success handler
     document.addEventListener('DOMContentLoaded', function() {
-        const form = document.querySelector('form');
-        if (form) {
-            form.addEventListener('submit', function() {
-                // Add loading state
-                const submitBtn = form.querySelector('button[type="submit"]');
-                if (submitBtn) {
-                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
-                    submitBtn.disabled = true;
-                }
-            });
-        }
-
-        // Get URL parameters for pre-filling form
-        const urlParams = new URLSearchParams(window.location.search);
-        const product = urlParams.get('product');
-        const service = urlParams.get('service');
-        
-        if (product) {
-            const subjectSelect = document.getElementById('subject');
-            if (subjectSelect) {
-                subjectSelect.value = 'Product Inquiry';
-            }
-            const messageTextarea = document.getElementById('message');
-            if (messageTextarea) {
-                messageTextarea.value = `I'm interested in learning more about your ${product}. Please send me more information about specifications, pricing, and availability.`;
-            }
-        }
-        
-        if (service) {
-            const subjectSelect = document.getElementById('subject');
-            if (subjectSelect) {
-                subjectSelect.value = 'Service Request';
-            }
-            const messageTextarea = document.getElementById('message');
-            if (messageTextarea) {
-                messageTextarea.value = `I'm interested in your ${service} service. Please contact me to discuss my requirements and schedule a consultation.`;
-            }
-        }
-
         // Initialize accordion
         const accordionItems = document.querySelectorAll('.accordion-button');
         accordionItems.forEach(button => {
@@ -610,6 +520,20 @@
                 console.log('FAQ interaction:', isExpanded ? 'close' : 'open', this.textContent.trim());
             });
         });
+        
+        // Zoho Forms iframe resizing for mobile
+        function adjustZohoFormHeight() {
+            const iframe = document.querySelector('.zoho-form-iframe');
+            if (iframe && window.innerWidth <= 768) {
+                iframe.style.height = '800px';
+            } else if (iframe) {
+                iframe.style.height = '650px';
+            }
+        }
+        
+        // Adjust on load and resize
+        adjustZohoFormHeight();
+        window.addEventListener('resize', adjustZohoFormHeight);
     });
     </script>
 </body>
