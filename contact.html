@@ -25,7 +25,6 @@
             position: relative;
         }
         
-        /* Fallback background color in case image doesn't load */
         .contact-hero {
             background-color: #2c3e50;
         }
@@ -39,7 +38,6 @@
             overflow: hidden;
         }
         
-        /* Alternative approach with multiple image path attempts */
         .contact-hero {
             background-image: 
                 linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), 
@@ -49,7 +47,6 @@
                 url('hero-contacts.jpg');
         }
 
-        /* Wave Divider Styles */
         .wave-divider {
             position: relative;
             height: 80px;
@@ -126,16 +123,15 @@
                             <h3 class="fw-bold mb-4 text-dark">Send us a Message</h3>
                             <p class="text-muted mb-4">Fill out the form below and we'll get back to you within 2 hours during business hours.</p>
                             
-                            <!-- Formspree Contact Form -->
+                            <!-- CORRECTED Formspree Contact Form -->
                             <div class="contact-form-container">
                                 <form
                                   action="https://formspree.io/f/mldkwvaj"
                                   method="POST"
-                                  enctype="multipart/form-data"
                                   class="needs-validation"
                                   novalidate
                                 >
-                                  <input type="hidden" name="_replyto" value="info@brentag.co.ke">
+                                  <input type="hidden" name="_replyto" value="brentagke@proton.me">
                                   <input type="hidden" name="_cc" value="info@brentag.co.ke">
                                   <input type="hidden" name="_subject" value="New Contact Form Submission - Brentag Kenya">
                                   
@@ -180,17 +176,6 @@
                                     <label for="message" class="form-label fw-bold text-dark">Message *</label>
                                     <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                                     <div class="invalid-feedback">Please enter your message.</div>
-                                  </div>
-
-                                  <!-- File Upload Section -->
-                                  <div class="mb-4">
-                                    <label for="upload" class="form-label fw-bold text-dark">
-                                      <i class="fas fa-paperclip me-2"></i>Attach File (Optional)
-                                    </label>
-                                    <input type="file" class="form-control" id="upload" name="upload" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-                                    <div class="form-text">
-                                      You can attach specifications, photos, or documents (PDF, Word, Images up to 10MB)
-                                    </div>
                                   </div>
                                   
                                   <div class="d-grid">
@@ -586,18 +571,6 @@
                 if (submitBtn) {
                     submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Sending...';
                     submitBtn.disabled = true;
-                }
-            });
-        }
-
-        // File upload size validation
-        const fileInput = document.getElementById('upload');
-        if (fileInput) {
-            fileInput.addEventListener('change', function() {
-                const file = this.files[0];
-                if (file && file.size > 10 * 1024 * 1024) { // 10MB limit
-                    alert('File size must be less than 10MB');
-                    this.value = '';
                 }
             });
         }
