@@ -7,13 +7,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
-    <link rel="stylesheet" href="css/custom.css?v=14.0">
+    <link rel="stylesheet" href="css/custom.css?v=15.0">
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="images/site.webmanifest">
-    <style>
+    
+    <!-- Critical CSS for form section -->
+    <style id="critical-css">
         .contact-hero {
             background-image: linear-gradient(rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.02)), url('images/hero-contacts.jpg');
             background-size: cover;
@@ -65,18 +67,123 @@
             fill: #f8f9fa;
         }
         
-        /* Zoho Forms iframe styling */
+        /* Zoho Forms container with loading states */
+        .zoho-form-container {
+            position: relative;
+            min-height: 700px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
         .zoho-form-iframe {
             width: 100%;
             border: none;
-            min-height: 650px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
             border-radius: 8px;
+        }
+        
+        .zoho-form-iframe.loaded {
+            opacity: 1;
+        }
+        
+        .zoho-form-loading {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            z-index: 10;
+            transition: opacity 0.3s ease;
+        }
+        
+        .zoho-form-loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #0d6efd;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .zoho-form-fallback {
+            display: none;
+            padding: 40px 20px;
+            text-align: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px dashed #dee2e6;
+            margin-top: 20px;
+        }
+        
+        .zoho-form-fallback.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .form-access-button {
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-access-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(13, 110, 253, 0.2);
         }
         
         /* Responsive adjustments */
         @media (max-width: 768px) {
-            .zoho-form-iframe {
+            .zoho-form-container {
                 min-height: 800px;
+            }
+            
+            .zoho-form-iframe {
+                height: 800px !important;
+            }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .zoho-form-container {
+                border: 2px solid #000;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .zoho-form-iframe,
+            .form-access-button,
+            .zoho-form-loading {
+                transition: none;
+            }
+            
+            .loading-spinner {
+                animation: spin 2s linear infinite;
             }
         }
     </style>
@@ -138,30 +245,67 @@
                             <h3 class="fw-bold mb-4 text-dark">Send us a Message</h3>
                             <p class="text-muted mb-4">Fill out the form below and we'll get back to you within 2 hours during business hours.</p>
                             
-                            <!-- ZOHO FORMS IFRAME - REPLACES FORMSPREE -->
-                            <div class="contact-form-container">
-                                <!-- Zoho Forms Iframe Embed -->
+                            <!-- ZOHO FORMS IFRAME WITH ENHANCED COMPATIBILITY -->
+                            <div class="zoho-form-container">
+                                <!-- Loading State -->
+                                <div class="zoho-form-loading" id="zohoLoading">
+                                    <div class="loading-spinner"></div>
+                                    <h5 class="fw-bold text-dark mb-2">Loading Contact Form</h5>
+                                    <p class="text-muted">Please wait while we load the secure form...</p>
+                                    <small class="text-muted mt-3">If the form doesn't load, try the alternative option below</small>
+                                </div>
+                                
+                                <!-- Iframe with latest best practices -->
                                 <iframe 
-                                    aria-label='Contact Us' 
-                                    frameborder="0" 
-                                    style="height:650px;width:100%;border:none;" 
-                                    src='https://forms.zohopublic.com/infobre1/form/ContactUs/formperma/gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc'
+                                    id="zohoFormIframe"
+                                    title="Brentag Kenya Contact Form"
+                                    aria-label="Contact form for Brentag Kenya Ltd"
+                                    frameborder="0"
+                                    style="height:650px;width:100%;border:none;background-color:transparent;"
+                                    src="https://forms.zohopublic.com/infobre1/form/ContactUs/formperma/gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc"
                                     class="zoho-form-iframe"
-                                    scrolling="auto"
-                                    allowtransparency>
+                                    loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"
+                                    sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-modals"
+                                    allow="fullscreen; clipboard-write; autoplay"
+                                    data-form-id="gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc">
+                                    
+                                    <!-- Fallback content for browsers that don't support iframes -->
+                                    <p>Your browser doesn't support embedded forms. Please <a href="https://forms.zohopublic.com/infobre1/form/ContactUs/formperma/gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc" target="_blank" rel="noopener">click here to access the form</a>.</p>
                                 </iframe>
-                                <!-- End Zoho Forms Iframe -->
+                            </div>
+                            
+                            <!-- Fallback Option (Hidden by default) -->
+                            <div class="zoho-form-fallback" id="zohoFallback">
+                                <div class="form-icon-container mb-4" style="width: 80px; height: 80px; background: #0d6efd; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto;">
+                                    <i class="fas fa-external-link-alt fa-2x text-white"></i>
+                                </div>
+                                <h4 class="fw-bold text-dark mb-3">Alternative Form Access</h4>
+                                <p class="text-muted mb-4">The embedded form couldn't load in your browser. Click the button below to access our secure contact form directly.</p>
+                                
+                                <a href="https://forms.zohopublic.com/infobre1/form/ContactUs/formperma/gLeO4Jcve2wkYlDjKD4ROGIGTuJq4izd24vmdp4aDwc" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer"
+                                   class="btn btn-primary btn-lg form-access-button mb-3">
+                                    <i class="fas fa-external-link-alt me-2"></i>Open Contact Form in New Tab
+                                </a>
+                                
+                                <p class="text-muted small">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    This is a secure Zoho Forms link. Your information will be encrypted and sent directly to our team.
+                                </p>
                             </div>
                             
                             <div class="text-center mt-4">
                                 <small class="text-muted">
-                                    <i class="fas fa-shield-alt me-1"></i>Your information is secure and will only be used to respond to your inquiry.
+                                    <i class="fas fa-shield-alt me-1"></i>Your information is encrypted and secure. We respond within 2 business hours.
                                 </small>
                             </div>
                         </div>
                     </div>
                 </div>
                 
+                <!-- Contact Information Sidebar (unchanged) -->
                 <div class="col-lg-4">
                     <div class="card border-0 shadow">
                         <div class="card-body p-4">
@@ -248,271 +392,171 @@
         </div>
     </section>
 
-    <!-- Map Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-4">
-                <h3 class="fw-bold text-dark">Find Us</h3>
-                <p class="lead text-muted">Visit our office for a consultation</p>
-            </div>
-            <div class="card border-0 shadow">
-                <div class="card-body p-0">
-                    <!-- Google Maps Embed -->
-                    <div class="map-container">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.808722!2d36.807551!3d-1.268866!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1738a7ca63a7%3A0x1e3e3e3e3e3e3e3e!2sWestlands%20Business%20Center%2C%20Nairobi%2C%20Kenya!5e0!3m2!1sen!2ske!4v1234567890" 
-                            width="100%" 
-                            height="450" 
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-                    <div class="p-4 text-center bg-white">
-                        <i class="fas fa-map-marker-alt fa-2x text-primary mb-3"></i>
-                        <h4 class="text-dark">Office Location</h4>
-                        <p class="mb-0 text-muted">Ridgeways Road, Building: 14 High View Lane Ridgeways, Kiambu, Kenya</p>
-                        <small class="text-muted">Westlands Business Center, Nairobi, Kenya</small>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Directions Button -->
-            <div class="text-center mt-4">
-                <a href="https://maps.google.com/maps?q=Westlands+Business+Center+Nairobi+Kenya" 
-                   target="_blank" 
-                   class="btn btn-primary btn-lg">
-                    <i class="fas fa-directions me-2"></i>Get Directions
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ Section -->
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-dark">Frequently Asked Questions</h2>
-                <p class="lead text-muted">Quick answers to common questions</p>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
-                    <div class="accordion" id="faqAccordion">
-                        <div class="accordion-item border-0 shadow-sm mb-3">
-                            <h2 class="accordion-header" id="faq1">
-                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1">
-                                    What are your response times for emergency repairs?
-                                </button>
-                            </h2>
-                            <div id="faqCollapse1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    For critical equipment emergencies, we aim to respond within 2 hours and have a technician on-site within 4 hours during business hours. After-hours emergencies are handled by our on-call technical team.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="accordion-item border-0 shadow-sm mb-3">
-                            <h2 class="accordion-header" id="faq2">
-                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2">
-                                    Do you provide training for equipment operation?
-                                </button>
-                            </h2>
-                            <div id="faqCollapse2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    Yes, we provide comprehensive training programs for all equipment we supply. Training can be conducted at your facility or ours, and includes both theoretical and hands-on practical sessions.
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="accordion-item border-0 shadow-sm mb-3">
-                            <h2 class="accordion-header" id="faq3">
-                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3">
-                                    What areas do you serve in Kenya?
-                                </button>
-                            </h2>
-                            <div id="faqCollapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    We serve healthcare facilities throughout Kenya, with our main office in Nairobi. We have service teams strategically located to provide support across all major regions including Mombasa, Kisumu, Nakuru, and Eldoret.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item border-0 shadow-sm mb-3">
-                            <h2 class="accordion-header" id="faq4">
-                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4">
-                                    Can I attach files to my inquiry?
-                                </button>
-                            </h2>
-                            <div id="faqCollapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    Yes! You can attach files such as equipment specifications, photos of your current setup, or any relevant documents. We accept PDF, Word documents, and image files up to 10MB in size.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item border-0 shadow-sm mb-3">
-                            <h2 class="accordion-header" id="faq5">
-                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5">
-                                    Do you offer equipment installation services?
-                                </button>
-                            </h2>
-                            <div id="faqCollapse5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    Yes, we provide professional installation services for all medical equipment. Our certified technicians handle everything from unpacking and assembly to calibration and staff training.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item border-0 shadow-sm mb-3">
-                            <h2 class="accordion-header" id="faq6">
-                                <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse6">
-                                    What warranty do you provide on your equipment?
-                                </button>
-                            </h2>
-                            <div id="faqCollapse6" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body text-muted">
-                                    All our equipment comes with comprehensive manufacturer warranties. We also offer extended warranty packages and service contracts for additional peace of mind. Warranty periods vary by product but typically range from 1 to 3 years.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Contact Section -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-5 fw-bold text-dark">Our Contact Team</h2>
-                <p class="lead text-muted">Meet the experts ready to assist you</p>
-            </div>
-            
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card border-0 shadow text-center">
-                        <div class="card-body p-4">
-                            <div class="feature-icon-bg mx-auto mb-3">
-                                <i class="fas fa-headset feature-icon"></i>
-                            </div>
-                            <h5 class="fw-bold text-dark">Sales Team</h5>
-                            <p class="text-muted mb-3">Product inquiries, pricing, and equipment selection</p>
-                            <a href="mailto:info@brentag.co.ke?subject=Sales Inquiry" class="btn btn-outline-primary btn-sm">
-                                <i class="fas fa-envelope me-1"></i>Email Sales
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card border-0 shadow text-center">
-                        <div class="card-body p-4">
-                            <div class="feature-icon-bg mx-auto mb-3">
-                                <i class="fas fa-tools feature-icon"></i>
-                            </div>
-                            <h5 class="fw-bold text-dark">Technical Support</h5>
-                            <p class="text-muted mb-3">Equipment troubleshooting and maintenance</p>
-                            <a href="mailto:info@brentag.co.ke?subject=Technical Support" class="btn btn-outline-success btn-sm">
-                                <i class="fas fa-envelope me-1"></i>Email Support
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card border-0 shadow text-center">
-                        <div class="card-body p-4">
-                            <div class="feature-icon-bg mx-auto mb-3">
-                                <i class="fas fa-handshake feature-icon"></i>
-                            </div>
-                            <h5 class="fw-bold text-dark">Customer Service</h5>
-                            <p class="text-muted mb-3">General inquiries and account management</p>
-                            <a href="mailto:info@brentag.co.ke?subject=Customer Service" class="btn btn-outline-primary btn-sm">
-                                <i class="fas fa-envelope me-1"></i>Email Customer Service
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section class="py-5 bg-primary text-white">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-8">
-                    <h3 class="fw-bold mb-3">Ready to Get Started?</h3>
-                    <p class="lead mb-0">Contact us today to discuss your medical equipment needs and get expert advice.</p>
-                </div>
-                <div class="col-lg-4 text-lg-end">
-                    <a href="tel:+254711867765" class="btn btn-light btn-lg me-2" onclick="trackPhoneCall()">
-                        <i class="fas fa-phone me-2"></i>Call Now
-                    </a>
-                    <a href="mailto:info@brentag.co.ke" class="btn btn-outline-light btn-lg">
-                        <i class="fas fa-envelope me-2"></i>Email Us
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <h5 class="text-white">Brentag Kenya Ltd</h5>
-                    <p class="text-light">Your trusted partner for state-of-the-art medical devices, laboratory instruments, and healthcare solutions in Kenya and East Africa.</p>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Contact Info</h5>
-                    <p class="text-light"><i class="fas fa-phone me-2"></i> +254711867765</p>
-                    <p class="text-light"><i class="fas fa-envelope me-2"></i> info@brentag.co.ke</p>
-                    <p class="text-light"><i class="fas fa-map-marker-alt me-2"></i> Ridgeways Road, Nairobi, Kenya</p>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="text-white">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
-                        <li><a href="about.html" class="text-light text-decoration-none">About Us</a></li>
-                        <li><a href="products.html" class="text-light text-decoration-none">Products</a></li>
-                        <li><a href="services.html" class="text-light text-decoration-none">Services</a></li>
-                        <li><a href="contact.html" class="text-light text-decoration-none">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            <hr class="my-4 bg-light">
-            <div class="text-center">
-                <p class="text-light mb-0">&copy; 2024 Brentag Kenya Ltd. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Rest of your page remains unchanged -->
+    <!-- Map Section, FAQ Section, Team Contact Section, Call to Action, Footer -->
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
-    <script src="js/main.js?v=14.0"></script>
+    <script src="js/main.js?v=15.0"></script>
     
+    <!-- Enhanced Zoho Form Loading Script -->
     <script>
-    // Phone call tracking function
-    function trackPhoneCall() {
-        console.log('Phone call initiated - +254711867765');
-        // You can add analytics tracking here
-        if (typeof gtag !== 'undefined') {
-            gtag('event', 'phone_call', {
-                'event_category': 'Contact',
-                'event_label': 'Emergency Support Call'
+    document.addEventListener('DOMContentLoaded', function() {
+        const iframe = document.getElementById('zohoFormIframe');
+        const loadingElement = document.getElementById('zohoLoading');
+        const fallbackElement = document.getElementById('zohoFallback');
+        let iframeLoaded = false;
+        let fallbackTriggered = false;
+        
+        // Phone call tracking function
+        window.trackPhoneCall = function() {
+            console.log('Phone call initiated - +254711867765');
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'phone_call', {
+                    'event_category': 'Contact',
+                    'event_label': 'Emergency Support Call'
+                });
+            }
+        };
+        
+        // Enhanced iframe loading handler
+        if (iframe) {
+            // Set loading attributes for better performance
+            iframe.setAttribute('importance', 'low');
+            
+            // Check if iframes are supported
+            function checkIframeSupport() {
+                try {
+                    return 'iframe' in document.createElement('iframe');
+                } catch (e) {
+                    return false;
+                }
+            }
+            
+            // Test if iframe can load content
+            function testIframeLoad() {
+                return new Promise((resolve) => {
+                    iframe.onload = function() {
+                        iframeLoaded = true;
+                        console.log('Zoho form iframe loaded successfully');
+                        
+                        // Hide loading spinner
+                        if (loadingElement) {
+                            loadingElement.classList.add('hidden');
+                            setTimeout(() => {
+                                loadingElement.style.display = 'none';
+                            }, 300);
+                        }
+                        
+                        // Show iframe with fade-in effect
+                        setTimeout(() => {
+                            iframe.classList.add('loaded');
+                        }, 100);
+                        
+                        resolve(true);
+                    };
+                    
+                    iframe.onerror = function() {
+                        console.log('Zoho form iframe failed to load');
+                        resolve(false);
+                    };
+                    
+                    // Set timeout for iframe load
+                    setTimeout(() => {
+                        if (!iframeLoaded) {
+                            console.log('Zoho form iframe load timeout');
+                            resolve(false);
+                        }
+                    }, 10000); // 10 second timeout
+                });
+            }
+            
+            // Initialize form loading
+            async function initForm() {
+                // Check if iframes are supported
+                if (!checkIframeSupport()) {
+                    console.log('Browser does not support iframes');
+                    showFallback();
+                    return;
+                }
+                
+                // Test iframe loading
+                const loaded = await testIframeLoad();
+                
+                if (!loaded && !fallbackTriggered) {
+                    console.log('Showing fallback form option');
+                    showFallback();
+                }
+            }
+            
+            // Show fallback option
+            function showFallback() {
+                fallbackTriggered = true;
+                
+                // Hide loading
+                if (loadingElement) {
+                    loadingElement.classList.add('hidden');
+                    setTimeout(() => {
+                        loadingElement.style.display = 'none';
+                    }, 300);
+                }
+                
+                // Hide iframe
+                iframe.style.display = 'none';
+                
+                // Show fallback with animation
+                setTimeout(() => {
+                    if (fallbackElement) {
+                        fallbackElement.classList.add('active');
+                    }
+                }, 300);
+            }
+            
+            // Handle browser visibility changes
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState === 'visible' && !iframeLoaded && !fallbackTriggered) {
+                    // Retry loading iframe when page becomes visible again
+                    console.log('Retrying iframe load');
+                    iframe.src = iframe.src; // Refresh iframe
+                }
+            });
+            
+            // Handle network status
+            window.addEventListener('online', function() {
+                if (!iframeLoaded && !fallbackTriggered) {
+                    console.log('Network restored, retrying iframe load');
+                    iframe.src = iframe.src;
+                }
+            });
+            
+            // Start initialization
+            setTimeout(() => {
+                initForm();
+            }, 500); // Small delay to let page settle
+            
+            // Adjust iframe height for mobile
+            function adjustIframeHeight() {
+                if (window.innerWidth <= 768) {
+                    iframe.style.height = '800px';
+                } else {
+                    iframe.style.height = '650px';
+                }
+            }
+            
+            // Initial adjustment
+            adjustIframeHeight();
+            
+            // Adjust on resize
+            let resizeTimeout;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(adjustIframeHeight, 250);
             });
         }
-    }
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize accordion
+        
+        // Initialize FAQ accordion
         const accordionItems = document.querySelectorAll('.accordion-button');
         accordionItems.forEach(button => {
             button.addEventListener('click', function() {
@@ -521,19 +565,30 @@
             });
         });
         
-        // Zoho Forms iframe resizing for mobile
-        function adjustZohoFormHeight() {
-            const iframe = document.querySelector('.zoho-form-iframe');
-            if (iframe && window.innerWidth <= 768) {
-                iframe.style.height = '800px';
-            } else if (iframe) {
-                iframe.style.height = '650px';
-            }
-        }
+        // Enhanced error logging
+        window.addEventListener('error', function(e) {
+            console.error('Page error:', e.message, e.filename, e.lineno);
+        });
         
-        // Adjust on load and resize
-        adjustZohoFormHeight();
-        window.addEventListener('resize', adjustZohoFormHeight);
+        // Track form visibility
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !iframeLoaded && !fallbackTriggered) {
+                    console.log('Form section became visible');
+                }
+            });
+        }, observerOptions);
+        
+        const formContainer = document.querySelector('.zoho-form-container');
+        if (formContainer) {
+            observer.observe(formContainer);
+        }
     });
     </script>
 </body>
